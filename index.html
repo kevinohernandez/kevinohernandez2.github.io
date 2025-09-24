@@ -39,13 +39,26 @@
     }
 
 .drop-in {
- animation: drop-in 1s ease 200ms backwards;
+animation: drop-in 1s ease 200ms backwards;
+}
+.drop-in2 {
+animation: drop-in 1s ease 200ms backwards;
 }
 
 @keyframes drop-in {
  from {
   opacity: 0;
   transform: translateY(-100px);
+ }
+ to {
+  opacity: 1;
+  transform: translate(0px);
+ }
+}
+	  @keyframes drop-in2 {
+ from {
+  opacity: 0;
+  transform: translateX(-100px);
  }
  to {
   opacity: 1;
@@ -219,11 +232,12 @@
       border-radius: 8px;
       text-align: center;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
     }
 
-    /.social-button:hover {
-      background: var(--color-primary-light);
+    .social-button:hover {
+      /background: var(--color-primary-light);
+	  transform: scale(1.1);
     }
 
     .social-button svg {
@@ -646,7 +660,7 @@
 
   <div class="main-container ">
     <ul id="tabs-list">
-      <div class="social-button logo drop-in">
+      <div class="social-button logo drop-in2">
       <a href="#" class="image avatar">
         <!-- Replace image with inline SVG -->
        <?xml version="1.0" encoding="UTF-8"?>
@@ -670,23 +684,23 @@
       </a>
       </div>
       <li>
-  <label class="panel-label  drop-in active" data-target="section-1">ABOUT</label>
+  <label class="panel-label  drop-in2 active" data-target="section-1">ABOUT</label>
       </li>
       <li>
-      <label class="panel-label drop-in" data-target="section-2">3D</label>
+      <label class="panel-label drop-in2" data-target="section-2">3D</label>
       </li>
       <li>
-      <label class="panel-label  drop-in" data-target="section-3">GRAPHIC</label>
+      <label class="panel-label  drop-in2" data-target="section-3">GRAPHIC</label>
       </li>
       <li>
-      <label class="panel-label  drop-in" data-target="section-4">PRODUCT</label>
+      <label class="panel-label  drop-in2" data-target="section-4">PRODUCT</label>
       </li>
       <li class="last">
-      <label class="panel-label  drop-in" data-target="section-5">CONTACT</label>
+      <label class="panel-label  drop-in2" data-target="section-5">CONTACT</label>
       </li>
       
       <!-- Social Button -->
-      <div class="social-button  drop-in">
+      <div class="social-button  drop-in2">
   <a href="https://www.linkedin.com/in/kevinohernandez/" class="nav-link" target="_blank" rel="noopener">
  <svg version="1.1" id="Ld" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 	 viewBox="0 0 382 382" xml:space="preserve">
@@ -1222,6 +1236,7 @@
 
 </body>
 </html>
+
 
 
 
