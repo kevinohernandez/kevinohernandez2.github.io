@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <style>
 
+	  
 @font-face {
   font-family: 'Neue Haas Display';
   src: url('assets/webfonts/NeueHaasDisplayThin.ttf') format('truetype');
@@ -15,7 +16,44 @@
   font-style: normal;
   font-display: swap;
 }
+	  
+/* Global Styles */
+	html, body {
+	height: 100%;
+	background: var(--color-primary-light);
+	color: var(--color-text);
+	font-family: 'Neue Haas Display', -apple-system, BlinkMacSystemFont, sans-serif;
+	margin: 0;
+	padding: 0;
+	scroll-behavior: smooth;
+	}
 
+	      /* Content Styles */
+    h1 {
+      margin-top: 0;
+      font-weight: 300;
+      color: var(--color-primary-dark);
+    }
+
+    p {
+      line-height: 1.8;
+    }
+
+    hr {
+      margin: 12px 0;
+      border: none;
+      border-top: var(--tab-base-border-style);
+    }
+	      /* Hide scrollbar for Chrome, Safari and Opera */
+    #content::-webkit-scrollbar {
+      display: none;
+    }
+
+	  
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .content-section pre::-webkit-scrollbar {
+      display: none;
+    }
     :root {
       --tab-count: 5;
       --menu-item-height: 46px;
@@ -69,16 +107,7 @@ animation: drop-in 1s ease 200ms backwards;
   }
 }
 
-	/* Global Styles */
-	html, body {
-	height: 100%;
-	background: var(--color-primary-light);
-	color: var(--color-text);
-	font-family: 'Neue Haas Display', -apple-system, BlinkMacSystemFont, sans-serif;
-	margin: 0;
-	padding: 0;
-	scroll-behavior: smooth;
-	}
+	
 	
 	.ec{
 	display: flex;
@@ -266,10 +295,6 @@ animation: drop-in 1s ease 200ms backwards;
 	-ms-overflow-style: none; /* Internet Explorer 10+ */
 	}
 
-    /* Hide scrollbar for Chrome, Safari and Opera */
-    #content::-webkit-scrollbar {
-      display: none;
-    }
 
     /* Individual Sections - Responsive */
     .content-section {
@@ -298,11 +323,8 @@ animation: drop-in 1s ease 200ms backwards;
       scrollbar-width: none; /* Firefox */
       -ms-overflow-style: none; /* Internet Explorer 10+ */
     }
-    
-    /* Hide scrollbar for Chrome, Safari and Opera */
-    .content-section pre::-webkit-scrollbar {
-      display: none;
-    }
+
+
 
     /* Horizontal Image Gallery Styles */
     .image-gallery {
@@ -477,22 +499,7 @@ animation: drop-in 1s ease 200ms backwards;
       flex: 1;
     }
 
-    /* Content Styles */
-    h1 {
-      margin-top: 0;
-      font-weight: 300;
-      color: var(--color-primary-dark);
-    }
 
-    p {
-      line-height: 1.8;
-    }
-
-    hr {
-      margin: 12px 0;
-      border: none;
-      border-top: var(--tab-base-border-style);
-    }
 
     /* Demo Styles */
     label.demo-label {
@@ -1240,6 +1247,7 @@ animation: drop-in 1s ease 200ms backwards;
 
 </body>
 </html>
+
 
 
 
