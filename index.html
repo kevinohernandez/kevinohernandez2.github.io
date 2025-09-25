@@ -134,6 +134,20 @@ height: auto;
 font-size:5.5rem;
 line-height:1;
 }
+
+.hero-text {
+color: black;
+font-weight: bold;
+display: inline-block;
+font-size: 5.5rem;
+text-align: center; /* center the two lines */
+}
+.hero-text span {
+display: inline-block;
+transition: all 0.3s ease;
+position: relative;
+}
+	  
 .txt2{
 font-size:2rem;
 /line-height:1;
@@ -291,6 +305,7 @@ font-weight: 400;
 border-radius: 10px;
 text-align: center;
 margin: 0px 5px 0px 5px;
+box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);	
 }
 
 label.panel-label:hover {
@@ -318,6 +333,7 @@ width: var(--btn-border-left-thickness);
 label.panel-label.active {
 background-color: var(--color-label-bg-active);
 color: var(--color-border-left);
+/box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);	
 }
 
 label.panel-label.active::before {
@@ -494,6 +510,9 @@ border: 2px solid rgba(255, 255, 255, 0.8);
 transition: all 0.3s ease;
 cursor: pointer;
 pointer-events: all;
+/clip-path: polygon(96% 19%, 75% 15%, 25% 35%, 25% 64%, 75% 85%, 96% 80%);
+/width: 15px;
+/height: 15px;	
 }
 
 .gallery-dot.active {
@@ -785,7 +804,7 @@ height: 100%;
 width: 100%;
 }
 
-
+	  
 
 
 	  
@@ -859,7 +878,7 @@ width: 100%;
               <div class="ec">
 
         <div class="extra-content drop-in">
-           <h3 class="txt">KEVIN <br> HERNANDEZ </h3>
+    <div class="hero-text txt">KEVIN<br>HERNANDEZ</div>
           <h3 class="txt2">MULTIMEDIA + DEVELOPER</h3>
 
  
@@ -1913,10 +1932,62 @@ window.particleImageDisplay("particle-image");
 		
 </script>
 
+<script>
+    const element = document.querySelector('.hero-text');
+    
+    // Split text into letters and preserve line breaks
+    const textNodes = Array.from(element.childNodes);
+    element.innerHTML = ''; // clear content
 
+    textNodes.forEach(node => {
+        if (node.nodeName === 'BR') {
+            element.appendChild(document.createElement('br'));
+        } else {
+            node.textContent.split('').forEach(char => {
+                const span = document.createElement('span');
+                span.textContent = char;
+                element.appendChild(span);
+            });
+        }
+    });
+
+    const letters = element.querySelectorAll('span');
+
+    // Mouse move effect
+    function handleMouseMove(e) {
+        const { clientX, clientY } = e;
+        const parentWidth = element.getBoundingClientRect().width;
+
+        letters.forEach(letter => {
+            const rect = letter.getBoundingClientRect();
+            const originX = rect.left + rect.width / 2;
+            const originY = rect.top + rect.height / 2;
+            const distance = Math.sqrt((originX - clientX) ** 2 + (originY - clientY) ** 2);
+            const ratio = parentWidth * 0.4;
+            const distancePercentage = Math.min(Math.max((ratio - distance) / ratio * 100, 0), 100);
+
+            const opacity = 1 - (distancePercentage / 100) * 0.5;
+            letter.style.opacity = opacity;
+
+            if (distancePercentage > 0) {
+                const deltaX = originX - clientX;
+                const deltaY = originY - clientY;
+                const strength = (distancePercentage / 100) * 90;
+                const displaceX = (deltaX / distance) * strength;
+                const displaceY = (deltaY / distance) * strength;
+                letter.style.transform = `translate(${displaceX}px, ${displaceY}px)`;
+            } else {
+                letter.style.transform = 'translate(0px, 0px)';
+            }
+        });
+    }
+
+    window.addEventListener('mousemove', handleMouseMove);
+</script>
 
 </body>
 </html>
+
 
 
 
