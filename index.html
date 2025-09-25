@@ -232,7 +232,32 @@ min-width: max-content;
       -ms-overflow-style: none; /* Internet Explorer 10+ */
       row-gap: 5px;
     }
-    
+	  
+    /* Tabs List - horizontal*/
+/#tabs-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    /* width: 125px; */
+    /* min-width: 100px; */
+    /* max-width: 500px; */
+    /* background-color: var(--color-label-bg-inactive); */
+    /* background: repeating-radial-gradient(circle, rgba(255, 192, 203, 0.3), rgb(188 188 196) 50%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.3)) !important; */
+    background-size: 2.5px 2.5px !important;
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    row-gap: 5px;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    justify-content: center;
+}
+	  
 
     #tabs-list li {
       /border-bottom: var(--tab-base-border-style);
@@ -429,6 +454,43 @@ min-width: max-content;
       transform: translateY(0);
     }
 
+
+/* Gallery Navigation Dots */
+.gallery-nav-dots {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.gallery-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  pointer-events: all;
+}
+
+.gallery-dot.active {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+.gallery-dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: scale(1.1);
+}
+	  
+
     /* Modal Styles */
     .modal {
       display: none;
@@ -463,8 +525,8 @@ min-width: max-content;
 
     .modal-image {
       max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
+	  max-height: 100svh;      
+	  object-fit: contain;
       border-radius: 8px;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     }
@@ -876,6 +938,7 @@ min-width: max-content;
          <h1 class="section-title">3D</h1>
         
         <div class="image-gallery">
+		<div class="gallery-nav-dots" id="gallery-dots-3d"></div>     <!-- For 3D gallery -->
           <div class="gallery-item" data-gallery="nature">
             <img src="images/fulls/3d5.jpg">
             <div class="overlay"> <h3>Mountain Lake</h3> <p>Serene alpine waters</p> </div>
@@ -933,6 +996,7 @@ min-width: max-content;
          <h1 class="section-title">GRAPHICS</h1>
         
         <div class="image-gallery">
+		<div class="gallery-nav-dots" id="gallery-dots-graphics"></div> <!-- For Graphics gallery -->  
           <div class="gallery-item" data-gallery="urban">
             <img src="images/fulls/gd1.jpg">
             <div class="overlay">
@@ -1020,6 +1084,8 @@ min-width: max-content;
          <h1 class="section-title">PRODUCTS</h1>
         
         <div class="image-gallery">
+			<div class="gallery-nav-dots" id="gallery-dots-products"></div> <!-- For Products gallery -->
+
           <div class="gallery-item" data-gallery="abstract">
             <img src="images/fulls/pr1.jpg">
             <div class="overlay">
@@ -1342,14 +1408,74 @@ min-width: max-content;
       updateActiveNavigation();
     });
   </script>
+	<script>
 
+// Gallery dots functionality
+function initializeGalleryDots() {
+  const galleries = [
+    { dotsContainer: '#gallery-dots-3d', sectionIndex: 1 },
+    { dotsContainer: '#gallery-dots-graphics', sectionIndex: 2 },
+    { dotsContainer: '#gallery-dots-products', sectionIndex: 3 }
+  ];
 
+  galleries.forEach((galleryConfig) => {
+    const galleryElement = sections[galleryConfig.sectionIndex].querySelector('.image-gallery');
+    const dotsContainer = document.querySelector(galleryConfig.dotsContainer);
+    const galleryItems = galleryElement.querySelectorAll('.gallery-item');
+    
+    if (!galleryElement || !dotsContainer) return;
 
+    // Create dots
+    const dotCount = Math.min(galleryItems.length, 8);
+    dotsContainer.innerHTML = '';
+    
+    for (let i = 0; i < dotCount; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'gallery-dot';
+      if (i === 0) dot.classList.add('active');
+      
+      dot.addEventListener('click', function() {
+        const itemWidth = galleryItems[0].offsetWidth + 15;
+        const scrollPosition = i * itemWidth;
+        galleryElement.scrollTo({
+          left: scrollPosition,
+          behavior: 'smooth'
+        });
+      });
+      
+      dotsContainer.appendChild(dot);
+    }
+
+    // Handle scroll events
+    galleryElement.addEventListener('scroll', function() {
+      updateGalleryDots(galleryElement, dotsContainer, galleryItems);
+    });
+
+    updateGalleryDots(galleryElement, dotsContainer, galleryItems);
+  });
+}
+
+function updateGalleryDots(galleryElement, dotsContainer, galleryItems) {
+  const scrollLeft = galleryElement.scrollLeft;
+  const itemWidth = galleryItems[0].offsetWidth + 15;
+  const currentIndex = Math.round(scrollLeft / itemWidth);
+  
+  const dots = dotsContainer.querySelectorAll('.gallery-dot');
+  dots.forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentIndex);
+  });
+}
+
+// Call this function after your existing code
+initializeGalleryDots();
+		
+	</script>
 
 
 
 </body>
 </html>
+
 
 
 
