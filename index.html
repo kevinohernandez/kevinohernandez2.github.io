@@ -1986,20 +1986,33 @@ document.addEventListener('DOMContentLoaded', function() {
   
   function updateGalleryDots(galleryElement, dotsContainer, galleryItems) {
     const scrollLeft = galleryElement.scrollLeft;
-    let currentIndex = 0;
+    const containerWidth = galleryElement.clientWidth;
+    const totalWidth = galleryElement.scrollWidth;
+    const maxScroll = totalWidth - containerWidth;
     
-    // Find the closest item based on actual positions
-    for (let i = 0; i < galleryItems.length; i++) {
-      const itemLeft = galleryItems[i].offsetLeft;
-      const nextItemLeft = i < galleryItems.length - 1 ? galleryItems[i + 1].offsetLeft : galleryElement.scrollWidth;
+    // Create scroll thresholds for each item
+    const thresholds = [];
+    galleryItems.forEach((item, index) => {
+      const itemLeft = item.offsetLeft;
+      const itemWidth = item.offsetWidth;
       
-      // If scroll position is between current item and next item (or at the end)
-      if (scrollLeft >= itemLeft && scrollLeft < nextItemLeft) {
-        // Determine which item is closer
-        const currentDistance = Math.abs(scrollLeft - itemLeft);
-        const nextDistance = Math.abs(scrollLeft - nextItemLeft);
-        
-        currentIndex = currentDistance <= nextDistance ? i : Math.min(i + 1, galleryItems.length - 1);
+      if (index === galleryItems.length - 1) {
+        // For the last item, threshold starts earlier
+        thresholds.push(maxScroll * 0.85);
+      } else if (index === galleryItems.length - 2) {
+        // For the second to last item
+        thresholds.push(maxScroll * 0.7);
+      } else {
+        // For other items, use their position
+        thresholds.push(itemLeft);
+      }
+    });
+    
+    // Find current index based on thresholds
+    let currentIndex = 0;
+    for (let i = thresholds.length - 1; i >= 0; i--) {
+      if (scrollLeft >= thresholds[i]) {
+        currentIndex = i;
         break;
       }
     }
@@ -2022,6 +2035,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
