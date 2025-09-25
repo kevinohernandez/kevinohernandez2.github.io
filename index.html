@@ -817,32 +817,30 @@ line-height: 1.6;
 :root {
   --light: rgb(245, 242, 240);
   --dark: rgb(70, 70, 70);
-  --animation-speed: 500ms;
+  --animation-speed: 400ms;
 }
 
 .sliding-button {
-  padding: 0;
-  cursor: pointer;
-  pointer-events: auto;
-  background-repeat: no-repeat;
-  text-align: center;
-  transition: background-position var(--animation-speed) ease;
+background-repeat: no-repeat;
+border-radius: 5px 5px 10px 10px;  
 }
-
 
 .sliding-button > p {
   display: block;
   margin: 0;
-  padding: 1em 2em 1em 2em;
-  font-size: 1.5em;
-  line-height: 1em;
   white-space: no-wrap;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  transition: background-position var(--animation-speed)  ease;
+}
+	  
+.bottom-to-top:hover {
+  background-position: bottom;
 }
 
+.bottom-to-top:hover > p {
+  background-position: bottom;
+}
 
 .bottom-to-top{
    background-image: linear-gradient(270deg, var(--light) 50%, var(--dark) 50%);
@@ -864,14 +862,6 @@ line-height: 1.6;
   background-position: top;
 }
 
-.bottom-to-top:hover {
-  background-position: bottom;
-transistion: all 0.3s ease;	
-}
-
-.bottom-to-top:hover > p {
-  background-position: bottom;
-}
 
 
 
@@ -2079,6 +2069,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
