@@ -1408,73 +1408,14 @@ min-width: max-content;
       updateActiveNavigation();
     });
   </script>
-	<script>
 
-// Gallery dots functionality
-function initializeGalleryDots() {
-  const galleries = [
-    { dotsContainer: '#gallery-dots-3d', sectionIndex: 1 },
-    { dotsContainer: '#gallery-dots-graphics', sectionIndex: 2 },
-    { dotsContainer: '#gallery-dots-products', sectionIndex: 3 }
-  ];
 
-  galleries.forEach((galleryConfig) => {
-    const galleryElement = sections[galleryConfig.sectionIndex].querySelector('.image-gallery');
-    const dotsContainer = document.querySelector(galleryConfig.dotsContainer);
-    const galleryItems = galleryElement.querySelectorAll('.gallery-item');
-    
-    if (!galleryElement || !dotsContainer) return;
-
-    // Create dots
-    const dotCount = Math.min(galleryItems.length, 8);
-    dotsContainer.innerHTML = '';
-    
-    for (let i = 0; i < dotCount; i++) {
-      const dot = document.createElement('div');
-      dot.className = 'gallery-dot';
-      if (i === 0) dot.classList.add('active');
-      
-      dot.addEventListener('click', function() {
-        const itemWidth = galleryItems[0].offsetWidth + 15;
-        const scrollPosition = i * itemWidth;
-        galleryElement.scrollTo({
-          left: scrollPosition,
-          behavior: 'smooth'
-        });
-      });
-      
-      dotsContainer.appendChild(dot);
-    }
-
-    // Handle scroll events
-    galleryElement.addEventListener('scroll', function() {
-      updateGalleryDots(galleryElement, dotsContainer, galleryItems);
-    });
-
-    updateGalleryDots(galleryElement, dotsContainer, galleryItems);
-  });
-}
-
-function updateGalleryDots(galleryElement, dotsContainer, galleryItems) {
-  const scrollLeft = galleryElement.scrollLeft;
-  const itemWidth = galleryItems[0].offsetWidth + 15;
-  const currentIndex = Math.round(scrollLeft / itemWidth);
-  
-  const dots = dotsContainer.querySelectorAll('.gallery-dot');
-  dots.forEach((dot, index) => {
-    dot.classList.toggle('active', index === currentIndex);
-  });
-}
-
-// Call this function after your existing code
-initializeGalleryDots();
-		
-	</script>
 
 
 
 </body>
 </html>
+
 
 
 
