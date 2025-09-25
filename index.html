@@ -823,24 +823,12 @@ line-height: 1.6;
 .sliding-button {
   padding: 0;
   cursor: pointer;
-  border: 0.2em solid var(--dark);
-  border-radius: 1em;
-  margin: 0.5em;
   pointer-events: auto;
   background-repeat: no-repeat;
   text-align: center;
   transition: background-position var(--animation-speed) ease;
 }
 
-.sliding-button {
-  padding: 0;
-  cursor: pointer;
-  border-radius: 1em;
-  pointer-events: auto;
-  background-repeat: no-repeat;
-  text-align: center;
-  transition: background-position var(--animation-speed) ease;
-}
 
 .sliding-button > p {
   display: block;
@@ -878,6 +866,7 @@ line-height: 1.6;
 
 .bottom-to-top:hover {
   background-position: bottom;
+transistion: all 0.3s ease;	
 }
 
 .bottom-to-top:hover > p {
@@ -2090,6 +2079,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
