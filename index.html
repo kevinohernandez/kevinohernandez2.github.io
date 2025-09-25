@@ -1963,7 +1963,7 @@ window.particleImageDisplay("particle-image");
             const originX = rect.left + rect.width / 2;
             const originY = rect.top + rect.height / 2;
             const distance = Math.sqrt((originX - clientX) ** 2 + (originY - clientY) ** 2);
-            const ratio = parentWidth * 0.4;
+            const ratio = parentWidth * 0.2;
             const distancePercentage = Math.min(Math.max((ratio - distance) / ratio * 100, 0), 100);
 
             const opacity = 1 - (distancePercentage / 100) * 0.5;
@@ -1987,6 +1987,7 @@ window.particleImageDisplay("particle-image");
 
 </body>
 </html>
+
 
 
 
