@@ -767,8 +767,8 @@ min-width: max-content;
 }
 
 #particle-image {
-  background-color: #000;
-  position: absolute;
+  /background-color: #000;
+  /position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
@@ -1434,7 +1434,7 @@ const ParticleImageDisplayer = function(tag_id, canvas_el, params) {
     particles: {
       array: [],
       density: 100,
-      color: '#fff',
+      color: '#000',
       size: {
         value: 2,
         random: false,
@@ -1909,6 +1909,7 @@ window.particleImageDisplay("particle-image");
 
 </body>
 </html>
+
 
 
 
