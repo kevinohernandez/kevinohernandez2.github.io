@@ -1998,10 +1998,10 @@ document.addEventListener('DOMContentLoaded', function() {
       
       if (index === galleryItems.length - 1) {
         // For the last item, threshold starts earlier
-        thresholds.push(maxScroll * 0.95);
+        thresholds.push(maxScroll * 0.99);
       } else if (index === galleryItems.length - 2) {
         // For the second to last item
-        thresholds.push(maxScroll * 0.9);
+        thresholds.push(maxScroll * 0.995);
       } else {
         // For other items, use their position
         thresholds.push(itemLeft);
@@ -2035,6 +2035,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
