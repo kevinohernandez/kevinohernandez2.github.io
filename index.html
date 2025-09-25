@@ -1964,8 +1964,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (i === 0) dot.classList.add('active');
         
         dot.addEventListener('click', function() {
-          const targetItem = galleryItems[i];
-          const scrollPosition = targetItem.offsetLeft;
+          const itemWidth = galleryItems[0].offsetWidth + 5; // Include margin
+          const scrollPosition = i * itemWidth;
           galleryElement.scrollTo({
             left: scrollPosition,
             behavior: 'smooth'
@@ -1986,36 +1986,21 @@ document.addEventListener('DOMContentLoaded', function() {
   
   function updateGalleryDots(galleryElement, dotsContainer, galleryItems) {
     const scrollLeft = galleryElement.scrollLeft;
-    const containerWidth = galleryElement.clientWidth;
+    const itemWidth = galleryItems[0].offsetWidth + 5; // Include margin
     const totalWidth = galleryElement.scrollWidth;
-    const maxScroll = totalWidth - containerWidth;
+    const containerWidth = galleryElement.clientWidth;
+    const maxScrollLeft = totalWidth - containerWidth;
     
-    // Create scroll thresholds for each item
-    const thresholds = [];
-    galleryItems.forEach((item, index) => {
-      const itemLeft = item.offsetLeft;
-      const itemWidth = item.offsetWidth;
-      
-      if (index === galleryItems.length - 1) {
-        // For the last item, threshold starts earlier
-        thresholds.push(maxScroll * 0.99);
-      } else if (index === galleryItems.length - 2) {
-        // For the second to last item
-        thresholds.push(maxScroll * 0.995);
-      } else {
-        // For other items, use their position
-        thresholds.push(itemLeft);
-      }
-    });
+    // Calculate current index based on scroll position
+    let currentIndex = Math.round(scrollLeft / itemWidth);
     
-    // Find current index based on thresholds
-    let currentIndex = 0;
-    for (let i = thresholds.length - 1; i >= 0; i--) {
-      if (scrollLeft >= thresholds[i]) {
-        currentIndex = i;
-        break;
-      }
+    // Only trigger the last dot if we're actually at the very end (within 5px)
+    if (scrollLeft >= maxScrollLeft - 5) {
+      currentIndex = galleryItems.length - 1;
     }
+    
+    // Ensure we don't go below 0 or above max index
+    currentIndex = Math.max(0, Math.min(currentIndex, galleryItems.length - 1));
     
     const dots = dotsContainer.querySelectorAll('.gallery-dot');
     dots.forEach((dot, index) => {
@@ -2035,6 +2020,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
