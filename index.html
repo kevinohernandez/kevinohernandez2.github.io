@@ -171,8 +171,14 @@ align-items: center;
 text-align: center;
 justify-content: space-between;
 place-items: center;
-/width: 50%;	
+/width: 50%;
+transition: all 0.3s ease;
+	
 }
+
+.icon-item:hover{
+transform: translateY(-5px);
+}	  
 	  
 .icon-item img {
 /width: 40px;
@@ -257,6 +263,7 @@ min-width: max-content;
     label.panel-label:hover {
       color: var(--color-label-active);
       background-color: rgba(255, 255, 255, 0.5);
+	  transform: translateY(-5px);
     }
 
     label.panel-label::before {
@@ -1342,6 +1349,7 @@ min-width: max-content;
 
 </body>
 </html>
+
 
 
 
