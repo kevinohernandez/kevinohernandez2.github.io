@@ -1938,7 +1938,7 @@ window.particleImageDisplay("particle-image");
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const sections = document.querySelectorAll('.content-section');
-
+  
   // Gallery dots functionality
   function initializeGalleryDots() {
     const galleries = [
@@ -1946,14 +1946,14 @@ document.addEventListener('DOMContentLoaded', function() {
       { dotsContainer: '#gallery-dots-graphics', sectionIndex: 2 },
       { dotsContainer: '#gallery-dots-products', sectionIndex: 3 }
     ];
-
+    
     galleries.forEach((galleryConfig) => {
       const galleryElement = sections[galleryConfig.sectionIndex].querySelector('.image-gallery');
       const dotsContainer = document.querySelector(galleryConfig.dotsContainer);
       const galleryItems = galleryElement.querySelectorAll('.gallery-item');
       
       if (!galleryElement || !dotsContainer) return;
-
+      
       // Create dots for all images
       const dotCount = galleryItems.length;
       dotsContainer.innerHTML = '';
@@ -1974,27 +1974,28 @@ document.addEventListener('DOMContentLoaded', function() {
         
         dotsContainer.appendChild(dot);
       }
-
+      
       // Handle scroll events
       galleryElement.addEventListener('scroll', function() {
         updateGalleryDots(galleryElement, dotsContainer, galleryItems);
       });
-
+      
       updateGalleryDots(galleryElement, dotsContainer, galleryItems);
     });
   }
-
+  
   function updateGalleryDots(galleryElement, dotsContainer, galleryItems) {
     const scrollLeft = galleryElement.scrollLeft;
     const itemWidth = galleryItems[0].offsetWidth + 5; // Include margin
     const totalWidth = galleryElement.scrollWidth;
     const containerWidth = galleryElement.clientWidth;
+    const maxScrollLeft = totalWidth - containerWidth;
     
     // Calculate current index based on scroll position
     let currentIndex = Math.round(scrollLeft / itemWidth);
     
-    // Handle edge cases - if we're at the very end, show the last dot
-    if (scrollLeft + containerWidth >= totalWidth - 10) {
+    // Only trigger the last dot if we're actually at the very end (within 5px)
+    if (scrollLeft >= maxScrollLeft - 5) {
       currentIndex = galleryItems.length - 1;
     }
     
@@ -2006,7 +2007,7 @@ document.addEventListener('DOMContentLoaded', function() {
       dot.classList.toggle('active', index === currentIndex);
     });
   }
-
+  
   // Initialize gallery dots
   initializeGalleryDots();
   
@@ -2019,6 +2020,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
