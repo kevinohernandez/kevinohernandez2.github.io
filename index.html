@@ -1401,96 +1401,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const sections = document.querySelectorAll('.content-section');
 
-  // Gallery dots functionality
-  function initializeGalleryDots() {
-    const galleries = [
-      { dotsContainer: '#gallery-dots-3d', sectionIndex: 1 },
-      { dotsContainer: '#gallery-dots-graphics', sectionIndex: 2 },
-      { dotsContainer: '#gallery-dots-products', sectionIndex: 3 }
-    ];
-
-    galleries.forEach((galleryConfig) => {
-      const galleryElement = sections[galleryConfig.sectionIndex].querySelector('.image-gallery');
-      const dotsContainer = document.querySelector(galleryConfig.dotsContainer);
-      const galleryItems = galleryElement.querySelectorAll('.gallery-item');
-      
-      if (!galleryElement || !dotsContainer) return;
-
-      // Create dots for all images
-      const dotCount = galleryItems.length;
-      dotsContainer.innerHTML = '';
-      
-      for (let i = 0; i < dotCount; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'gallery-dot';
-        if (i === 0) dot.classList.add('active');
-        
-        dot.addEventListener('click', function() {
-          const targetItem = galleryItems[i];
-          const containerRect = galleryElement.getBoundingClientRect();
-          const itemRect = targetItem.getBoundingClientRect();
-          const scrollLeft = galleryElement.scrollLeft;
-          
-          // Calculate the position to center the clicked item
-          const targetScrollLeft = scrollLeft + (itemRect.left - containerRect.left) - (containerRect.width / 2) + (itemRect.width / 2);
-          
-          galleryElement.scrollTo({
-            left: Math.max(0, targetScrollLeft),
-            behavior: 'smooth'
-          });
-        });
-        
-        dotsContainer.appendChild(dot);
-      }
-
-      // Handle scroll events with improved detection
-      galleryElement.addEventListener('scroll', function() {
-        updateGalleryDots(galleryElement, dotsContainer, galleryItems);
-      });
-
-      updateGalleryDots(galleryElement, dotsContainer, galleryItems);
-    });
-  }
-
-  function updateGalleryDots(galleryElement, dotsContainer, galleryItems) {
-    const containerRect = galleryElement.getBoundingClientRect();
-    const containerCenter = containerRect.left + containerRect.width / 2;
-    
-    let closestIndex = 0;
-    let closestDistance = Infinity;
-    
-    // Find which item is closest to the center of the viewport
-    galleryItems.forEach((item, index) => {
-      const itemRect = item.getBoundingClientRect();
-      const itemCenter = itemRect.left + itemRect.width / 2;
-      const distance = Math.abs(itemCenter - containerCenter);
-      
-      if (distance < closestDistance) {
-        closestDistance = distance;
-        closestIndex = index;
-      }
-    });
-    
-    const dots = dotsContainer.querySelectorAll('.gallery-dot');
-    dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === closestIndex);
-    });
-  }
-
-  // Initialize gallery dots
-  initializeGalleryDots();
-  
-  // Recalculate on window resize
-  window.addEventListener('resize', function() {
-    setTimeout(initializeGalleryDots, 100);
-  });
-});
-</script>
-	
 <script>
 
 const ParticleImageDisplayer = function(tag_id, canvas_el, params) {
@@ -2023,8 +1934,92 @@ window.particleImageDisplay("particle-image");
     window.addEventListener('mousemove', handleMouseMove);
 </script>
 
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sections = document.querySelectorAll('.content-section');
+
+  // Gallery dots functionality
+  function initializeGalleryDots() {
+    const galleries = [
+      { dotsContainer: '#gallery-dots-3d', sectionIndex: 1 },
+      { dotsContainer: '#gallery-dots-graphics', sectionIndex: 2 },
+      { dotsContainer: '#gallery-dots-products', sectionIndex: 3 }
+    ];
+
+    galleries.forEach((galleryConfig) => {
+      const galleryElement = sections[galleryConfig.sectionIndex].querySelector('.image-gallery');
+      const dotsContainer = document.querySelector(galleryConfig.dotsContainer);
+      const galleryItems = galleryElement.querySelectorAll('.gallery-item');
+      
+      if (!galleryElement || !dotsContainer) return;
+
+      // Create dots for all images
+      const dotCount = galleryItems.length;
+      dotsContainer.innerHTML = '';
+      
+      for (let i = 0; i < dotCount; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'gallery-dot';
+        if (i === 0) dot.classList.add('active');
+        
+        dot.addEventListener('click', function() {
+          const itemWidth = galleryItems[0].offsetWidth + 15; // Include margin
+          const scrollPosition = i * itemWidth;
+          galleryElement.scrollTo({
+            left: scrollPosition,
+            behavior: 'smooth'
+          });
+        });
+        
+        dotsContainer.appendChild(dot);
+      }
+
+      // Handle scroll events
+      galleryElement.addEventListener('scroll', function() {
+        updateGalleryDots(galleryElement, dotsContainer, galleryItems);
+      });
+
+      updateGalleryDots(galleryElement, dotsContainer, galleryItems);
+    });
+  }
+
+  function updateGalleryDots(galleryElement, dotsContainer, galleryItems) {
+    const scrollLeft = galleryElement.scrollLeft;
+    const itemWidth = galleryItems[0].offsetWidth + 15; // Include margin
+    const totalWidth = galleryElement.scrollWidth;
+    const containerWidth = galleryElement.clientWidth;
+    
+    // Calculate current index based on scroll position
+    let currentIndex = Math.round(scrollLeft / itemWidth);
+    
+    // Handle edge cases - if we're at the very end, show the last dot
+    if (scrollLeft + containerWidth >= totalWidth - 10) {
+      currentIndex = galleryItems.length - 1;
+    }
+    
+    // Ensure we don't go below 0 or above max index
+    currentIndex = Math.max(0, Math.min(currentIndex, galleryItems.length - 1));
+    
+    const dots = dotsContainer.querySelectorAll('.gallery-dot');
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentIndex);
+    });
+  }
+
+  // Initialize gallery dots
+  initializeGalleryDots();
+  
+  // Recalculate on window resize
+  window.addEventListener('resize', function() {
+    setTimeout(initializeGalleryDots, 100);
+  });
+});
+</script>
+	
 </body>
 </html>
+
 
 
 
