@@ -186,9 +186,7 @@ margin-bottom:3px;
 .skills-section {
 /max-height: 300px;
 overflow-y: auto;
-padding: 15px!important;
-background: #f8f9fa;
-border-radius: 8px;
+padding: 10px 35px 10px 35px!important;
 }
 	  
 .skills-icons {
@@ -817,8 +815,12 @@ line-height: 1.6;
 
 
 	  
+.glc {
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
+}
 
-
+  .ns{clip-path: polygon(2% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 65%, 2% 60%);
+}	  
 	  
   </style>
 </head>
@@ -886,9 +888,11 @@ line-height: 1.6;
          <h1 class="section-title">ABOUT</h1>
               <div class="ec">
 
-        <div class="extra-content drop-in">
+        <div class="extra-content ns drop-in">
+			<div class="glc">
      <h3 class="hero-text txt">KEVIN<br>HERNANDEZ</h3>
           <h3 class="txt2">MULTIMEDIA + DEVELOPER</h3>
+			</div>
 
  
         </div>
@@ -1469,7 +1473,7 @@ const ParticleImageDisplayer = function(tag_id, canvas_el, params) {
   this.pImageConfig = {
     particles: {
       array: [],
-      density: 100,
+      density: 150,
       color: '#000',
       size: {
         value: 2,
@@ -1996,6 +2000,7 @@ window.particleImageDisplay("particle-image");
 
 </body>
 </html>
+
 
 
 
