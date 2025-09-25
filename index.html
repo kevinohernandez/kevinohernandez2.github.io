@@ -154,7 +154,7 @@ margin-bottom:3px;
 .skills-section {
 /max-height: 300px;
 overflow-y: auto;
-padding: 15px;
+padding: 15px!important;
 background: #f8f9fa;
 border-radius: 8px;
 }
@@ -164,7 +164,8 @@ display: grid;
 grid-template-columns: repeat(5, 1fr);
 grid-template-rows: repeat(2, auto);
 gap: 20px;
-/justify-items: center;	
+/justify-items: center;
+	
 }
 	  
 .icon-item {
@@ -175,11 +176,13 @@ text-align: center;
 justify-content: space-between;
 place-items: center;
 /width: 50%;
+filter: grayscale(1);		
 transition: all 0.3s ease;
 }
 
 .icon-item:hover{
 transform: translateY(-7.5px);
+filter: none;		
 }	  
 	  
 .icon-item img {
@@ -1420,6 +1423,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
+
 
 
 
