@@ -1233,7 +1233,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!galleryElement || !dotsContainer) return;
 
       // Create dots
-      const dotCount = galleryItems.length;   // one dot per image
+      const dotCount = Math.min(galleryItems.length, 10);
       dotsContainer.innerHTML = '';
       
       for (let i = 0; i < dotCount; i++) {
@@ -1265,15 +1265,8 @@ document.addEventListener('DOMContentLoaded', function() {
   function updateGalleryDots(galleryElement, dotsContainer, galleryItems) {
     const scrollLeft = galleryElement.scrollLeft;
     const itemWidth = galleryItems[0].offsetWidth + 15;
-
-    // --- FIX: clamp to the last valid index so final dots stay active ---
-    const maxIndex = galleryItems.length - 1;
-    const currentIndex = Math.min(
-      maxIndex,
-      Math.round(scrollLeft / itemWidth)
-    );
-    // --------------------------------------------------------------------
-
+    const currentIndex = Math.round(scrollLeft / itemWidth);
+    
     const dots = dotsContainer.querySelectorAll('.gallery-dot');
     dots.forEach((dot, index) => {
       dot.classList.toggle('active', index === currentIndex);
@@ -1290,9 +1283,12 @@ document.addEventListener('DOMContentLoaded', function() {
       const targetSection = document.getElementById(targetId);
       
       if (targetSection) {
+        // Remove active class from all labels
         navLabels.forEach(l => l.classList.remove('active'));
+        // Add active class to clicked label
         this.classList.add('active');
         
+        // Smooth scroll to target section within the content area
         targetSection.scrollIntoView({
           behavior: 'smooth',
           block: 'start'
@@ -1303,14 +1299,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Update active navigation based on scroll position within content area
   function updateActiveNavigation() {
-    const scrollPosition = contentArea.scrollTop + 50;
+    const scrollPosition = contentArea.scrollTop + 50; // Offset for better detection
     
     sections.forEach((section, index) => {
       const sectionTop = section.offsetTop;
       const sectionHeight = section.offsetHeight;
       
       if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        // Remove active class from all labels
         navLabels.forEach(l => l.classList.remove('active'));
+        // Add active class to corresponding label
         if (navLabels[index]) {
           navLabels[index].classList.add('active');
         }
@@ -1318,20 +1316,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  // Listen for scroll events on the content area (not window) with throttling
   let ticking = false;
   function requestTick() {
     if (!ticking) {
       requestAnimationFrame(updateActiveNavigation);
       ticking = true;
-      setTimeout(() => { ticking = false; }, 50);
+      setTimeout(() => { ticking = false; }, 50); // More responsive timing
     }
   }
 
+  // Listen to scroll events on the content area, not the window
   contentArea.addEventListener('scroll', requestTick);
+  
+  // Initial call to set active state
   updateActiveNavigation();
 
   // Gallery Modal Functionality
   function openModal(galleryType, imageIndex) {
+    // Get all images from the specific gallery
     const galleryImages = document.querySelectorAll(`[data-gallery="${galleryType}"] img`);
     currentGallery = Array.from(galleryImages);
     currentImageIndex = imageIndex;
@@ -1339,13 +1342,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (currentGallery.length > 0) {
       updateModalImage();
       modal.classList.add('show');
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'; // Prevent body scroll
     }
   }
   
   function closeModalFunction() {
     modal.classList.remove('show');
-    document.body.style.overflow = '';
+    document.body.style.overflow = ''; // Restore body scroll
   }
   
   function updateModalImage() {
@@ -1367,6 +1370,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateModalImage();
   }
   
+  // Event listeners for gallery items
   document.querySelectorAll('.gallery-item').forEach((item, index) => {
     item.addEventListener('click', function() {
       const galleryType = this.getAttribute('data-gallery');
@@ -1376,16 +1380,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
+  // Modal controls
   closeModal.addEventListener('click', closeModalFunction);
   nextImage.addEventListener('click', showNextImage);
   prevImage.addEventListener('click', showPrevImage);
   
+  // Click outside modal to close
   modal.addEventListener('click', function(e) {
     if (e.target === modal) {
       closeModalFunction();
     }
   });
   
+  // Keyboard navigation
   document.addEventListener('keydown', function(e) {
     if (modal.classList.contains('show')) {
       switch(e.key) {
@@ -1411,6 +1418,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
+
 
 
 
