@@ -1964,7 +1964,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (i === 0) dot.classList.add('active');
         
         dot.addEventListener('click', function() {
-          const itemWidth = galleryItems[0].offsetWidth + 7.5; // Include margin
+          const itemWidth = galleryItems[0].offsetWidth + 5; // Include margin
           const scrollPosition = i * itemWidth;
           galleryElement.scrollTo({
             left: scrollPosition,
@@ -1986,7 +1986,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function updateGalleryDots(galleryElement, dotsContainer, galleryItems) {
     const scrollLeft = galleryElement.scrollLeft;
-    const itemWidth = galleryItems[0].offsetWidth + 10; // Include margin
+    const itemWidth = galleryItems[0].offsetWidth + 5; // Include margin
     const totalWidth = galleryElement.scrollWidth;
     const containerWidth = galleryElement.clientWidth;
     
@@ -1994,7 +1994,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = Math.round(scrollLeft / itemWidth);
     
     // Handle edge cases - if we're at the very end, show the last dot
-    if (scrollLeft + containerWidth >= totalWidth - 7.5) {
+    if (scrollLeft + containerWidth >= totalWidth - 10) {
       currentIndex = galleryItems.length - 1;
     }
     
@@ -2019,6 +2019,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
