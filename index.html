@@ -48,8 +48,12 @@
     #content::-webkit-scrollbar {
       display: none;
     }
-
 	  
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    #tabs-list::-webkit-scrollbar {
+      display: none;
+    }
+
     /* Hide scrollbar for Chrome, Safari and Opera */
     .content-section pre::-webkit-scrollbar {
       display: none;
@@ -196,10 +200,6 @@ animation: drop-in 1s ease 200ms backwards;
       row-gap: 5px;
     }
     
-    /* Hide scrollbar for Chrome, Safari and Opera */
-    #tabs-list::-webkit-scrollbar {
-      display: none;
-    }
 
     #tabs-list li {
       /border-bottom: var(--tab-base-border-style);
@@ -362,7 +362,7 @@ animation: drop-in 1s ease 200ms backwards;
     .gallery-item img {
       /width: 300px;
       /height: 300px;
-      width: 60svh;
+      width: 52svh;
       height: auto;
       object-fit: cover;
       display: block;
@@ -1298,6 +1298,7 @@ animation: drop-in 1s ease 200ms backwards;
 
 </body>
 </html>
+
 
 
 
