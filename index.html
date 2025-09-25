@@ -1964,8 +1964,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (i === 0) dot.classList.add('active');
         
         dot.addEventListener('click', function() {
-          const itemWidth = galleryItems[0].offsetWidth + 0; // Include margin
-          const scrollPosition = i * itemWidth;
+          const targetItem = galleryItems[i];
+          const scrollPosition = targetItem.offsetLeft;
           galleryElement.scrollTo({
             left: scrollPosition,
             behavior: 'smooth'
@@ -1986,21 +1986,23 @@ document.addEventListener('DOMContentLoaded', function() {
   
   function updateGalleryDots(galleryElement, dotsContainer, galleryItems) {
     const scrollLeft = galleryElement.scrollLeft;
-    const itemWidth = galleryItems[0].offsetWidth + 0; // Include margin
-    const totalWidth = galleryElement.scrollWidth;
-    const containerWidth = galleryElement.clientWidth;
-    const maxScrollLeft = totalWidth - containerWidth;
+    let currentIndex = 0;
     
-    // Calculate current index based on scroll position
-    let currentIndex = Math.round(scrollLeft / itemWidth);
-    
-    // Only trigger the last dot if we're actually at the very end (within 5px)
-    if (scrollLeft >= maxScrollLeft - 0) {
-      currentIndex = galleryItems.length - 1;
+    // Find the closest item based on actual positions
+    for (let i = 0; i < galleryItems.length; i++) {
+      const itemLeft = galleryItems[i].offsetLeft;
+      const nextItemLeft = i < galleryItems.length - 1 ? galleryItems[i + 1].offsetLeft : galleryElement.scrollWidth;
+      
+      // If scroll position is between current item and next item (or at the end)
+      if (scrollLeft >= itemLeft && scrollLeft < nextItemLeft) {
+        // Determine which item is closer
+        const currentDistance = Math.abs(scrollLeft - itemLeft);
+        const nextDistance = Math.abs(scrollLeft - nextItemLeft);
+        
+        currentIndex = currentDistance <= nextDistance ? i : Math.min(i + 1, galleryItems.length - 1);
+        break;
+      }
     }
-    
-    // Ensure we don't go below 0 or above max index
-    currentIndex = Math.max(0, Math.min(currentIndex, galleryItems.length - 1));
     
     const dots = dotsContainer.querySelectorAll('.gallery-dot');
     dots.forEach((dot, index) => {
@@ -2020,92 +2022,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
