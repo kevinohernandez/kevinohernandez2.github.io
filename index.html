@@ -1995,7 +1995,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = Math.round(scrollLeft / itemWidth);
     
     // Only trigger the last dot if we're actually at the very end (within 5px)
-    if (scrollLeft >= maxScrollLeft - 5) {
+    if (scrollLeft >= maxScrollLeft - 2) {
       currentIndex = galleryItems.length - 1;
     }
     
@@ -2020,6 +2020,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
