@@ -832,12 +832,20 @@ line-height: 1.6;
   transition: background-position var(--animation-speed) ease;
 }
 
+.sliding-button {
+  padding: 0;
+  cursor: pointer;
+  border-radius: 1em;
+  pointer-events: auto;
+  background-repeat: no-repeat;
+  text-align: center;
+  transition: background-position var(--animation-speed) ease;
+}
+
 .sliding-button > p {
   display: block;
   margin: 0;
   padding: 1em 2em 1em 2em;
-  font-family: "Montserrat";
-  font-weight: 700;
   font-size: 1.5em;
   line-height: 1em;
   white-space: no-wrap;
@@ -847,8 +855,7 @@ line-height: 1.6;
   transition: background-position var(--animation-speed)  ease;
 }
 
-/* VERTICAL */
-/* Bottom -> Top */
+
 .bottom-to-top{
    background-image: linear-gradient(270deg, var(--light) 50%, var(--dark) 50%);
    background-image: -webkit-linear-gradient(270deg, 
@@ -873,17 +880,10 @@ line-height: 1.6;
   background-position: bottom;
 }
 
-.bottom-to-top:focus {
-  background-position: bottom;
-}
-
 .bottom-to-top:hover > p {
   background-position: bottom;
 }
 
-.bottom-to-top:focus > p {
-  background-position: bottom;
-}
 
 
 
@@ -984,11 +984,11 @@ clip-path: polygon(2% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 65%, 2% 60%);
     </div>
 	  
     <div class="icon-item ">
-      <img src="images/fulls/skills-c4d.png" alt="Cinema 4D"><span>Cinema 4D</span>
+      <img src="images/fulls/skills-c4d.png" alt="Cinema 4D"><span class="sliding-button bottom-to-top">Cinema 4D</span>
     </div>
 	  
     <div class="icon-item ">
-      <img src="images/fulls/skills-td.png" alt="TouchDesigner"><span>TouchDesigner</span>
+      <img src="images/fulls/skills-td.png" alt="TouchDesigner"><span class="sliding-button bottom-to-top">TouchDesigner</span>
     </div>
 	  
     <div class="icon-item ">
@@ -1004,7 +1004,7 @@ clip-path: polygon(2% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 65%, 2% 60%);
     </div>
 	  
     <div class="icon-item">
-      <img src="images/fulls/skills-premiere.png" alt="Premiere"><span class="sliding-button bottom-to-top">Premiere</span>
+      <img src="images/fulls/skills-premiere.png" alt="Premiere"><span >Premiere</span>
     </div>
 	  
     <div class="icon-item">
@@ -2090,6 +2090,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
