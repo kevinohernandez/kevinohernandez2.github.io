@@ -243,8 +243,16 @@ color: white;
 background: black;	
 }
 	  
-
-
+/* when the icon-item is hovered, style the span */
+/.icon-item:has(:hover) span {
+  color: white;
+  background: black;
+}
+	  
+.icon-item:hover span {
+  color: white;
+  background: black;
+}
 
 
 /* Social Button */
@@ -265,7 +273,7 @@ padding:0!important;
 .sbli {
 position: absolute;
 right: 0;
-padding: 0;
+padding: 0!important;
 margin: 2px;
 }	  
 	  
@@ -1986,6 +1994,7 @@ window.particleImageDisplay("particle-image");
 
 </body>
 </html>
+
 
 
 
