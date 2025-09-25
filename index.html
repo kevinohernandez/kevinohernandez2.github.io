@@ -360,7 +360,8 @@ min-width: max-content;
       min-height: 100vh;
       padding: var(--main-padding);
       border-bottom: 3px solid var(--color-border);
-      box-sizing: border-box; /* Include padding in height calculations */
+      box-sizing: border-box; 
+	 position: relative;	
     }
 
     .content-section:last-child {
@@ -828,7 +829,6 @@ min-width: max-content;
       </div>
     </ul>
 
-    <!-- CONTINUOUS CONTENT -->
     <div id="content">
       <section id="section-1" class="content-section">
          <h1 class="section-title">ABOUT</h1>
@@ -995,9 +995,9 @@ min-width: max-content;
       
       <section id="section-3" class="content-section">
          <h1 class="section-title">GRAPHICS</h1>
-        
+        		<div class="gallery-nav-dots" id="gallery-dots-graphics"></div> <!-- For Graphics gallery -->  
+
         <div class="image-gallery">
-		<div class="gallery-nav-dots" id="gallery-dots-graphics"></div> <!-- For Graphics gallery -->  
           <div class="gallery-item" data-gallery="urban">
             <img src="images/fulls/gd1.jpg">
             <div class="overlay">
@@ -1083,10 +1083,9 @@ min-width: max-content;
       
       <section id="section-4" class="content-section">
          <h1 class="section-title">PRODUCTS</h1>
-        
-        <div class="image-gallery">
-			<div class="gallery-nav-dots" id="gallery-dots-products"></div> <!-- For Products gallery -->
+        <div class="gallery-nav-dots" id="gallery-dots-products"></div> <!-- For Products gallery -->
 
+        <div class="image-gallery">
           <div class="gallery-item" data-gallery="abstract">
             <img src="images/fulls/pr1.jpg">
             <div class="overlay">
@@ -1184,7 +1183,6 @@ min-width: max-content;
     </div>
   </div>
 
-  <!-- Modal for Image Viewing -->
   <div id="imageModal" class="modal">
     <div class="modal-content">
       <button class="modal-close" id="closeModal">&times;</button>
@@ -1417,6 +1415,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
+
 
 
 
