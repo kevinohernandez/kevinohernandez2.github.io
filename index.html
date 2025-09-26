@@ -103,8 +103,15 @@ width: 80%;
 .emtxt {
 font-size:2rem;
 margin: 0;
-}	  
+opacity: 0;
+transform: translateY(30px);
+transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
 
+.emtxt.fade-in {
+opacity: 1;
+transform: translateY(0);
+}
 	  
 .pc{
 justify-items: center;
@@ -2234,9 +2241,50 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+
+<script>
+// Email text fade animation on scroll
+document.addEventListener('DOMContentLoaded', function() {
+  const emailText = document.querySelector('.emtxt');
+  const section5 = document.getElementById('section-5');
+  const contentArea = document.getElementById('content');
+  
+  if (!emailText || !section5 || !contentArea) return;
+  
+  function checkEmailAnimation() {
+    const sectionTop = section5.offsetTop;
+    const scrollPosition = contentArea.scrollTop;
+    const viewportHeight = contentArea.clientHeight;
+    
+    // Trigger animation when section is 60% visible
+    const triggerPoint = sectionTop - (viewportHeight * 0.4);
+    
+    if (scrollPosition >= triggerPoint && scrollPosition <= sectionTop + section5.offsetHeight) {
+      emailText.classList.add('fade-in');
+    } else {
+      emailText.classList.remove('fade-in');
+    }
+  }
+  
+  // Throttled scroll event
+  let ticking = false;
+  function requestTick() {
+    if (!ticking) {
+      requestAnimationFrame(checkEmailAnimation);
+      ticking = true;
+      setTimeout(() => { ticking = false; }, 16);
+    }
+  }
+  
+  contentArea.addEventListener('scroll', requestTick);
+  checkEmailAnimation();
+});
+	
+</script>
 	
 </body>
 </html>
+
 
 
 
