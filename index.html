@@ -471,7 +471,8 @@ scrollbar-width: none; /* Firefox */
 .content-section {
 min-height: 100vh;
 padding: var(--main-padding);
-border-bottom: 3px solid var(--color-border);
+/border-bottom: 3px solid var(--color-border);
+border-bottom: groove 3px;	
 box-sizing: border-box; 
 position: relative;	
 }
@@ -539,10 +540,10 @@ filter: drop-shadow(0px 0px 4px white);
 	  
 #section-1 {
 align-content: center;
-border-bottom: 0px solid var(--color-border);	
+/border-bottom: 0px solid var(--color-border);	
 }
 #section-4{
-border-bottom: 0px solid var(--color-border);
+/border-bottom: 0px solid var(--color-border);
 }
 	  
 	  
@@ -1368,12 +1369,11 @@ transform: scale(1.15);
       
       <section id="section-5" class="content-section">
       <h1 class="section-title">CONTACT</h1>
-      <div class="glc">        
+		  
         <div class="extra-content pc ">
           <h3 class="emtxt">EMAIL:YADADA@GMAIL.COM</h3>
           <div id="particle-image" data-params-src="https://raw.githubusercontent.com/paxtonfitzpatrick/particle-image/master/params.json">
 </div>
- </div>
          
         </div>
       </section>
@@ -2196,6 +2196,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
