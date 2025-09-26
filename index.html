@@ -548,7 +548,9 @@ border-bottom: 0px solid var(--color-border);
 /padding:110px 25px 0px 5px;
 /padding: 17px 25px 0px 5px;
 padding: 10px 25px 35px 25px;	
-min-height: 70vh;	
+min-height: 70vh;
+border-bottom: 0px solid var(--color-border);	
+box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);	
 }
     
 	  
@@ -1105,9 +1107,22 @@ border-radius: 50%;
   to { --a: 360deg; }
 }
 
-	  
+.square-img {
+  width: 290px;
+  aspect-ratio: 1;
+  clip-path: polygon(2% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 65%, 2% 60%);
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform .4s;
+ background:darkgrey; 
+}
 
-  </style>
+.square-img:hover {
+  transform: scale(1.26);
+}	  
+
+</style>
+	
 </head>
 <body class="is-preload">
 
@@ -1178,6 +1193,7 @@ border-radius: 50%;
    		  <h3 class="hero-text txt">KEVIN<br>HERNANDEZ</h3>
           <h3 class="hero-text txt2">ART + DESIGN</h3>
 		  <img class="circle-img" src="https://assets.codepen.io/1480814/av+1.png">
+		  <img class="square-img" src="https://assets.codepen.io/1480814/av+1.png" alt="Masked Image">	
         </div>
 		</div>
 				  
@@ -1286,53 +1302,53 @@ border-radius: 50%;
 
  		 <div class="gallery-item" data-gallery="abstract">
             <img src="images/fulls/pr1.jpg">
-            <div class="overlay">  <h3>Color Burst</h3> <p>Vibrant expression</p> </div>
+            <div class="overlay">  <p>Vibrant expression</p> </div>
           </div>
           
           <div class="gallery-item" data-gallery="abstract">
             <img src="images/fulls/pr2.jpg">
-            <div class="overlay"> <h3>Geometric Flow</h3> <p>Mathematical beauty</p> </div>
+            <div class="overlay">  <p>Mathematical beauty</p> </div>
           </div>
           
           <div class="gallery-item" data-gallery="abstract">
             <img src="images/fulls/pr13.jpg">
-            <div class="overlay"> <h3>Textural Study</h3> <p>Surface exploration</p> </div>
+            <div class="overlay">  <p>Surface exploration</p> </div>
           </div>
           
           <div class="gallery-item" data-gallery="abstract">
             <img src="images/fulls/pr16.jpg">
-            <div class="overlay"> <h3>Light Play</h3> <p>Illumination patterns</p> </div>
+            <div class="overlay">  <p>Illumination patterns</p> </div>
           </div>
           
           <div class="gallery-item" data-gallery="abstract">
             <img src="images/fulls/pr6.jpg">
-            <div class="overlay"> <h3>Fluid Motion</h3> <p>Dynamic composition</p> </div>
+            <div class="overlay"> <p>Dynamic composition</p> </div>
           </div>
           
           <div class="gallery-item" data-gallery="abstract">
             <img src="images/fulls/pr15.jpg">
-            <div class="overlay"> <h3>Minimal Form</h3> <p>Simplified elegance</p> </div>
+            <div class="overlay">  <p>Simplified elegance</p> </div>
           </div>
           
           <div class="gallery-item" data-gallery="abstract">
             <img src="images/fulls/pr14.jpg">
-            <div class="overlay"> <h3>Organic Shapes</h3> <p>Natural abstractions</p> </div>
+            <div class="overlay"> <p>Natural abstractions</p> </div>
           </div>
           
           <div class="gallery-item" data-gallery="abstract">
             <img src="images/fulls/pr4.jpg">
-            <div class="overlay"> <h3>Digital Art</h3> <p>Contemporary creation</p> </div>
+            <div class="overlay">  <p>Contemporary creation</p> </div>
           </div>
 			
           <div class="gallery-item" data-gallery="abstract">
             <img src="images/fulls/slab.jpg">
-            <div class="overlay"> <h3>Digital Art</h3> <p>Contemporary creation</p> </div>
+            <div class="overlay"> <p>Contemporary creation</p> </div>
           </div>
 
 			
           <div class="gallery-item" data-gallery="abstract">
             <img src="images/fulls/pr17.jpg">
-            <div class="overlay"> <h3>Digital Art</h3> <p>Contemporary creation</p> </div>
+            <div class="overlay">  <p>Contemporary creation</p> </div>
           </div>      
 			
         </div>
@@ -1345,52 +1361,52 @@ border-radius: 50%;
 			
           <div class="gallery-item" data-gallery="urban">
             <img src="images/fulls/gd1.jpg">
-            <div class="overlay"> <h3>Modern Skyline</h3> <p>Contemporary city vista</p> </div>
+            <div class="overlay"> <p>Contemporary city vista</p> </div>
           </div>
           
           <div class="gallery-item" data-gallery="urban">
             <img src="images/fulls/pr10.jpg">
-            <div class="overlay"> <h3>Glass Towers</h3> <p>Reflective skyscrapers</p> </div>
+            <div class="overlay">  <p>Reflective skyscrapers</p> </div>
           </div>
           
           <div class="gallery-item" data-gallery="urban">
             <img src="images/fulls/gd6.jpg">
-            <div class="overlay"> <h3>Historic Bridge</h3> <p>Architectural heritage</p> </div>
+            <div class="overlay">  <p>Architectural heritage</p> </div>
           </div>
           
           <div class="gallery-item" data-gallery="urban">
             <img src="images/fulls/gd5.jpg">
-            <div class="overlay"> <h3>City Streets</h3> <p>Urban canyon views</p> </div>
+            <div class="overlay">  <p>Urban canyon views</p> </div>
           </div>
           
           <div class="gallery-item" data-gallery="urban">
 			<img src="images/fulls/gd7.jpg">
-            <div class="overlay"> <h3>Night Lights</h3> <p>Illuminated cityscape</p> </div>
+            <div class="overlay"> <p>Illuminated cityscape</p> </div>
           </div>
           
           <div class="gallery-item" data-gallery="urban">
             <img src="images/fulls/gd10.jpg">
-            <div class="overlay"> <h3>Industrial Design</h3> <p>Modern infrastructure</p> </div>
+            <div class="overlay">  <p>Modern infrastructure</p> </div>
           </div>
           
           <div class="gallery-item" data-gallery="urban">
 			<img src="images/fulls/gd2.jpg">
-            <div class="overlay"> <h3>Art Deco</h3> <p>Classic architectural style</p> </div>
+            <div class="overlay">  <p>Classic architectural style</p> </div>
           </div>
           
           <div class="gallery-item" data-gallery="urban">
             <img src="images/fulls/gd11.jpg">
-            <div class="overlay"> <h3>Metro Station</h3> <p>Underground architecture</p> </div>
+            <div class="overlay">  <p>Underground architecture</p> </div>
           </div>
 			
           <div class="gallery-item" data-gallery="urban">
             <img src="images/fulls/gd9.jpg">
-            <div class="overlay"> <h3>Metro Station</h3> <p>Underground architecture</p> </div>
+            <div class="overlay"> <p>Underground architecture</p> </div>
           </div>
 		
           <div class="gallery-item" data-gallery="urban">
             <img src="images/fulls/gd8.jpg">
-            <div class="overlay"> <h3>Metro Station</h3> <p>Underground architecture</p> </div>
+            <div class="overlay">  <p>Underground architecture</p> </div>
           </div>
 			
         </div>
@@ -1403,52 +1419,52 @@ border-radius: 50%;
 			
           <div class="gallery-item" data-gallery="nature">
             <img src="images/fulls/3d5.jpg">
-            <div class="overlay"> <h3>Mountain Lake</h3> <p>Serene alpine waters</p> </div>
+            <div class="overlay"> <p>Serene alpine waters</p> </div>
           </div>
           
           <div class="gallery-item" data-gallery="nature">
             <img src="images/fulls/3d2.jpg">
-            <div class="overlay"> <h3>Forest Canopy</h3> <p>Lush green wilderness</p> </div>
+            <div class="overlay">  <p>Lush green wilderness</p> </div>
           </div>
           
           <div class="gallery-item" data-gallery="nature">
             <img src="images/fulls/3d12.jpg">
-            <div class="overlay"> <h3>Desert Sunset</h3> <p>Golden hour beauty</p> </div>
+            <div class="overlay"> <p>Golden hour beauty</p> </div>
           </div>
           
           <div class="gallery-item" data-gallery="nature">
             <img src="images/fulls/3d13.jpg">
-            <div class="overlay"> <h3>Ocean Waves</h3> <p>Powerful coastal beauty</p> </div>
+            <div class="overlay">  <p>Powerful coastal beauty</p> </div>
           </div>
           
           <div class="gallery-item" data-gallery="nature">
             <img src="images/fulls/3d4.1.jpg">
-            <div class="overlay"> <h3>Snow Peaks</h3> <p>Majestic mountain ranges</p> </div>
+            <div class="overlay">  <p>Majestic mountain ranges</p> </div>
           </div>
           
           <div class="gallery-item" data-gallery="nature">
             <img src="images/fulls/3d6.jpg">
-            <div class="overlay"> <h3>Autumn Forest</h3> <p>Colorful fall foliage</p> </div>
+            <div class="overlay"> <p>Colorful fall foliage</p> </div>
           </div>
           
           <div class="gallery-item" data-gallery="nature">
             <img src="images/fulls/3d7.jpg">
-            <div class="overlay"> <h3>Starry Night</h3> <p>Celestial wonder</p> </div>
+            <div class="overlay">  <p>Celestial wonder</p> </div>
           </div>
           
           <div class="gallery-item" data-gallery="nature">
             <img src="images/fulls/3d8.jpg">
-            <div class="overlay"> <h3>Waterfall</h3> <p>Rushing cascade</p> </div>
+            <div class="overlay">  <p>Rushing cascade</p> </div>
           </div>
 			
 		   <div class="gallery-item" data-gallery="nature">
             <img src="images/fulls/3d9.jpg">
-            <div class="overlay"> <h3>Waterfall</h3> <p>Rushing cascade</p> </div>
+            <div class="overlay">  <p>Rushing cascade</p> </div>
           </div>
 			
           <div class="gallery-item" data-gallery="nature">
             <img src="images/fulls/3d1.jpg">
-            <div class="overlay"> <h3>Waterfall</h3> <p>Rushing cascade</p> </div>
+            <div class="overlay">  <p>Rushing cascade</p> </div>
           </div>
 					   
            	
@@ -2219,7 +2235,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = Math.round(scrollLeft / itemWidth);
     
     // Only trigger the last dot if we're actually at the very end (within 5px)
-    if (scrollLeft >= maxScrollLeft - 5) {
+    if (scrollLeft >= maxScrollLeft - 2.5) {
       currentIndex = galleryItems.length - 1;
     }
     
@@ -2257,7 +2273,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const viewportHeight = contentArea.clientHeight;
     
     // Trigger animation when section is 60% visible
-    const triggerPoint = sectionTop - (viewportHeight * 0.4);
+    const triggerPoint = sectionTop - (viewportHeight * 0.7);
     
     if (scrollPosition >= triggerPoint && scrollPosition <= sectionTop + section5.offsetHeight) {
       emailText.classList.add('fade-in');
@@ -2284,6 +2300,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
