@@ -116,7 +116,7 @@ transform: translateY(0);
 	  
 .pc{
 justify-items: center;
-clip-path: polygon(
+/clip-path: polygon(
 0 2%, 
 2% 0, 
 98% 0, 
@@ -133,6 +133,23 @@ clip-path: polygon(
 2% 70%, 
 2% 25%, 
 0 20%);
+clip-path: polygon(
+0 0%, 
+0% 0, 
+98% 0, 
+100% 0%, 
+100% 20%, 
+98% 25%, 
+98% 70%, 
+100% 75%, 
+100% 100%, 
+97% 100%, 
+0% 100%, 
+0 101%, 
+0 75%, 
+2% 70%, 
+2% 25%, 
+0 20%);	
 }
 	  
 /* Global Styles END */
@@ -472,7 +489,7 @@ scrollbar-width: none; /* Firefox */
 min-height: 100vh;
 padding: var(--main-padding);
 /border-bottom: 3px solid var(--color-border);
-border-bottom: groove 3px;	
+border-bottom: groove 2px;	
 box-sizing: border-box; 
 position: relative;	
 }
@@ -1018,6 +1035,77 @@ z-index: -1;
 transform: scale(1.025);
 }	  
 
+.bb-container {
+position: absolute;
+top: 50%;
+left: 50%;
+width: 290px;
+height: 290px;
+transform: translate(-50%, -50%);
+transition: all 0.4s ease;
+position: absolute;
+border-radius: 10px;	
+top: 2.5%;
+right: 1.5%;
+z-index: -1;	
+}
+
+.bb-container:hover {
+transform: translate(-50%, -50%) scale(1.15); /* hover enlarge */
+}
+
+.bb {
+width: 100%;
+height: 100%;
+position: relative;
+z-index: 1;
+overflow: hidden;
+clip-path: polygon(2% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 65%, 2% 60%);
+}
+
+.bb img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+clip-path: inherit;
+background: grey; 
+transition: transform 0.4s ease 0.1s; /* delay image scale */
+}
+
+.bb-container:hover img {
+transform: scale(1.1); /* image scales after container */
+}
+
+.bb-border {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 2;
+pointer-events: none;
+}
+
+.bb-border path {
+fill: none;
+stroke: black;
+stroke-width: 2;
+stroke-dasharray: 50 90; /* visible dash 2px, remainder invisible */
+stroke-dashoffset: 0;
+animation: move 15s linear infinite;
+}
+
+.bb-border path:nth-child(2) {
+stroke-dashoffset: 350; /* start halfway along path */
+animation: move 15s linear infinite;
+}
+
+@keyframes move {
+0%   { stroke-dashoffset: 0; }
+100% { stroke-dashoffset: 700; }
+}
+
+	  
 </style>
 	
 </head>
@@ -1053,10 +1141,10 @@ transform: scale(1.025);
       <label class="panel-label sil" data-target="section-2">3D</label>
       </li>
       <li>
-      <label class="panel-label  sil" data-target="section-3">GRAPHIC</label>
+      <label class="panel-label  sil" data-target="section-3">GRAPHICS</label>
       </li>
       <li>
-      <label class="panel-label sil" data-target="section-4">PRODUCT</label>
+      <label class="panel-label sil" data-target="section-4">PRODUCTS</label>
       </li>
       <li class="last">
       <label class="panel-label  sil" data-target="section-5">CONTACT</label>
@@ -1089,7 +1177,15 @@ transform: scale(1.025);
         <div class="extra-content ns drop-in">
    		  <h3 class="hero-text txt">KEVIN<br>HERNANDEZ</h3>
           <h3 class="hero-text txt2">MULTIMEDIA + DESIGN</h3>
-		  <img class="square-img" src="https://assets.codepen.io/1480814/av+1.png" alt="Masked Image">	
+		  <div class="bb-container">
+			<div class="bb">
+			<img src="https://assets.codepen.io/1480814/av+1.png" alt="Masked">
+			</div>
+			<svg class="bb-border" viewBox="0 0 100 100" preserveAspectRatio="none">
+			<path d="M2 0 L100 0 L100 80 L90 100 L0 100 L0 65 L2 60 Z" />
+			<path d="M2 0 L100 0 L100 80 L90 100 L0 100 L0 65 L2 60 Z" />
+			</svg>
+			</div>
         </div>
 		</div>
 				  
@@ -1284,12 +1380,7 @@ transform: scale(1.025);
             <img src="images/fulls/gd10.jpg">
             <div class="overlay">  <p>Modern infrastructure</p> </div>
           </div>
-          
-          <div class="gallery-item" data-gallery="urban">
-			<img src="images/fulls/gd2.jpg">
-            <div class="overlay">  <p>Classic architectural style</p> </div>
-          </div>
-          
+              
           <div class="gallery-item" data-gallery="urban">
             <img src="images/fulls/gd11.jpg">
             <div class="overlay">  <p>Underground architecture</p> </div>
@@ -1303,6 +1394,11 @@ transform: scale(1.025);
           <div class="gallery-item" data-gallery="urban">
             <img src="images/fulls/gd8.jpg">
             <div class="overlay">  <p>Underground architecture</p> </div>
+          </div>
+			
+          <div class="gallery-item" data-gallery="urban">
+			<img src="images/fulls/gd2.jpg">
+            <div class="overlay">  <p>Classic architectural style</p> </div>
           </div>
 			
         </div>
@@ -2198,6 +2294,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
