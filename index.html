@@ -317,8 +317,8 @@ padding:0!important;
 .logo {
 position: absolute;
 left: 2px;
-top: -10px;	
-margin-top: 10px!important;
+top: -5px;	
+/margin-top: 10px!important;
 padding:0!important;
 }	  
 	  
@@ -687,7 +687,8 @@ pointer-events: none;
 width: 5px;
 /height: 5px;
 /border-radius: 50%;
-background: rgba(255, 255, 255, 0.4);
+/background: rgba(255, 255, 255, 0.4);
+background: rgba(50, 50, 50, 0.4);	
 /border: 2px solid rgba(255, 255, 255, 0.8);
 transition: all 0.3s ease;
 cursor: pointer;
@@ -703,7 +704,8 @@ height: 15px;
 .gallery-dot::after {
 content: '';
 position: absolute;
-background: rgba(255, 255, 255, 0.8);
+/background: rgba(255, 255, 255, 0.8);
+background: rgba(50, 50, 50, 0.8);	
 transition: all 0.3s ease;
 }
 
@@ -726,26 +728,31 @@ transform: translateY(-50%);
 /opacity: 0;
 pointer-events: none;	
 }
-
+	  
+.gallery-dot:hover::before,
+.gallery-dot:hover::after {
+/background: rgba(255, 255, 255, 0.9);
+background: rgba(50, 50, 50, 0.9);
+	
+}
+	  
 .gallery-dot.active::before,
 .gallery-dot.active::after {
-background: rgba(255, 255, 255, 0.95);
+/background: rgba(255, 255, 255, 0.95);
+background: rgba(50, 50, 50, 0.95);	
 box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
 }
 	  
 .gallery-dot.active {
-background: rgba(255, 255, 255, 0.9);
+/background: rgba(255, 255, 255, 0.9);
+background: rgba(50, 50, 50, 0.9);	
 transform: scale(1.2);
 box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
 }
-
-.gallery-dot:hover::before,
-.gallery-dot:hover::after {
-  background: rgba(255, 255, 255, 0.9);
-}
 	  
 .gallery-dot:hover {
-background: rgba(255, 255, 255, 0.7);
+/background: rgba(255, 255, 255, 0.7);
+background: rgba(50, 50, 50, 0.7);	
 transform: scale(1.1);
 }
 
@@ -2401,6 +2408,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
