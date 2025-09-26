@@ -2001,13 +2001,11 @@ window.particleImageDisplay("particle-image");
 </script>
 
 <script>
-// Target both elements individually
-const nameElement = document.querySelector('.hero-text.txt');
-const designElement = document.querySelector('.hero-text.txt1');	
-const designElement = document.querySelector('.hero-text.txt2');
+// Target ALL elements with the hero-text class
+const elements = document.querySelectorAll('.hero-text');
 
-// Function to process text elements
-function processTextElement(element) {
+elements.forEach(element => {
+    // Split text into letters and preserve line breaks
     const textNodes = Array.from(element.childNodes);
     element.innerHTML = ''; // clear content
     textNodes.forEach(node => {
@@ -2021,25 +2019,21 @@ function processTextElement(element) {
             });
         }
     });
-}
+});
 
-// Process both elements
-processTextElement(nameElement);
-processTextElement(designElement);
+// Get all letters from all hero-text elements
+const allLetters = document.querySelectorAll('.hero-text span');
 
-// Get all letters from both elements
-const letters = document.querySelectorAll('.hero-text span');
-
-// Mouse move effect (same as before)
+// Mouse move effect
 function handleMouseMove(e) {
     const { clientX, clientY } = e;
     
-    letters.forEach(letter => {
+    allLetters.forEach(letter => {
         const rect = letter.getBoundingClientRect();
         const originX = rect.left + rect.width / 2;
         const originY = rect.top + rect.height / 2;
         const distance = Math.sqrt((originX - clientX) ** 2 + (originY - clientY) ** 2);
-        const ratio = 100;
+        const ratio = 100; // You can adjust this value
         const distancePercentage = Math.min(Math.max((ratio - distance) / ratio * 100, 0), 100);
         const opacity = 1 - (distancePercentage / 100) * 0.5;
         letter.style.opacity = opacity;
@@ -2147,6 +2141,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
