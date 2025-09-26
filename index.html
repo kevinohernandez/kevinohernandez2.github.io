@@ -333,12 +333,6 @@ row-gap: 10px;
 list-style: none;
 margin: 0;
 padding: 0;
-/* width: 125px; */
-/* min-width: 100px; */
-/* max-width: 500px; */
-/* background-color: var(--color-label-bg-inactive); */
-/* background: repeating-radial-gradient(circle, rgba(255, 192, 203, 0.3), rgb(188 188 196) 50%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.3)) !important; */
-background-size: 2.5px 2.5px !important;
 display: flex;
 flex-direction: row;
 flex-shrink: 0;
@@ -351,6 +345,7 @@ position: fixed;
 width: 100%;
 z-index: 2;
 justify-content: center;
+padding-top: 5px;
 }
 
 
@@ -378,7 +373,12 @@ font-weight: 400;
 border-radius: 10px;
 text-align: center;
 margin: 0px 5px 0px 5px;
-box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);	
+box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+width: 60px;
+text-align: center;
+display: flex;
+justify-content: center;
+clip-path: polygon(0 20%, 15% 0, 85% 0, 100% 20%, 100% 80%, 90% 100%, 70% 100%, 65% 90%, 35% 90%, 30% 100%, 10% 100%, 0 80%);
 }
 
 label.panel-label:hover {
@@ -480,6 +480,9 @@ box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
 #section-1 .section-title {
   display: none;
 }
+#section-5 .section-title {
+  display: none;
+}	  
 	  
 .section-title{
 /display:none;
@@ -493,8 +496,10 @@ text-orientation: upright;
 line-height: 0.75;
 letter-spacing: -5px;
 border-radius: 5px;
-left: 0;
+left: 3.5px;
 color: white;
+font-size: 1.5rem;
+filter: drop-shadow(0px 0px 4px white);		
 } 
 	  
 #section-1 {
@@ -1416,7 +1421,7 @@ border-radius: 50%;
       <h1 class="section-title">CONTACT</h1>
               
         <div class="extra-content pc ">
-          <h3>🎉 Continuous Scroll Benefits!</h3>
+          <h3>EMAIL:</h3>
           <div id="particle-image" data-params-src="https://raw.githubusercontent.com/paxtonfitzpatrick/particle-image/master/params.json">
 </div>
           
@@ -2201,6 +2206,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
