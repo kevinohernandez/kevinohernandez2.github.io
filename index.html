@@ -580,7 +580,7 @@ pointer-events: none;
 .gallery-dot {
 width: 5px;
 height: 5px;
-border-radius: 50%;
+/border-radius: 50%;
 background: rgba(255, 255, 255, 0.4);
 border: 2px solid rgba(255, 255, 255, 0.8);
 transition: all 0.3s ease;
@@ -591,12 +591,50 @@ pointer-events: all;
 /height: 15px;	
 }
 
+/* Create crosshair/plus sign using pseudo-elements */
+.gallery-dot::before,
+.gallery-dot::after {
+content: '';
+position: absolute;
+background: rgba(255, 255, 255, 0.8);
+transition: all 0.3s ease;
+}
+
+/* Vertical line */
+.gallery-dot::before {
+top: 0;
+left: 50%;
+width: 2px;
+height: 100%;
+transform: translateX(-50%);
+}
+
+/* Horizontal line */
+.gallery-dot::after {
+top: 50%;
+left: 0;
+width: 100%;
+height: 2px;
+transform: translateY(-50%);
+}
+
+.gallery-dot.active::before,
+.gallery-dot.active::after {
+background: rgba(255, 255, 255, 0.95);
+box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+	  
 .gallery-dot.active {
 background: rgba(255, 255, 255, 0.9);
 transform: scale(1.2);
 box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
 }
 
+.gallery-dot:hover::before,
+.gallery-dot:hover::after {
+  background: rgba(255, 255, 255, 0.9);
+}
+	  
 .gallery-dot:hover {
 background: rgba(255, 255, 255, 0.7);
 transform: scale(1.1);
@@ -2141,6 +2179,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
