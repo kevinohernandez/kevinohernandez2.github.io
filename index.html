@@ -891,7 +891,7 @@ inherits: true;
 }
 
 .circle-img {
-/display:none;	
+display:none;	
 --r: 30px;
 --f: 1.7;
 --c: black;
@@ -1519,7 +1519,7 @@ const ParticleImageDisplayer = function(tag_id, canvas_el, params) {
       density: 150,
       color: '#000',
       size: {
-        value: 4,
+        value: 3,
         random: false,
       },
       movement: {
@@ -1552,7 +1552,7 @@ const ParticleImageDisplayer = function(tag_id, canvas_el, params) {
         is_external: true
       },
       size: {
-        canvas_pct: 110,
+        canvas_pct: 100,
         min_px: 200,
         max_px: 800
       }
@@ -1560,11 +1560,11 @@ const ParticleImageDisplayer = function(tag_id, canvas_el, params) {
     interactions: {
       repulse: {
         distance: 100,
-        strength: 200
+        strength: 150
       },
       big_repulse: {
         distance: 300,
-        strength: 250
+        strength: 200
       },
       grab: {
         distance: 100,
@@ -2127,6 +2127,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
