@@ -484,7 +484,8 @@ align-content: center;
 	  
 #section-2,#section-3,#section-4{
 /padding:110px 25px 0px 5px;
-padding: 17px 25px 0px 5px;
+/padding: 17px 25px 0px 5px;
+padding: 10px 25px 35px 5px;	
 min-height: 70vh;	
 }
     
@@ -504,6 +505,8 @@ margin-top: 20px;
 scrollbar-width: none;
 cursor:crosshair;
 position:relative;
+filter: drop-shadow(0px 0px 4px white);	
+	
 }
 
 .gallery-item {
@@ -516,11 +519,14 @@ transition: transform 0.3s ease, box-shadow 0.3s ease;
 margin-right: 15px;
 white-space: normal;
 vertical-align: top;
-filter: drop-shadow(0px 0px 4px white);	
+/filter: drop-shadow(0px 0px 4px white);
+clip-path: polygon(2% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 65%, 2% 60%);	
 }
 
 .gallery-item:nth-child(even){
 margin-top: 20px;
+clip-path: polygon(98% 0, 0% 0, 0% 90%, 10% 100%, 100% 100%, 100% 65%, 98% 60%);
+	
 }	
 	  
 .gallery-item:hover {
@@ -2133,6 +2139,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
