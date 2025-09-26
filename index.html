@@ -2001,12 +2001,14 @@ window.particleImageDisplay("particle-image");
 </script>
 
 <script>
-    const element = document.querySelector('.hero-text');
-    
-    // Split text into letters and preserve line breaks
+// Target both elements individually
+const nameElement = document.querySelector('.hero-text.txt');
+const designElement = document.querySelector('.hero-text.txt2');
+
+// Function to process text elements
+function processTextElement(element) {
     const textNodes = Array.from(element.childNodes);
     element.innerHTML = ''; // clear content
-
     textNodes.forEach(node => {
         if (node.nodeName === 'BR') {
             element.appendChild(document.createElement('br'));
@@ -2018,39 +2020,44 @@ window.particleImageDisplay("particle-image");
             });
         }
     });
+}
 
-    const letters = element.querySelectorAll('span');
+// Process both elements
+processTextElement(nameElement);
+processTextElement(designElement);
 
-    // Mouse move effect
-    function handleMouseMove(e) {
-        const { clientX, clientY } = e;
-        const parentWidth = element.getBoundingClientRect().width;
+// Get all letters from both elements
+const letters = document.querySelectorAll('.hero-text span');
 
-        letters.forEach(letter => {
-            const rect = letter.getBoundingClientRect();
-            const originX = rect.left + rect.width / 2;
-            const originY = rect.top + rect.height / 2;
-            const distance = Math.sqrt((originX - clientX) ** 2 + (originY - clientY) ** 2);
-            const ratio = parentWidth * 0.1;
-            const distancePercentage = Math.min(Math.max((ratio - distance) / ratio * 100, 0), 100);
+// Mouse move effect (same as before)
+function handleMouseMove(e) {
+    const { clientX, clientY } = e;
+    
+    letters.forEach(letter => {
+        const rect = letter.getBoundingClientRect();
+        const originX = rect.left + rect.width / 2;
+        const originY = rect.top + rect.height / 2;
+        const distance = Math.sqrt((originX - clientX) ** 2 + (originY - clientY) ** 2);
+        const ratio = 100;
+        const distancePercentage = Math.min(Math.max((ratio - distance) / ratio * 100, 0), 100);
+        const opacity = 1 - (distancePercentage / 100) * 0.5;
+        letter.style.opacity = opacity;
+        
+        if (distancePercentage > 0) {
+            const deltaX = originX - clientX;
+            const deltaY = originY - clientY;
+            const strength = (distancePercentage / 100) * 90;
+            const displaceX = (deltaX / distance) * strength;
+            const displaceY = (deltaY / distance) * strength;
+            letter.style.transform = `translate(${displaceX}px, ${displaceY}px)`;
+        } else {
+            letter.style.transform = 'translate(0px, 0px)';
+        }
+    });
+}
 
-            const opacity = 1 - (distancePercentage / 100) * 0.5;
-            letter.style.opacity = opacity;
-
-            if (distancePercentage > 0) {
-                const deltaX = originX - clientX;
-                const deltaY = originY - clientY;
-                const strength = (distancePercentage / 100) * 90;
-                const displaceX = (deltaX / distance) * strength;
-                const displaceY = (deltaY / distance) * strength;
-                letter.style.transform = `translate(${displaceX}px, ${displaceY}px)`;
-            } else {
-                letter.style.transform = 'translate(0px, 0px)';
-            }
-        });
-    }
-
-    window.addEventListener('mousemove', handleMouseMove);
+window.addEventListener('mousemove', handleMouseMove);
+	
 </script>
 
 
@@ -2139,6 +2146,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
