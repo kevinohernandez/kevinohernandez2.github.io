@@ -880,23 +880,28 @@ clip-path: polygon(2% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 65%, 2% 60%);
 }	
 
 @property --a {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: true;
+syntax: "<angle>";
+initial-value: 0deg;
+inherits: true;
 }
 @property --i {
-  syntax: "<length>";
-  initial-value: 0px;
-  inherits: true;
+syntax: "<length>";
+initial-value: 0px;
+inherits: true;
 }
 
 .circle-img {
-  --r: 50px;
-  --f: 1.7;
-  --c: black;
-  width: 290px;
-  aspect-ratio: 1;
-  border-radius: 50%;
+/display:none;	
+--r: 30px;
+--f: 1.7;
+--c: black;
+width: 210px;
+position: absolute;
+top: 12.5%;
+right: 2.5%;
+z-index: -1;	
+aspect-ratio: 1;
+border-radius: 50%;
 
   --_m:
     radial-gradient(var(--c) calc(72% - var(--r)/2 - var(--i,0px)), #0000 0),
@@ -2122,6 +2127,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
