@@ -1037,13 +1037,12 @@ transform: scale(1.025);
 
 .bb-container {
 position: absolute;
-top: 50%;
-left: 50%;
 width: 290px;
-height: 290px;
-transform: translate(-50%, -50%);
+height: 290px;	
+/top: 50%;
+/left: 50%;
+/transform: translate(-50%, -50%);	
 transition: all 0.4s ease;
-position: absolute;
 border-radius: 10px;	
 top: 2.5%;
 right: 1.5%;
@@ -1051,7 +1050,7 @@ z-index: -1;
 }
 
 .bb-container:hover {
-transform: translate(-50%, -50%) scale(1.15); /* hover enlarge */
+transform: scale(1.025); /* hover enlarge */
 }
 
 .bb {
@@ -1060,6 +1059,7 @@ height: 100%;
 position: relative;
 z-index: 1;
 overflow: hidden;
+border-radius: 10px;	
 clip-path: polygon(2% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 65%, 2% 60%);
 }
 
@@ -2294,6 +2294,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
