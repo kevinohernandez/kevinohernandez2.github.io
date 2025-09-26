@@ -66,8 +66,6 @@ border-top: var(--tab-base-border-style);
 /* Hide scrollbar for Chrome, Safari and Opera */
 .content-section pre::-webkit-scrollbar { display: none; }
 
-.section-title{display:none} 
-	  
 	  
 :root {
 --tab-count: 5;
@@ -478,6 +476,27 @@ box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
 
 
 /* Horizontal Image Gallery Styles */
+
+#section-1.section-title,#section-5.section-title {
+  display: none;
+}
+	  
+.section-title{
+/display:none;
+writing-mode: vertical-lr;
+position: absolute;
+margin: 0;
+background: #bdc3c7;
+z-index: 2;
+align-self: anchor-center;
+text-orientation: upright;
+line-height: 0.75;
+letter-spacing: -5px;
+border-radius: 5px;
+left: 0;
+color: white;
+} 
+	  
 #section-1 {
 align-content: center;
 }
@@ -485,7 +504,7 @@ align-content: center;
 #section-2,#section-3,#section-4{
 /padding:110px 25px 0px 5px;
 /padding: 17px 25px 0px 5px;
-padding: 10px 25px 35px 5px;	
+padding: 10px 25px 35px 25px;	
 min-height: 70vh;	
 }
     
@@ -617,7 +636,7 @@ left: 0;
 width: 100%;
 height: 5px;
 transform: translateY(-50%);
-opacity: 0;
+/opacity: 0;
 pointer-events: none;	
 }
 
@@ -1394,7 +1413,7 @@ border-radius: 50%;
       </section>
       
       <section id="section-5" class="content-section">
-      <h1 class="section-title">>CONTACT</h1>
+      <h1 class="section-title">CONTACT</h1>
               
         <div class="extra-content pc ">
           <h3>🎉 Continuous Scroll Benefits!</h3>
@@ -2182,6 +2201,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
