@@ -303,6 +303,10 @@ transition: all 0.3s ease;
 position: relative;
 }
 
+.hero-text span.space {
+    display: inline-block;
+    min-width: 0.3em; /* Adjust this value to control space width */
+}	  
 
 .ec{
 display: flex;
@@ -1274,7 +1278,7 @@ top: 0;
 left: -100%;
 width: 100%;
 height: 100%;
-background: #ecf0f1;
+background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
 transition: left 0.5s;
 }
 
@@ -2398,9 +2402,10 @@ window.particleImageDisplay("particle-image");
 const elements = document.querySelectorAll('.hero-text');
 
 elements.forEach(element => {
-    // Split text into letters and preserve line breaks
+    // Split text into letters and preserve line breaks and spaces
     const textNodes = Array.from(element.childNodes);
     element.innerHTML = ''; // clear content
+    
     textNodes.forEach(node => {
         if (node.nodeName === 'BR') {
             element.appendChild(document.createElement('br'));
@@ -2408,13 +2413,22 @@ elements.forEach(element => {
             node.textContent.split('').forEach(char => {
                 const span = document.createElement('span');
                 span.textContent = char;
+                
+                // Add a class to space characters for easier styling if needed
+                if (char === ' ') {
+                    span.classList.add('space');
+                    // Ensure spaces maintain their width
+                    span.style.display = 'inline-block';
+                    span.style.minWidth = '0.3em'; // Adjust space width as needed
+                }
+                
                 element.appendChild(span);
             });
         }
     });
 });
 
-// Get all letters from all hero-text elements
+// Get all letters (including spaces) from all hero-text elements
 const allLetters = document.querySelectorAll('.hero-text span');
 
 // Mouse move effect
@@ -2450,6 +2464,7 @@ window.addEventListener('mousemove', handleMouseMove);
 
 
 <script>
+//GALLERY DOTS	
 document.addEventListener('DOMContentLoaded', function() {
   const sections = document.querySelectorAll('.content-section');
   
@@ -2618,6 +2633,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
