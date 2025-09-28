@@ -208,6 +208,9 @@ transform: translateY(0);
 	  
 .pc{
 justify-items: center;
+display: flex;
+justify-content: center;
+text-align: center;	
 /clip-path: polygon(
 0 2%, 
 2% 0, 
@@ -1250,25 +1253,15 @@ animation: move 15s linear infinite;
 100% { stroke-dashoffset: 700; }
 }
 
-
+/* EMAIL COPY */
 .text-container {
-position: relative;
 display: inline-block;
 }
 
 .copyable-text {
-background: rgba(255, 255, 255, 0.95);
-backdrop-filter: blur(10px);
-border: 2px solid rgba(255, 255, 255, 0.2);
-border-radius: 12px;
-padding: 20px 30px;
-font-size: 18px;
-color: #333;
 cursor: pointer;
 user-select: none;
 transition: all 0.3s ease;
-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-position: relative;
 overflow: hidden;
 }
 
@@ -1294,25 +1287,23 @@ box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 
 .copy-circle {
 position: absolute;
-top: -60px;
+top: -75px;
 left: 50%;
 width: 80px;
 height: 80px;
-background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+background: white;
+color: black;	
+box-shadow: 0 4px 20px rgb(0 0 0 / 30%);	
 border-radius: 50%;
 display: flex;
 align-items: center;
 justify-content: center;
-color: white;
 font-size: 12px;
-font-weight: 600;
 text-transform: uppercase;
-letter-spacing: 0.5px;
 cursor: pointer;
 opacity: 0;
 transform: translateX(-50%) scale(0.8);
 transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
 z-index: 10;
 }
 
@@ -1323,17 +1314,11 @@ top: -2px;
 left: -2px;
 right: -2px;
 bottom: -2px;
-background: linear-gradient(45deg, #ff6b6b, #ee5a24, #ff6b6b);
+background: #ecf0f1;
 border-radius: 50%;
 z-index: -1;
-animation: rotate 3s linear infinite;
 opacity: 0;
 transition: opacity 0.3s ease;
-}
-
-@keyframes rotate {
-0% { transform: rotate(0deg); }
-100% { transform: rotate(360deg); }
 }
 
 .text-container:hover .copy-circle {
@@ -1344,7 +1329,7 @@ top: -70px;
 
 .copy-circle:hover {
 transform: translateX(-50%) scale(1.1);
-box-shadow: 0 6px 25px rgba(255, 107, 107, 0.4);
+box-shadow: 0 4px 20px rgb(0 0 0 / 30%);
 }
 
 .copy-circle:hover::before {
@@ -1359,8 +1344,8 @@ transform: translateX(-50%) scale(0.95);
 position: fixed;
 top: 20px;
 right: 20px;
-background: #2ecc71;
-color: white;
+background: #ffffff87;
+color: black;
 padding: 12px 20px;
 border-radius: 25px;
 font-weight: 600;
@@ -1368,7 +1353,7 @@ opacity: 0;
 transform: translateX(100px);
 transition: all 0.3s ease;
 z-index: 1000;
-box-shadow: 0 4px 20px rgba(46, 204, 113, 0.3);
+box-shadow: 0 4px 20px rgb(0 0 0 / 30%);
 }
 
 .copy-feedback.show {
@@ -1761,11 +1746,10 @@ transform: translateX(0);
 		  
 			<div class="glc">	  
         <div class="extra-content pc ">
-          <div id="particle-image" data-params-src="https://raw.githubusercontent.com/paxtonfitzpatrick/particle-image/master/params.json">
+          <div id="particle-image" data-params-src="https://raw.githubusercontent.com/paxtonfitzpatrick/particle-image/master/params.json"> </div>
 		  <h3 class="hero-text emtxt">LETS WORK <br> ⥥ </h3>
 	  
-</div>
- </div>
+		 </div>
         
         </div>
       </section>
@@ -2632,6 +2616,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
