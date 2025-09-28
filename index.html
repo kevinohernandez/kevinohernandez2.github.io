@@ -149,8 +149,16 @@ clip-path: polygon(100% 0, 20% 20%, 20% 80%, 100% 100%);
 width: 100px;
 height: 100vh;
 }	  
-
-
+.emtxt1{
+left: 50%;
+position: fixed;
+z-index: 2;
+bottom: -0.75%;
+margin: 0;
+transform: translate(-50%, -50%);
+padding: 0;
+font-size: 1.1rem;
+}
 	  
 :root {
 --tab-count: 5;
@@ -679,7 +687,7 @@ z-index: 1;
 align-self: anchor-center;
 text-orientation: upright;
 line-height: 0.75;
-letter-spacing: -5px;
+letter-spacing: -2.5px;
 border-radius: 5px;
 left: 3.5px;
 font-size: 1.5rem;
@@ -2415,7 +2423,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const viewportHeight = contentArea.clientHeight;
     
     // Trigger animation when section is 60% visible
-    const triggerPoint = sectionTop - (viewportHeight * 0.7);
+    const triggerPoint = sectionTop - (viewportHeight * 0.6);
     
     if (scrollPosition >= triggerPoint && scrollPosition <= sectionTop + section5.offsetHeight) {
       emailText.classList.add('fade-in');
@@ -2442,6 +2450,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
