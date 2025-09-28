@@ -194,7 +194,7 @@ width: 80%;
 }	
 
 .emtxt {
-font-size:2rem;
+font-size:2.25rem;
 margin: 0;
 opacity: 0;
 transform: translateY(30px);
@@ -1278,7 +1278,7 @@ top: 0;
 left: -100%;
 width: 100%;
 height: 100%;
-background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+/* background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent); */
 transition: left 0.5s;
 }
 
@@ -1298,8 +1298,8 @@ left: 50%;
 width: 60px;
 height: 60px;
 background: white;
-color: black;	
-box-shadow: 0 4px 20px rgb(0 0 0 / 30%);	
+color: black;
+box-shadow: 0 4px 20px rgb(0 0 0 / 30%);
 border-radius: 50%;
 display: flex;
 align-items: center;
@@ -1346,25 +1346,24 @@ opacity: 1;
 transform: translateX(-50%) scale(0.95);
 }
 
-.copy-feedback {
-position: fixed;
-top: 20px;
-right: 20px;
-background: #ffffff87;
-color: black;
-padding: 12px 20px;
-border-radius: 25px;
-font-weight: 600;
-opacity: 0;
-transform: translateX(100px);
-transition: all 0.3s ease;
-z-index: 1000;
-box-shadow: 0 4px 20px rgb(0 0 0 / 30%);
+/* Copied state styling */
+.copy-circle.copied {
+background: #2ecc71;
+color: white;
+box-shadow: 0 4px 20px rgba(46, 204, 113, 0.4);
+transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.copy-feedback.show {
-opacity: 1;
-transform: translateX(0);
+.copy-circle.copied::before {
+background: #27ae60;
+}
+
+/* Smooth text transition */
+.copy-circle {
+transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55), 
+background 0.3s ease, 
+color 0.3s ease, 
+box-shadow 0.3s ease;
 }
 	  
 </style>
@@ -1382,7 +1381,8 @@ transform: translateX(0);
     <div class="decorative-square square-right"></div>
     <div class="decorative-square square-bottom"></div>
 	
-	 <div class="text-container emtxt1">
+
+	    <div class="text-container emtxt1">
         <div class="copyable-text" id="textToCopy">
             EMAIL:YADADA@GMAIL.COM
         </div>
@@ -1391,9 +1391,6 @@ transform: translateX(0);
         </div>
     </div>
 
-    <div class="copy-feedback" id="feedback">
-         TEXT COPIED
-    </div>
 
   <div class="main-container ">
     <ul id="tabs-list">
@@ -1753,7 +1750,7 @@ transform: translateX(0);
 			<div class="glc">	  
         <div class="extra-content pc ">
           <div id="particle-image" data-params-src="https://raw.githubusercontent.com/paxtonfitzpatrick/particle-image/master/params.json"> </div>
-		  <h3 class="hero-text emtxt">LETS WORK <br> ⥥ </h3>
+		  <h3 class="hero-text emtxt">LET'S WORK <br> ⥥ </h3>
 	  
 		 </div>
         
@@ -2589,50 +2586,57 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 //EMAIL COPY
-	const textElement = document.getElementById('textToCopy');
-	const copyButton = document.getElementById('copyButton');
-	const feedback = document.getElementById('feedback');
+        const textElement = document.getElementById('textToCopy');
+        const copyButton = document.getElementById('copyButton');
 
-	function copyToClipboard() {
-		const textToCopy = textElement.textContent;
-		
-		navigator.clipboard.writeText(textToCopy).then(() => {
-			// Show feedback
-			feedback.classList.add('show');
-			
-			// Hide feedback after 2 seconds
-			setTimeout(() => {
-				feedback.classList.remove('show');
-			}, 2000);
-		}).catch(err => {
-			console.error('Failed to copy text: ', err);
-			// Fallback method
-			const textArea = document.createElement('textarea');
-			textArea.value = textToCopy;
-			document.body.appendChild(textArea);
-			textArea.select();
-			document.execCommand('copy');
-			document.body.removeChild(textArea);
-			
-			feedback.classList.add('show');
-			setTimeout(() => {
-				feedback.classList.remove('show');
-			}, 2000);
-		});
-	}
+        function copyToClipboard() {
+            const textToCopy = textElement.textContent;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                // Change button text and appearance
+                copyButton.textContent = 'Copied!';
+                copyButton.classList.add('copied');
+                
+                // Revert back to original after 1.5 seconds
+                setTimeout(() => {
+                    copyButton.textContent = 'Copy Me';
+                    copyButton.classList.remove('copied');
+                }, 1500);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                // Fallback method
+                const textArea = document.createElement('textarea');
+                textArea.value = textToCopy;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                // Change button text and appearance
+                copyButton.textContent = 'Copied!';
+                copyButton.classList.add('copied');
+                
+                // Revert back to original after 1.5 seconds
+                setTimeout(() => {
+                    copyButton.textContent = 'Copy Me';
+                    copyButton.classList.remove('copied');
+                }, 1500);
+            });
+        }
 
-	// Add click event to both the circle and the text
-	copyButton.addEventListener('click', copyToClipboard);
-	textElement.addEventListener('click', copyToClipboard);
+        // Add click event to both the circle and the text
+        copyButton.addEventListener('click', copyToClipboard);
+        textElement.addEventListener('click', copyToClipboard);
 
-	// Prevent text selection on mobile
-	textElement.addEventListener('touchstart', (e) => {
-		e.preventDefault();
-	});
-</script>
+        // Prevent text selection on mobile
+        textElement.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+        });
+    </script>
 	
 </body>
 </html>
+
 
 
 
