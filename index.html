@@ -912,7 +912,7 @@ justify-content: center;
 }
 
 .modal-image {
-max-width: 100%;
+max-width: 95%;
 max-height: 100svh;      
 object-fit: contain;
 border-radius: 8px;
@@ -1251,6 +1251,131 @@ animation: move 15s linear infinite;
 }
 
 
+.text-container {
+position: relative;
+display: inline-block;
+}
+
+.copyable-text {
+background: rgba(255, 255, 255, 0.95);
+backdrop-filter: blur(10px);
+border: 2px solid rgba(255, 255, 255, 0.2);
+border-radius: 12px;
+padding: 20px 30px;
+font-size: 18px;
+color: #333;
+cursor: pointer;
+user-select: none;
+transition: all 0.3s ease;
+box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+position: relative;
+overflow: hidden;
+}
+
+.copyable-text::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+transition: left 0.5s;
+}
+
+.copyable-text:hover::before {
+left: 100%;
+}
+
+.copyable-text:hover {
+transform: translateY(-2px);
+box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.copy-circle {
+position: absolute;
+top: -60px;
+left: 50%;
+width: 80px;
+height: 80px;
+background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+font-size: 12px;
+font-weight: 600;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+cursor: pointer;
+opacity: 0;
+transform: translateX(-50%) scale(0.8);
+transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
+z-index: 10;
+}
+
+.copy-circle::before {
+content: '';
+position: absolute;
+top: -2px;
+left: -2px;
+right: -2px;
+bottom: -2px;
+background: linear-gradient(45deg, #ff6b6b, #ee5a24, #ff6b6b);
+border-radius: 50%;
+z-index: -1;
+animation: rotate 3s linear infinite;
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+
+@keyframes rotate {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+
+.text-container:hover .copy-circle {
+opacity: 1;
+transform: translateX(-50%) scale(1);
+top: -70px;
+}
+
+.copy-circle:hover {
+transform: translateX(-50%) scale(1.1);
+box-shadow: 0 6px 25px rgba(255, 107, 107, 0.4);
+}
+
+.copy-circle:hover::before {
+opacity: 1;
+}
+
+.copy-circle:active {
+transform: translateX(-50%) scale(0.95);
+}
+
+.copy-feedback {
+position: fixed;
+top: 20px;
+right: 20px;
+background: #2ecc71;
+color: white;
+padding: 12px 20px;
+border-radius: 25px;
+font-weight: 600;
+opacity: 0;
+transform: translateX(100px);
+transition: all 0.3s ease;
+z-index: 1000;
+box-shadow: 0 4px 20px rgba(46, 204, 113, 0.3);
+}
+
+.copy-feedback.show {
+opacity: 1;
+transform: translateX(0);
+}
+	  
 </style>
 	
 </head>
@@ -1261,11 +1386,23 @@ animation: move 15s linear infinite;
     <!-- Top square with menu -->
     <div class="decorative-square square-top"></div>
         
-    <!-- Decorative squares with clip-paths -->
+    <!-- Decorative squares with clip-paths <h3 class="emtxt1">EMAIL:YADADA@GMAIL.COM</h3> -->
     <div class="decorative-square square-left"></div>
     <div class="decorative-square square-right"></div>
     <div class="decorative-square square-bottom"></div>
-	<h3 class="emtxt1">EMAIL:YADADA@GMAIL.COM</h3>
+	
+	 <div class="text-container emtxt1">
+        <div class="copyable-text" id="textToCopy">
+            EMAIL:YADADA@GMAIL.COM
+        </div>
+        <div class="copy-circle" id="copyButton">
+            COPY ME
+        </div>
+    </div>
+
+    <div class="copy-feedback" id="feedback">
+         TEXT COPIED
+    </div>
 
   <div class="main-container ">
     <ul id="tabs-list">
@@ -1624,8 +1761,9 @@ animation: move 15s linear infinite;
 		  
 			<div class="glc">	  
         <div class="extra-content pc ">
-          <h3 class="emtxt">EMAIL:YADADA@GMAIL.COM</h3>
           <div id="particle-image" data-params-src="https://raw.githubusercontent.com/paxtonfitzpatrick/particle-image/master/params.json">
+		  <h3 class="hero-text emtxt">LETS WORK <br> ⥥ </h3>
+	  
 </div>
  </div>
         
@@ -2447,9 +2585,54 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 	
 </script>
+
+<script>
+//EMAIL COPY
+	const textElement = document.getElementById('textToCopy');
+	const copyButton = document.getElementById('copyButton');
+	const feedback = document.getElementById('feedback');
+
+	function copyToClipboard() {
+		const textToCopy = textElement.textContent;
+		
+		navigator.clipboard.writeText(textToCopy).then(() => {
+			// Show feedback
+			feedback.classList.add('show');
+			
+			// Hide feedback after 2 seconds
+			setTimeout(() => {
+				feedback.classList.remove('show');
+			}, 2000);
+		}).catch(err => {
+			console.error('Failed to copy text: ', err);
+			// Fallback method
+			const textArea = document.createElement('textarea');
+			textArea.value = textToCopy;
+			document.body.appendChild(textArea);
+			textArea.select();
+			document.execCommand('copy');
+			document.body.removeChild(textArea);
+			
+			feedback.classList.add('show');
+			setTimeout(() => {
+				feedback.classList.remove('show');
+			}, 2000);
+		});
+	}
+
+	// Add click event to both the circle and the text
+	copyButton.addEventListener('click', copyToClipboard);
+	textElement.addEventListener('click', copyToClipboard);
+
+	// Prevent text selection on mobile
+	textElement.addEventListener('touchstart', (e) => {
+		e.preventDefault();
+	});
+</script>
 	
 </body>
 </html>
+
 
 
 
