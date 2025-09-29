@@ -534,7 +534,8 @@ label.panel-label {
 user-select: none;
 display: block;
 /width: 100%;
-color: var(--color-label-inactive);
+/color: var(--color-label-inactive);
+color: black;	
 cursor: pointer;
 background-color: var(--color-label-bg-inactive);
 transition: all 0.2s ease;
@@ -799,8 +800,9 @@ transform: translateY(0);
 /* Gallery Navigation Dots */
 .gallery-nav-dots {
 position: absolute;
-right: 6.5px;
-top: 50%;
+/right: 6.5px;
+right: 9px;	
+top: 48%;
 transform: translateY(-50%);
 display: flex;
 flex-direction: column;
@@ -1349,13 +1351,13 @@ transform: translateX(-50%) scale(0.95);
 /* Copied state styling */
 .copy-circle.copied {
 background: #ecf0f1;
-color: white;
-box-shadow: 0 4px 20px rgba(46, 204, 113, 0.4);
+color: black;
+box-shadow: 0 4px 20px rgb(0 0 0 / 30%);
 transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .copy-circle.copied::before {
-background: #27ae60;
+background: #ecf0f1;
 }
 
 /* Smooth text transition */
@@ -1925,7 +1927,7 @@ const ParticleImageDisplayer = function(tag_id, canvas_el, params) {
       density: 150,
       color: '#000',
       size: {
-        value: 3,
+        value: 2,
         random: false,
       },
       movement: {
@@ -1958,8 +1960,8 @@ const ParticleImageDisplayer = function(tag_id, canvas_el, params) {
         is_external: true
       },
       size: {
-        canvas_pct: 100,
-        min_px: 200,
+        canvas_pct: 150,
+        min_px: 300,
         max_px: 800
       }
     },
@@ -1969,8 +1971,8 @@ const ParticleImageDisplayer = function(tag_id, canvas_el, params) {
         strength: 150
       },
       big_repulse: {
-        distance: 300,
-        strength: 200
+        distance: 200,
+        strength: 100
       },
       grab: {
         distance: 100,
@@ -2584,13 +2586,14 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </script>
 
-<script>
-//EMAIL COPY
+   <script>
         const textElement = document.getElementById('textToCopy');
         const copyButton = document.getElementById('copyButton');
 
         function copyToClipboard() {
-            const textToCopy = textElement.textContent;
+            // Get the email from data attribute, or extract it from the text
+            const textToCopy = textElement.getAttribute('data-copy') || 
+                              textElement.textContent.replace(/^EMAIL:\s*/i, '');
             
             navigator.clipboard.writeText(textToCopy).then(() => {
                 // Change button text and appearance
@@ -2636,6 +2639,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
