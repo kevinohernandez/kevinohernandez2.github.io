@@ -270,6 +270,21 @@ transform: translate(0px);
 }
 }
 
+.sli-up {
+  animation: slide-up 0.5s ease 200ms backwards;
+}
+
+@keyframes sli-up {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+	  
 .sil {
 animation: sil 0.5s ease 200ms backwards;
 }
@@ -1384,7 +1399,7 @@ box-shadow 0.3s ease;
     <div class="decorative-square square-bottom"></div>
 	
 
-	    <div class="text-container emtxt1">
+	    <div class="text-container sli-up emtxt1">
         <div class="copyable-text" id="textToCopy" data-copy="YADADA@GMAIL.COM">
             EMAIL:YADADA@GMAIL.COM
         </div>
@@ -1396,7 +1411,7 @@ box-shadow 0.3s ease;
 
   <div class="main-container ">
     <ul id="tabs-list">
-      <div class="social-button logo sil">
+      <div class="social-button logo drop-in">
       <a href="#" class="image avatar">
 <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 288 432">
   <defs>
@@ -1433,7 +1448,7 @@ box-shadow 0.3s ease;
       <label class="panel-label  sil" data-target="section-5">CONTACT</label>
       </li>
       
-      <div class="social-button sbli  sil">
+      <div class="social-button sbli  drop-in">
   <a href="https://www.linkedin.com/in/kevinohernandez/" class="nav-link" target="_blank" rel="noopener">
  <svg version="1.1" id="Ld" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 	 viewBox="0 0 382 382" xml:space="preserve">
@@ -2639,6 +2654,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
