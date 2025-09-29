@@ -1413,7 +1413,7 @@ box-shadow 0.3s ease;
 
 	    <div class="text-container sli-up  emtxt1">
         <div class="copyable-text" id="textToCopy" data-copy="YADADA@GMAIL.COM">
-            EMAIL:YADADA@GMAIL.COM
+            EMAIL
         </div>
         <div class="copy-circle" id="copyButton">
             COPY ME
@@ -1457,7 +1457,10 @@ box-shadow 0.3s ease;
       <label class="panel-label sil" data-target="section-4">PRODUCTS</label>
       </li>
       <li class="last">
-      <label class="panel-label  sil" data-target="section-5">CONTACT</label>
+      <label class="panel-label  sil" data-target="section-5">SERVICES</label>
+      </li>		
+      <li class="last">
+      <label class="panel-label  sil" data-target="section-6">CONTACT</label>
       </li>
       
       <div class="social-button sbli  drop-in">
@@ -1774,12 +1777,24 @@ box-shadow 0.3s ease;
       </section>
       
       <section id="section-5" class="content-section">
+      <h1 class="section-title">SERVICES</h1>
+		  
+			<div class="glc">	  
+        <div class="extra-content pc ">
+          <div id="particle-image" data-params-src="https://raw.githubusercontent.com/paxtonfitzpatrick/particle-image/master/params.json"> </div>
+		  <h3 class="hero-text emtxt">LET'S CHAT <br> ⥥ </h3>
+	  
+		 </div>
+        
+        </div>
+      </section>
+		 <section id="section-6" class="content-section">
       <h1 class="section-title">CONTACT</h1>
 		  
 			<div class="glc">	  
         <div class="extra-content pc ">
           <div id="particle-image" data-params-src="https://raw.githubusercontent.com/paxtonfitzpatrick/particle-image/master/params.json"> </div>
-		  <h3 class="hero-text emtxt">LET'S WORK <br> ⥥ </h3>
+		  <h3 class="hero-text emtxt">LET'S CHAT <br> ⥥ </h3>
 	  
 		 </div>
         
@@ -1889,6 +1904,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <script>
+//PANEL HIGHLIGHT	
 document.addEventListener('DOMContentLoaded', function() {
   const navLabels = document.querySelectorAll('.panel-label');
   const sections = document.querySelectorAll('.content-section');
@@ -1914,7 +1930,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Update active navigation based on scroll position
   function updateActiveNavigation() {
-    const scrollPosition = contentArea.scrollTop + 70;
+    const scrollPosition = contentArea.scrollTop + 50;
     
     sections.forEach((section, index) => {
       const sectionTop = section.offsetTop;
@@ -2666,6 +2682,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
