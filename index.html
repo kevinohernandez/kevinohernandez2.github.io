@@ -17,6 +17,11 @@ font-display: swap;
 }
 	  
 /* Global Styles */
+
+button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #000; /* custom focus ring */
+}
 	  
 html, body {
 height: 100%;
@@ -1909,7 +1914,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Update active navigation based on scroll position
   function updateActiveNavigation() {
-    const scrollPosition = contentArea.scrollTop + 50;
+    const scrollPosition = contentArea.scrollTop + 30;
     
     sections.forEach((section, index) => {
       const sectionTop = section.offsetTop;
@@ -1946,10 +1951,10 @@ const ParticleImageDisplayer = function(tag_id, canvas_el, params) {
   this.pImageConfig = {
     particles: {
       array: [],
-      density: 150,
+      density: 200,
       color: '#000',
       size: {
-        value: 2,
+        value: 4,
         random: false,
       },
       movement: {
@@ -1993,7 +1998,7 @@ const ParticleImageDisplayer = function(tag_id, canvas_el, params) {
         strength: 150
       },
       big_repulse: {
-        distance: 200,
+        distance: 100,
         strength: 100
       },
       grab: {
@@ -2661,6 +2666,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
