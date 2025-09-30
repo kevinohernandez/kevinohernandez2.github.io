@@ -1,0 +1,2911 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Kevin Hernandez</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="icon" type="image/svg+xml" href="images/outlinever-01.svg" />
+  <style>
+
+	  
+@font-face {
+font-family: 'Neue Haas Display';
+src: url('assets/webfonts/NeueHaasDisplayThin.ttf') format('truetype');
+font-weight: 100;
+font-style: normal;
+font-display: swap;
+}
+	  
+/* Global Styles */
+
+button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 0px #000; /* custom focus ring */
+}
+	  
+html, body {
+height: 100%;
+background: lightgrey;
+color: var(--color-text);
+font-family: 'Neue Haas Display', -apple-system, BlinkMacSystemFont, sans-serif;
+margin: 0;
+padding: 0;
+scroll-behavior: smooth;
+background: repeating-radial-gradient(circle, rgba(255, 192, 203, 0.3), rgb(188 188 196) 50%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.3)) !important;
+background-size: 2.5px 2.5px !important;
+/overscroll-behavior: none;	
+touch-action: manipulation;	
+}
+
+.main-container {
+display: flex;
+width: 100vw;
+height: 100vh;
+margin: 0;
+background: white;
+box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+overflow: hidden; /* Prevent container overflow */
+}
+
+	  
+h1 {
+margin-top: 0;
+font-weight: 300;
+color: var(--color-primary-dark);
+}
+
+p {
+line-height: 1.8;
+}
+
+hr {
+margin: 12px 0;
+border: none;
+border-top: var(--tab-base-border-style);
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+#content::-webkit-scrollbar { display: none; }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+#tabs-list::-webkit-scrollbar { display: none; }
+	  
+/* Hide scrollbar for Chrome, Safari and Opera */
+.content-section pre::-webkit-scrollbar { display: none; }
+
+
+/* Rounded rectangle mask overlay */
+	  
+.mask-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+background: white;
+z-index: 1;
+pointer-events: none;
+/* Rounded rectangular mask - creates a border frame */
+-webkit-mask-image: 
+radial-gradient(30px at 30px 30px, black 29px, transparent 30px),
+radial-gradient(30px at calc(100% - 30px) 30px, black 29px, transparent 30px),
+radial-gradient(30px at 30px calc(100% - 30px), black 29px, transparent 30px),
+radial-gradient(30px at calc(100% - 30px) calc(100% - 30px), black 29px, transparent 30px),
+linear-gradient(to right, black 30px, transparent 30px, transparent calc(100% - 30px), black calc(100% - 30px)),
+linear-gradient(to bottom, black 30px, transparent 30px, transparent calc(100% - 30px), black calc(100% - 30px));
+-webkit-mask-composite: source-over;
+
+mask-image: 
+radial-gradient(30px at 2.5px 2.5px, black 29px, transparent 29px),
+radial-gradient(30px at calc(100% - 2.5px) 2.5px, black 29px, transparent 29px),
+radial-gradient(30px at 2.5px calc(100% - 2.5px), black 29px, transparent 29px),
+radial-gradient(30px at calc(100% - 2.5px) calc(100% - 2.5px), black 29px, transparent 29px),
+linear-gradient(to right, black 20px, transparent 20px, transparent calc(100% - 20px), black calc(100% - 20px)),
+linear-gradient(to bottom, black 20px, transparent 20px, transparent calc(100% - 20px), black calc(100% - 20px));
+mask-composite: add;
+}
+
+/* Decorative clipped squares */
+.decorative-square {
+position: fixed;
+width: 80px;
+height: 80px;
+background: white;
+z-index: 1;
+pointer-events: none;
+}
+
+/* Top square - facing downward */
+.square-top {
+top: -60px;
+left: 50%;
+transform: translateX(-50%);
+clip-path: polygon(0 0, 20% 100%, 80% 100%, 100% 0);
+width: 80vw;
+height: 100px;
+pointer-events: auto;
+}
+
+/* Bottom square - facing upward */
+.square-bottom {
+bottom: -40px;
+left: 50%;
+transform: translateX(-50%);
+clip-path: polygon(100% 100%, 80% 0, 20% 0, 0 100%);
+width: 80vw;
+height: 70px;
+/border-radius:40px;
+}
+/* Left square - original clip-path */
+.square-left {
+left: -50px;
+top: 50%;
+transform: translateY(-50%);
+clip-path: polygon(0 0, 80% 20%, 80% 80%, 0 100%);
+width: 100px;
+height: 100vh;
+}
+
+/* Right square - mirrored horizontally */
+.square-right {
+right: -50px;
+top: 50%;
+transform: translateY(-50%);
+clip-path: polygon(100% 0, 20% 20%, 20% 80%, 100% 100%);
+width: 100px;
+height: 100vh;
+}	  
+.emtxt1{
+left: 50%;
+position: fixed;
+z-index: 2;
+bottom: -0.75%;
+margin: 0;
+transform: translate(-50%, -50%);
+padding: 0;
+font-size: 1.1rem;
+}
+	  
+:root {
+--tab-count: 5;
+--menu-item-height: 46px;
+--color-primary-light: #000;
+--color-primary-dark: #;
+--color-text: #000;
+--color-border: #dfdfdf;
+--color-border-left: var(--color-primary-dark);
+--color-label-bg-inactive: #ecf0f1;
+--color-label-bg-active: white;
+--color-label-active: var(--color-border-left);
+--color-label-inactive: #bdc3c7;
+--btn-border-left-thickness: 6px;
+--tab-padding: 15px;
+--tab-transition-duration: 200ms;
+--tab-base-border-style: 1px solid var(--color-border);
+--tab-trans-border-style: 1px solid transparent;
+--panel-transition-duration: 600ms;
+--main-padding: 48px 24px;
+--menu-padding: 12px 24px;
+}
+
+#particle-image {
+/background-color: #000;
+/position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+height: 70%;
+width: 70%;
+}	
+
+.emtxt {
+font-size:2.5rem;
+line-height: 1.25;	
+margin: 0;
+opacity: 0;
+transform: translateY(30px);
+transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.emtxt.fade-in {
+opacity: 1;
+transform: translateY(0);
+}
+	  
+.pc{
+justify-items: center;
+display: flex;
+justify-content: center;
+text-align: center;	
+flex-direction: column;
+align-items: center;	
+/clip-path: polygon(
+0 2%, 
+2% 0, 
+98% 0, 
+100% 2%, 
+100% 20%, 
+98% 25%, 
+98% 70%, 
+100% 75%, 
+100% 97%, 
+97% 100%, 
+2% 100%, 
+0 98%, 
+0 75%, 
+2% 70%, 
+2% 25%, 
+0 20%);
+clip-path: polygon(
+0 0%, 
+0% 0, 
+98% 0, 
+100% 0%, 
+100% 20%, 
+98% 25%, 
+98% 70%, 
+100% 75%, 
+100% 100%, 
+97% 100%, 
+0% 100%, 
+0 101%, 
+0 75%, 
+2% 70%, 
+2% 25%, 
+0 20%);	
+}
+	  
+/* Global Styles END */
+
+/* ANIMATIONS */
+
+
+.drop-in {
+animation: drop-in 0.5s ease 200ms backwards;
+}
+
+
+@keyframes drop-in {
+from {
+opacity: 0;
+transform: translateY(-100px);
+}
+to {
+opacity: 1;
+transform: translate(0px);
+}
+}
+
+.sli-up {
+  animation: sli-up 0.5s ease 200ms both;
+}
+
+@keyframes sli-up {
+  from {
+    opacity: 0;
+	transform: translate(-50%, 100%);  
+  }
+  to {
+    opacity: 1;
+	transform: translate(-50%, -50%); 
+  }
+}
+	  
+.sil {
+animation: sil 0.5s ease 200ms backwards;
+}
+
+@keyframes sil {
+from {
+opacity: 0;
+transform: translateX(-100px);
+}
+to {
+opacity: 1;
+transform: translateX(0);
+}
+}
+/* ANIMATIONS END */
+
+/* GENERAL STYLES */
+
+
+
+.glc {
+filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
+display: flex;
+width: 100%;	
+}
+
+.ns1{
+clip-path: polygon(2% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 65%, 2% 60%);
+/clip-path: polygon(1% 0, 1% 70%, 0 75%, 0 100%, 100% 100%, 100% 75%, 99% 70%, 99% 0);	
+}	
+	  
+.ns{
+/clip-path: polygon(2% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 65%, 2% 60%);
+clip-path: polygon(1% 0, 1% 70%, 0 75%, 0 100%, 100% 100%, 100% 75%, 99% 70%, 99% 0);	
+}	
+
+/* COVER  */
+.bb-container {
+position: absolute;
+/width: 290px;
+/height: 290px;	
+/top: 50%;
+/left: 50%;
+/transform: translate(-50%, -50%);	
+transition: all 0.3s ease;
+/top: 2.5%;
+/right: 1.5%;
+/top: 12%;
+/right: 7.5%;
+z-index: -1;
+bottom: 0%;
+right: 43%;
+width: auto;
+height: 500px;
+transform: translate(50%, 0%);
+
+}
+
+.bb-container:hover {
+transform: translate(50%, 0%) scale(1.025); /* hover enlarge */
+}
+
+.bb {
+width: 100%;
+height: 100%;
+position: relative;
+z-index: 1;
+overflow: hidden;
+border-radius: 10px;	
+clip-path: polygon(2% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 65%, 2% 60%);
+}
+
+.bb img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+clip-path: inherit;
+/background: grey; 
+transition: transform 0.4s ease 0.1s; /* delay image scale */
+}
+
+.bb-container:hover img {
+transform: scale(1.1); /* image scales after container */
+}
+
+.bb-border {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 2;
+pointer-events: none;
+}
+
+.bb-border path {
+fill: none;
+stroke: black;
+stroke-width: 2;
+stroke-dasharray: 50 90; /* visible dash 2px, remainder invisible */
+stroke-dashoffset: 0;
+animation: move 20s linear infinite;
+}
+
+.bb-border path:nth-child(2) {
+stroke-dashoffset: 350; /* start halfway along path */
+animation: move 20s linear infinite;
+}
+
+@keyframes move {
+0%   { stroke-dashoffset: 0; }
+100% { stroke-dashoffset: 700; }
+}
+	  
+/* COVER END */
+
+	  
+/.hero-text {
+color: black;
+font-weight: bold;
+display: inline-block;
+font-size: 5.5rem;
+text-align: center; /* center the two lines */
+}
+	  
+.hero-text span {
+display: inline-block;
+transition: all 0.3s ease;
+position: relative;
+}
+
+.hero-text span.space {
+    display: inline-block;
+    min-width: 0.3em; /* Adjust this value to control space width */
+}	  
+
+.ec{
+display: flex;
+gap: 10px;
+}
+	  
+ /* Name */	  
+.txt{
+font-size:5.5rem;
+line-height:1;
+}
+
+/* multi +  */	  
+.txt2{
+font-size:2.6rem;
+/line-height:1;
+position: relative;
+/left: 67.5%;
+top:8%;	
+z-index: 1;
+text-align: end;
+line-height: 0.9;	
+}
+	  
+.txt1{
+font-size:1.5rem;
+margin: 0;
+padding: 0;	
+/line-height:1;
+justify-self: center;
+margin-bottom:3px;	
+}
+
+
+.skills-section {
+/max-height: 300px;
+overflow-y: auto;
+padding: 10px 35px 10px 35px!important;
+clip-path: polygon(98% 0, 0% 0, 0% 80%, 10% 100%, 100% 100%, 100% 65%, 98% 60%);
+	
+}
+	  
+.skills-icons {
+display: grid;
+grid-template-columns: repeat(5, 1fr);
+grid-template-rows: repeat(2, auto);
+gap: 15px;
+margin-bottom: 10px;	
+/justify-items: center;
+	
+}
+	  
+.icon-item {
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+justify-content: space-between;
+place-items: center;
+/width: 50%;
+filter: grayscale(1);		
+transition: all 0.3s ease;
+}
+
+.icon-item:hover{
+transform: translateY(-5px);
+filter: none;		
+}	  
+	  
+.icon-item img {
+/width: 40px;
+height: 35px;
+margin-bottom: 8px;
+width: auto;
+object-fit: contain;	
+}
+	  
+.icon-item span {
+font-size: 12.5px;
+color: #000;
+background: lightgray;
+border-radius: 5px;
+margin-top: 5px;
+width: 100%;
+min-width: max-content;
+text-transform: uppercase;
+transition: all 0.3s ease;
+clip-path: polygon(0 20%, 8% 0, 92% 0, 100% 20%, 100% 80%, 90% 100%, 70% 100%, 65% 90%, 35% 90%, 30% 100%, 10% 100%, 0 80%);	
+}
+
+.icon-item span:hover{
+color: white;
+background: black;	
+}
+	  
+/* when the icon-item is hovered, style the span */
+/.icon-item:has(:hover) span {
+  color: white;
+  background: black;
+}
+	  
+.icon-item:hover span {
+  color: white;
+  background: black;
+}
+
+
+/* Social Button */
+	  
+
+/.logo{
+margin:0!important;
+padding:0!important;
+}
+
+.logo {
+position: absolute;
+left: 2px;
+top: -5px;	
+/margin-top: 10px!important;
+padding:0!important;
+}	  
+	  
+#Layer_1{  
+/width: 40px;
+width: 27px;	
+height: auto;
+fill: black;	
+}
+	  
+.cls-1{
+stroke: #000!important;
+fill: #ffffff!important;	
+}
+.cls-2{
+fill: #000!important;
+}	  
+	  
+.sbli {
+position: absolute;
+/right: 2px;
+right:-0px;	
+top: -2px;	
+padding: 0!important;
+margin: 2px;
+}	
+	  
+#Ld{
+fill: black;
+width: 20px;
+background: white;		
+}
+	  
+.social-button {
+/margin: 10px;
+padding: 10px;
+background: var(--color-primary-dark);
+border-radius: 8px;
+text-align: center;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+
+.social-button:hover {
+/background: var(--color-primary-light);
+transform: scale(1.1);
+}
+
+.social-button svg {
+fill: white;
+width: 24px;
+height: 24px;
+}
+
+/* Social Button END */
+	  
+/* Tabs List - Left Side - Flex Item */
+/#tabs-list {
+list-style: none;
+margin: 0;
+padding: 0;
+width: 125px; 
+min-width: 100px; /* Minimum width */
+max-width: 500px; /* Maximum width */
+background-color: var(--color-label-bg-inactive);
+background: repeating-radial-gradient(circle, rgba(255, 192, 203, 0.3), rgb(188 188 196) 50%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.3)) !important;
+background-size: 2.5px 2.5px !important;
+/border-right: var(--tab-base-border-style);
+display: flex;
+justify-content: center;
+flex-direction: column;
+flex-shrink: 0; /* Don't shrink the sidebar */
+overflow-y: auto; /* Allow sidebar to scroll if needed */
+/* Hide scrollbars for sidebar too */
+scrollbar-width: none; /* Firefox */
+-ms-overflow-style: none; /* Internet Explorer 10+ */
+row-gap: 10px;
+}
+
+/* Tabs List - horizontal*/
+#tabs-list {
+list-style: none;
+margin: 0;
+padding: 0;
+display: flex;
+flex-direction: row;
+flex-shrink: 0;
+/overflow-y: auto;
+scrollbar-width: none;
+-ms-overflow-style: none;
+row-gap: 5px;
+align-items: center;
+position: fixed;
+width: 100%;
+z-index: 2;
+justify-content: center;
+padding-top: 5px;
+}
+
+
+#tabs-list li {
+/border-bottom: var(--tab-base-border-style);
+position: relative;
+}
+
+#tabs-list li:last-child {
+border-bottom: none;
+}
+
+/* Tab Labels */
+label.panel-label {
+user-select: none;
+display: block;
+/width: 100%;
+/color: var(--color-label-inactive);
+color: black;	
+cursor: pointer;
+background-color: var(--color-label-bg-inactive);
+transition: all 0.2s ease;
+/padding: 10px;
+position: relative;
+font-weight: 400;
+border-radius: 10px;
+text-align: center;
+margin: 0px 5px 0px 5px;
+box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+width: 60px;
+text-align: center;
+display: flex;
+justify-content: center;
+clip-path: polygon(0 20%, 15% 0, 85% 0, 100% 20%, 100% 80%, 90% 100%, 70% 100%, 65% 90%, 35% 90%, 30% 100%, 10% 100%, 0 80%);
+padding: 5px 10px 5px 10px;	
+}
+
+label.panel-label:hover {
+color: var(--color-label-active);
+background-color: rgba(255, 255, 255, 0.5);
+transform: translateY(-3.5px);
+}
+
+label.panel-label::before {
+content: "";
+position: absolute;
+height: 100%;
+left: 0;
+top: 0;
+background-color: var(--color-border-left);
+width: 0;
+transition: width var(--tab-transition-duration);
+}
+
+label.panel-label:hover::before {
+width: var(--btn-border-left-thickness);
+}
+
+/* Active label styling */
+label.panel-label.active {
+/background-color: var(--color-label-bg-active);	
+background-color: #d3d3d3;
+color: var(--color-border-left);
+/box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);	
+}
+
+label.panel-label.active::before {
+width: var(--btn-border-left-thickness);
+}
+
+
+	  
+/* Content Area - Flex Item that fills remaining space */
+#content {
+flex: 1; /* Take up all remaining space */
+/background-color: var(--color-label-bg-active);
+background: repeating-radial-gradient(circle, rgba(255, 192, 203, 0.3), rgb(188 188 196) 50%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.3)) !important;
+background-size: 2.5px 2.5px !important;
+/background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><line x1='0.5' y1='0.5' x2='5.5' y2='0.5' style='stroke:rgb(255,255,255);stroke-width:1'/><line x1='200.5' y1='0.5' x2='195.5' y2='0.5' style='stroke:rgb(255,255,255);stroke-width:1'/><line x1='0.5' y1='0.5' x2='0.5' y2='5.5' style='stroke:rgb(255,255,255);stroke-width:1'/><line x1='0.5' y1='200.5' x2='0.5' y2='195.5' style='stroke:rgb(255,255,255);stroke-width:1'/></svg>"), linear-gradient( to right, #444 1px, transparent 0, transparent 200px ), linear-gradient( to bottom, #444 1px, transparent 0, transparent 200px );
+/background-color: #181818;
+/background-size: 200px 200px;
+background-repeat: repeat;
+overflow-y: auto; /* Allow content to scroll */
+overflow-x: hidden;		
+height: 100vh; /* Full viewport height */
+scrollbar-width: none; /* Firefox */
+-ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+
+/* Individual Sections - Responsive */
+.content-section {
+min-height: 100vh;
+padding: var(--main-padding);
+/border-bottom: 3px solid var(--color-border);
+/border-bottom: groove 2px;	
+box-sizing: border-box; 
+position: relative;	
+}
+
+.content-section:last-child {
+border-bottom: none;
+align-content: center;	
+}
+
+/* Ensure images and content are responsive */
+.content-section img {
+/max-width: 100%;
+/height: auto;
+}
+
+.content-section pre {
+overflow-x: auto;
+white-space: pre-wrap;
+word-wrap: break-word;
+/* Hide scrollbars for code blocks too */
+scrollbar-width: none; /* Firefox */
+-ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+/* Extra content for scrolling demo */
+.extra-content {
+/margin-top: 40px;
+padding: 20px;
+background: #f8f9fa;
+border-radius: 8px;
+line-height: 1.8;
+flex: 1;
+scrollbar-width: none;
+cursor: crosshair;
+box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);	
+}
+
+
+/* Horizontal Image Gallery Styles */
+
+#section-1 .section-title {
+  display: none;
+}
+#section-5 .section-title {
+  display: none;
+}
+#section-6 .section-title {
+  display: none;
+}	
+#section-5 {
+min-height: 70vh;
+}
+	  
+#section-6 {
+min-height: 85vh;
+}
+
+	  
+#section-2:before, #section-3:before, #section-4:before  {
+content: "";
+display: block;
+position: absolute;
+top: 0px;
+right: 0px;
+width: 50%;
+height: 10px;
+background-color: white;
+clip-path: polygon(0px 4px, 15px 4px, 20px 0px, 80px 0px, 85px 4px, 100% 4px, 100% 5px, 90px 5px, 85px 10px, 40px 10px, 35px 5px, 0px 5px);
+}
+
+#section-2:after, #section-3:after, #section-4:after  {
+content: "";
+display: block;
+position: absolute;
+bottom: 0px;
+left: 0px;
+width: 50%;
+height: 10px;
+background-color: white;
+clip-path: polygon(0px 4px, 15px 4px, 20px 0px, 80px 0px, 85px 4px, 100% 4px, 100% 5px, 90px 5px, 85px 10px, 40px 10px, 35px 5px, 0px 5px);
+transform: scale(-1);	
+}	  
+
+	  
+.section-title{
+/display:none;
+writing-mode: vertical-lr;
+position: absolute;
+margin: 0;
+/background: #bdc3c7;
+background: #ecf0f1	
+color: black7;	
+z-index: 1;
+align-self: anchor-center;
+text-orientation: upright;
+line-height: 0.75;
+letter-spacing: -2.5px;
+border-radius: 5px;
+left: 3.5px;
+font-size: 1.5rem;
+/filter: drop-shadow(0px 0px 4px white);		
+} 
+	  
+#section-1 {
+align-content: center;
+/border-bottom: 0px solid var(--color-border);	
+}
+#section-4{
+/border-bottom: 0px solid var(--color-border);
+}
+	  
+#section-1,#section-5,#section-6{
+padding: 48px 44px;
+}
+	
+#section-2,#section-3,#section-4{
+/padding:110px 25px 0px 5px;
+/padding: 17px 25px 0px 5px;
+/padding: 10px 25px 35px 25px;	
+padding: 10px 25px 35px 35px;	
+min-height: 70vh;
+/border-bottom: 0px solid var(--color-border);	
+/box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);	
+}
+    
+	  
+.image-gallery {
+overflow-x: auto;
+overflow-y: hidden;
+white-space: nowrap;
+/padding: 5px;
+padding: 5px 0px 5px 5px;
+border-radius: 8px;
+margin-top: 20px;
+/* Hide scrollbar for Chrome, Safari and Opera */
+-webkit-scrollbar: none;
+/* Hide scrollbar for IE, Edge and Firefox */
+-ms-overflow-style: none;
+scrollbar-width: none;
+cursor:crosshair;
+position:relative;
+filter: drop-shadow(0px 0px 4px white);	
+	
+}
+
+.gallery-item {
+display: inline-block;
+position: relative;
+overflow: hidden;
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+margin-right: 15px;
+white-space: normal;
+vertical-align: top;
+/filter: drop-shadow(0px 0px 4px white);
+clip-path: polygon(2% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 65%, 2% 60%);	
+}
+
+.gallery-item:nth-child(even){
+margin-top: 20px;
+clip-path: polygon(98% 0, 0% 0, 0% 90%, 10% 100%, 100% 100%, 100% 65%, 98% 60%);
+	
+}	
+	  
+.gallery-item:hover {
+transform: translateY(-5px);
+box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.gallery-item img {
+/width: 300px;
+/height: 300px;
+width: 42.5svh;
+height: auto;
+object-fit: cover;
+display: block;
+}
+
+.gallery-item .overlay {
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+background: linear-gradient(transparent, rgba(0,0,0,0.7));
+color: white;
+padding: 15px;
+transform: translateY(100%);
+transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .overlay {
+transform: translateY(0);
+}
+
+
+/* Gallery Navigation Dots */
+.gallery-nav-dots {
+position: absolute;
+/right: 6.5px;
+right: 9px;	
+top: 48%;
+transform: translateY(-50%);
+display: flex;
+flex-direction: column;
+gap: 8px;
+z-index: 1;
+pointer-events: none;
+/background: grey;
+/padding: 15px 5px 15px 5px;
+/border-radius: 5px;
+/clip-path: polygon(100% 0, 40% 0, 0 5%, 0 95%, 40% 100%, 100% 100%);	
+}
+
+.gallery-dot {
+width: 5px;
+/height: 5px;
+/border-radius: 50%;
+/background: rgba(255, 255, 255, 0.4);
+background: rgba(50, 50, 50, 0.4);	
+/border: 2px solid rgba(255, 255, 255, 0.8);
+transition: all 0.3s ease;
+cursor: pointer;
+pointer-events: all;
+/clip-path: polygon(96% 19%, 75% 15%, 25% 35%, 25% 64%, 75% 85%, 96% 80%);
+/width: 15px;
+/height: 15px;
+height: 15px;	
+}
+
+/* Create crosshair/plus sign using pseudo-elements */
+.gallery-dot::before,
+.gallery-dot::after {
+content: '';
+position: absolute;
+/background: rgba(255, 255, 255, 0.8);
+background: rgba(50, 50, 50, 0.8);	
+transition: all 0.3s ease;
+}
+
+/* Vertical line */
+.gallery-dot::before {
+top: 0;
+left: 50%;
+width: 1px;
+height: 100%;
+transform: translateX(-50%);
+}
+
+/* Horizontal line */
+.gallery-dot::after {
+top: 50%;
+left: 0;
+width: 100%;
+height: 5px;
+transform: translateY(-50%);
+/opacity: 0;
+pointer-events: none;	
+}
+	  
+.gallery-dot:hover::before,
+.gallery-dot:hover::after {
+/background: rgba(255, 255, 255, 0.9);
+background: rgba(50, 50, 50, 0.9);
+	
+}
+	  
+.gallery-dot.active::before,
+.gallery-dot.active::after {
+/background: rgba(255, 255, 255, 0.95);
+background: rgba(50, 50, 50, 0.95);	
+box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+	  
+.gallery-dot.active {
+/background: rgba(255, 255, 255, 0.9);
+background: rgba(50, 50, 50, 0.9);	
+transform: scale(1.2);
+box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+	  
+.gallery-dot:hover {
+/background: rgba(255, 255, 255, 0.7);
+background: rgba(50, 50, 50, 0.7);	
+transform: scale(1.1);
+}
+
+
+/* Modal Styles */
+	  
+.modal {
+display: none;
+position: fixed;
+z-index: 2000;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+/background-color: rgba(0, 0, 0, 0.9);
+backdrop-filter: blur(10px);	
+opacity: 0;
+/transition: opacity 0.3s ease;
+}
+
+
+.modal.show {
+display: flex;
+opacity: 1;
+align-items: center;
+justify-content: center;
+}
+
+.modal-content {
+position: relative;
+max-width: 90%;
+max-height: 90%;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: opacity 0.4s ease, transform 0.4s ease;	
+}
+
+.modal.show .modal-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+	  
+
+.modal-image {
+max-width: 95%;
+max-height: 100svh;      
+object-fit: contain;
+border-radius: 8px;
+box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* Modal Navigation */
+.modal-nav {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+background: rgba(255, 255, 255, 0.0);
+border: none;
+color: white;
+font-size: 60px;
+padding: 100% 15px;
+cursor: pointer;
+border-radius: 50%;
+/backdrop-filter: blur(10px);
+transition: all 0.3s ease;
+user-select: none;
+}
+
+.modal-nav:hover {
+background: rgba(255, 255, 255, 0.0);
+transform: translateY(-50%) scale(1.1);
+}
+
+.modal-prev {
+left: 0px;
+}
+
+.modal-next {
+right: 0px;
+}
+
+.modal-close{display:none}
+
+/* Close button */
+.modal-close {
+position: absolute;
+top: 20px;
+right: 30px;
+background: rgba(255, 255, 255, 0.0);
+border: none;
+color: white;
+font-size: 28px;
+padding: 10px 15px;
+cursor: pointer;
+border-radius: 50%;
+/backdrop-filter: blur(10px);
+transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+/background: rgba(255, 255, 255, 0.3);
+transform: scale(1.1);
+}
+
+.modal-info{display:none}
+	  
+/* Modal info */
+.modal-info {
+position: absolute;
+bottom: 20px;
+left: 50%;
+transform: translateX(-50%);
+background: rgba(0, 0, 0, 0.7);
+color: white;
+padding: 10px 20px;
+border-radius: 20px;
+backdrop-filter: blur(10px);
+text-align: center;
+}
+
+/* Modal Styles END */
+
+
+
+
+
+/*  MOBILE  */
+@media all and (max-width: 767px) {
+.main-container {
+flex-direction: column;
+height: 100vh;
+}
+
+#tabs-list {
+width: 100%;
+height: auto;
+flex-direction: row;
+overflow-x: auto;
+flex-shrink: 0;
+min-width: unset;
+max-width: unset;
+/* Hide horizontal scrollbar on mobile */
+scrollbar-width: none; /* Firefox */
+-ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+#tabs-list li {
+border-bottom: none;
+border-right: var(--tab-base-border-style);
+min-width: 150px;
+flex-shrink: 0;
+}
+
+#tabs-list li:last-child {
+border-right: none;
+}
+
+.social-button {
+margin: 10px;
+min-width: 120px;
+}
+
+label.panel-label {
+white-space: nowrap;
+padding: 16px 20px;
+font-size: 14px; /* Slightly smaller on mobile */
+}
+
+label.panel-label::before {
+width: 100%;
+height: 0;
+top: auto;
+bottom: 0;
+left: 0;
+}
+
+label.panel-label:hover::before,
+label.panel-label.active::before {
+height: var(--btn-border-left-thickness);
+width: 100%;
+}
+
+#content {
+flex: 1;
+height: calc(100vh - 80px); /* Account for horizontal nav height */
+}
+
+/* Mobile responsive content adjustments */
+.content-section {
+padding: 24px 16px; /* Reduced padding on mobile */
+}
+
+.image-gallery {
+overflow-x: auto;
+padding: 15px;
+/* Hide scrollbar for Chrome, Safari and Opera */
+-webkit-scrollbar: none;
+/* Hide scrollbar for IE, Edge and Firefox */
+-ms-overflow-style: none;
+scrollbar-width: none;
+}
+
+.gallery-item img {
+width: 250px;
+height: 250px; /* Changed to square for mobile too */
+}
+
+/* Make code blocks more mobile friendly */
+pre {
+font-size: 12px;
+padding: 8px;
+overflow-x: auto;
+white-space: pre;
+}
+
+/* Better mobile typography */
+h1 {
+font-size: 24px;
+}
+
+p {
+font-size: 16px;
+line-height: 1.6;
+}
+
+}
+
+/*  MOBILE END */
+	  
+
+:root {
+  --light: rgb(245, 242, 240);
+  --dark: rgb(70, 70, 70);
+  --animation-speed: 400ms;
+}
+
+.sliding-button {
+background-repeat: no-repeat;
+border-radius: 5px 5px 10px 10px;  
+}
+
+.sliding-button > p {
+  display: block;
+  margin: 0;
+  white-space: no-wrap;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+	  
+.bottom-to-top:hover {
+  background-position: bottom;
+}
+
+.bottom-to-top:hover > p {
+  background-position: bottom;
+}
+
+.bottom-to-top{
+   background-image: linear-gradient(270deg, var(--light) 50%, var(--dark) 50%);
+   background-image: -webkit-linear-gradient(270deg, 
+    var(--light) 50%,
+    var(--dark) 50%
+  );
+  background-size: 101% 201%;
+  background-position: top;
+}
+
+.bottom-to-top > p{
+  background-image: linear-gradient(270deg, var(--dark) 50%, var(--light) 50%);
+  background-image: -webkit-linear-gradient(270deg, 
+    var(--dark) 50%,
+    var(--light) 50%
+  );
+  background-size: 101% 201%;
+  background-position: top;
+}
+
+
+
+
+
+
+
+/* EMAIL COPY */
+.text-container {
+display: inline-block;
+}
+
+.copyable-text {
+cursor: pointer;
+user-select: none;
+transition: all 0.3s ease;
+overflow: hidden;
+}
+
+.copyable-text::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+/* background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent); */
+transition: left 0.5s;
+}
+
+.copyable-text:hover::before {
+left: 100%;
+}
+
+.copyable-text:hover {
+transform: translateY(-2px);
+box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.copy-circle {
+position: absolute;
+top: -65px;
+left: 50%;
+width: 60px;
+height: 60px;
+background: white;
+color: black;
+box-shadow: 0 4px 20px rgb(0 0 0 / 30%);
+/border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 12px;
+text-transform: uppercase;
+cursor: pointer;
+opacity: 0;
+transform: translateX(-50%) scale(0.8);
+transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+z-index: 10;
+clip-path: polygon(0 8%, 4% 4%, 34% 4%, 45% 0, 94% 0, 100% 8%, 100% 92%, 95% 97%, 46% 97%, 40% 100%, 5% 100%, 0 95%);	
+}
+
+.copy-circle::before {
+content: '';
+position: absolute;
+top: -2px;
+left: -2px;
+right: -2px;
+bottom: -2px;
+background: #ecf0f1;
+/border-radius: 50%;
+z-index: -1;
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+
+.text-container:hover .copy-circle {
+opacity: 1;
+transform: translateX(-50%) scale(1);
+top: -70px;
+}
+
+.copy-circle:hover {
+transform: translateX(-50%) scale(1.1);
+box-shadow: 0 4px 20px rgb(0 0 0 / 30%);
+}
+
+.copy-circle:hover::before {
+opacity: 1;
+}
+
+.copy-circle:active {
+transform: translateX(-50%) scale(0.95);
+}
+
+/* Copied state styling */
+.copy-circle.copied {
+background: #ecf0f1;
+color: black;
+box-shadow: 0 4px 20px rgb(0 0 0 / 30%);
+transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.copy-circle.copied::before {
+background: #ecf0f1;
+}
+
+/* Smooth text transition */
+.copy-circle {
+transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55), 
+background 0.3s ease, 
+color 0.3s ease, 
+box-shadow 0.3s ease;
+}
+	  
+</style>
+	
+</head>
+<body class="is-preload">
+ <!-- Main border overlay with rounded corners -->
+    <div class="mask-overlay"></div>
+    
+    <!-- Top square with menu -->
+    <div class="decorative-square square-top"></div>
+        
+    <!-- Decorative squares with clip-paths <h3 class="emtxt1">EMAIL:YADADA@GMAIL.COM</h3> -->
+    <div class="decorative-square square-left"></div>
+    <div class="decorative-square square-right"></div>
+    <div class="decorative-square square-bottom"></div>
+	
+
+	    <div class="text-container sli-up  emtxt1">
+        <div class="copyable-text" id="textToCopy" data-copy="YADADA@GMAIL.COM">
+            EMAIL
+        </div>
+        <div class="copy-circle" id="copyButton">
+            COPY ME
+        </div>
+    </div>
+
+
+  <div class="main-container ">
+    <ul id="tabs-list">
+      <div class="social-button logo drop-in">
+      <a href="#" class="image avatar">
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 288 432">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #0000;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+		stroke-width: 5px;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M277.11,215.59c-36.07,1.79-67.23,14.8-92.89,40.14-25.57,25.26-39.13,56.09-41.67,92.01-2.4-35.34-15.78-65.89-40.66-90.99-24.95-25.16-55.48-38.68-91-41.02,77.65-10.29,120.29-55.11,131.85-131.47,4.23,34.86,16.31,66.26,41.88,91.19,25.64,25.01,57.38,36.37,92.5,40.14Z"/>
+  <g>
+    <path d="M112.33,204.94l30.1-29.94h-10.65l-38.85,38.96v-31.22c-.27,.3-.54,.6-.85,.86-1.15,.96-2.45,1.66-3.77,2.33-.09,.17-.2,.33-.33,.47-1,1-2.03,1.97-3.13,2.86v53.23s.06,.04,.08,.06c.18,.13,.35,.26,.51,.4,.15,.12,.28,.27,.41,.42,.28,.15,.55,.31,.81,.48,.65,.42,1.26,.9,1.8,1.44,0,0,.02,.01,.03,.02,.87,.56,1.71,1.22,2.48,1.94,.69,.4,1.34,.84,1.96,1.32v-24.21l13.77-13.55,27.32,40.43h10.27l-31.96-46.28Z"/>
+    <path d="M199.19,243.36s.03,0,.05,0c.05-.03,.09-.06,.14-.08v-55.69c-.15-.09-.26-.23-.33-.38-.15-.11-.23-.27-.29-.44-.41-.04-.67-.29-.77-.6-.13-.07-.24-.16-.34-.27-.05-.02-.09-.06-.14-.09-.23-.05-.41-.16-.53-.32-.23-.1-.39-.28-.47-.51-.53-.34-1.03-.72-1.5-1.13-.21-.18-.24-.22-.38-.31-.24-.16-.47-.33-.7-.49-.47-.34-.95-.69-1.36-1.1,0,0,0,0-.01-.01-.57-.05-.94-.38-1.12-.8-.05,0-.11,0-.16-.02v27.03h-41.47v-33.16h-8.09v76.22h8.09v-35.84h41.47v33.14c.07-.08,.13,.84,.21,.77,.75-.7,1.73-2.06,2.69-2.34,0,0,0,0,0,0,.29-.39,.74-.67,1.34-.72,.13-.15,.29-.27,.46-.37,.18-.67,.66-1.25,1.45-1.4,.29-.61,.86-1.08,1.74-1.08Z"/>
+  </g>
+</svg>
+      </a>
+      </div>
+      <li>
+  <label class="panel-label  sil active" data-target="section-1">ABOUT</label>
+      </li>
+      <li>
+      <label class="panel-label sil" data-target="section-2">3D</label>
+      </li>
+      <li>
+      <label class="panel-label  sil" data-target="section-3">GRAPHICS</label>
+      </li>
+      <li>
+      <label class="panel-label sil" data-target="section-4">PRODUCTS</label>
+      </li>
+      <li class="last">
+      <label class="panel-label  sil" data-target="section-5">SERVICES</label>
+      </li>		
+      <li class="last">
+      <label class="panel-label  sil" data-target="section-6">CONTACT</label>
+      </li>
+      
+      <div class="social-button sbli  drop-in">
+  <a href="https://www.linkedin.com/in/kevinohernandez/" class="nav-link" target="_blank" rel="noopener">
+ <svg version="1.1" id="Ld" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 viewBox="0 0 382 382" xml:space="preserve">
+<path class="cls-2" style="fill:#fff;" d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889
+	C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056
+	H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403c0-5.554,4.502-10.056,10.056-10.056h42.806
+	c5.554,0,10.056,4.502,10.056,10.056V329.844z M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1
+	s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73
+	c-5.106,0-9.246-4.14-9.246-9.246v-84.168c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079
+	c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593c0-5.106,4.14-9.246,9.246-9.246h44.426
+	c5.106,0,9.246,4.14,9.246,9.246v15.655c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472
+	L341.91,330.654L341.91,330.654z"/>
+</svg>
+ 	 </a>
+      </div>
+    </ul>
+
+    <div id="content">
+      <section id="section-1" class="content-section">
+         <h1 class="section-title">ABOUT</h1>
+              <div class="ec">
+				  
+		<div class="glc">
+        <div class="extra-content ns drop-in">
+   		  <h3 class="hero-text txt">KEVIN<br>HERNANDEZ</h3>
+          <h3 class="hero-text txt2">MULTIMEDIA<br>+<br>DESIGN</h3>
+		  <div class="bb-container">
+			<div class="bb">
+			<img src="https://assets.codepen.io/1480814/av+1.png" alt="Masked">
+			</div>
+			<svg class="bb-border" viewBox="0 0 100 100" preserveAspectRatio="none">
+			<path d="M2 0 L100 0 L100 80 L90 100 L0 100 L0 65 L2 60 Z" />
+			<path d="M2 0 L100 0 L100 80 L90 100 L0 100 L0 65 L2 60 Z" />
+			</svg>
+			</div>
+        </div>
+		</div>
+	<!-- 			  
+<div class="glc">
+	<div class="extra-content skills-section drop-in">
+  		<h3 class="hero-text txt1">SOFTWARE</h3>
+  	<div class="skills-icons">
+	  
+    <div class="icon-item ">
+      <img src="images/fulls/skills-blender.png" alt="Blender"><span>Blender</span>
+    </div>
+	  
+    <div class="icon-item ">
+      <img src="images/fulls/skills-ue.png" alt="Unreal"><span>Unreal</span>
+    </div>
+	  
+    <div class="icon-item ">
+      <img src="images/fulls/skills-c4d.png" alt="Cinema 4D"><span ">Cinema 4D</span>
+    </div>
+	  
+    <div class="icon-item ">
+      <img src="images/fulls/skills-td.png" alt="TouchDesigner"><span >TouchDesigner</span>
+    </div>
+	  
+    <div class="icon-item ">
+      <img src="images/fulls/skills-hd.png" alt="Houdini"><span>Houdini</span>
+    </div>
+	  
+    <div class="icon-item ">
+      <img src="images/fulls/skills-ps.png" alt="Adobe"><span>Photoshop</span>
+    </div>
+	  
+    <div class="icon-item ">
+      <img src="images/fulls/skills-ill.png" alt="Illustrator"><span>Illustrator</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-premiere.png" alt="Premiere"><span >Premiere</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-in.png" alt="InDesign"><span>InDesign</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-ae.png" alt="After Effects"><span>After Effects</span>
+    </div>
+	  
+  </div>
+
+ <h3 class="hero-text txt1">WEB SKILLS</h3>
+  <div class="skills-icons">
+	  
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-react.png" alt="React"><span>React JS</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-vue.png" alt="Vue"><span>Vue JS</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-git.png" alt="Git"><span>Git</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-canva.png" alt="Canva"><span>Canva</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-shop.webp" alt="Shopify"><span>Shopify</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-wordpress.png" alt="Wordpress"><span>Wordpress</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-webflow.png" alt="WebFlow"><span>Webflow</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-vs.png" alt="Visual Studio"><span>Visual Studio</span>
+    </div>
+
+    <div class="icon-item">
+      <img src="images/fulls/skills-framer.webp" alt="Python"><span>Framer</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-figma.png" alt="Figma"><span>Figma</span>
+    </div>
+	  
+  </div>
+		</div>
+        </div>
+-->
+
+        </div>
+      </section>
+      
+      <section id="section-2" class="content-section">
+         <h1 class="section-title">3D</h1>
+        <div class="gallery-nav-dots" id="gallery-dots-3d"></div>   
+        <div class="image-gallery">
+
+ 		 <div class="gallery-item" data-gallery="abstract">
+            <img src="images/fulls/pr1.jpg">
+            <div class="overlay">  <p> Clo3D + Unreal </p> </div>
+          </div>
+          
+          <div class="gallery-item" data-gallery="abstract">
+            <img src="images/fulls/pr2.jpg">
+            <div class="overlay">  <p> Marvelous Designer + Blender </p> </div>
+          </div>
+          
+          <div class="gallery-item" data-gallery="abstract">
+            <img src="images/fulls/pr13.jpg">
+            <div class="overlay">  <p>  Unreal + Substance Designer </p> </div>
+          </div>
+          
+          <div class="gallery-item" data-gallery="abstract">
+            <img src="images/fulls/pr16.jpg">
+            <div class="overlay">  <p> Blender </p> </div>
+          </div>
+          
+          <div class="gallery-item" data-gallery="abstract">
+            <img src="images/fulls/pr6.jpg">
+            <div class="overlay"> <p> Marvelous Designer </p> </div>
+          </div>
+          
+          <div class="gallery-item" data-gallery="abstract">
+            <img src="images/fulls/pr15.jpg">
+            <div class="overlay">  <p>  Rhino + Blender </p> </div>
+          </div>
+          
+          <div class="gallery-item" data-gallery="abstract">
+            <img src="images/fulls/pr14.jpg">
+            <div class="overlay"> <p> Houdini </p> </div>
+          </div>
+          
+          <div class="gallery-item" data-gallery="abstract">
+            <img src="images/fulls/pr4.jpg">
+            <div class="overlay">  <p> Houdini + Substance Designer </p> </div>
+          </div>
+			
+          <div class="gallery-item" data-gallery="abstract">
+            <img src="images/fulls/slab.jpg">
+            <div class="overlay"> <p> Unreal </p> </div>
+          </div>
+
+			
+          <div class="gallery-item" data-gallery="abstract">
+            <img src="images/fulls/pr17.jpg">
+            <div class="overlay">  <p> Blender </p> </div>
+          </div>      
+			
+        </div>
+      </section>
+      
+      <section id="section-3" class="content-section">
+         <h1 class="section-title">GRAPHICS</h1>
+        <div class="gallery-nav-dots" id="gallery-dots-graphics"></div> <!-- For Graphics gallery -->  
+        <div class="image-gallery">
+			
+          <div class="gallery-item" data-gallery="urban">
+            <img src="images/fulls/gd1.jpg">
+            <div class="overlay"> <p> Photoshop + Unreal </p> </div>
+          </div>
+          
+          <div class="gallery-item" data-gallery="urban">
+            <img src="images/fulls/pr10.jpg">
+            <div class="overlay">  <p>  InDesign + Blender </p> </div>
+          </div>
+          
+          <div class="gallery-item" data-gallery="urban">
+            <img src="images/fulls/gd6.jpg">
+            <div class="overlay">  <p> Unreal + Substance Designer </p> </div>
+          </div>
+          
+          <div class="gallery-item" data-gallery="urban">
+            <img src="images/fulls/gd5.jpg">
+            <div class="overlay">  <p> Blender + Illustrator </p> </div>
+          </div>
+          
+          <div class="gallery-item" data-gallery="urban">
+			<img src="images/fulls/gd7.jpg">
+            <div class="overlay"> <p> Houdini + Photoshop </p> </div>
+          </div>
+          
+          <div class="gallery-item" data-gallery="urban">
+            <img src="images/fulls/gd10.jpg">
+            <div class="overlay">  <p> Illustrator + Unreal </p> </div>
+          </div>
+              
+          <div class="gallery-item" data-gallery="urban">
+            <img src="images/fulls/gd11.jpg">
+            <div class="overlay">  <p> Unreal  </p> </div>
+          </div>
+			
+          <div class="gallery-item" data-gallery="urban">
+            <img src="images/fulls/gd9.jpg">
+            <div class="overlay"> <p> Houdini + Substance Designer </p> </div>
+          </div>
+		
+          <div class="gallery-item" data-gallery="urban">
+            <img src="images/fulls/gd8.jpg">
+            <div class="overlay">  <p> Unreal  </p> </div>
+          </div>
+			
+          <div class="gallery-item" data-gallery="urban">
+			<img src="images/fulls/gd2.jpg">
+            <div class="overlay">  <p> Blender </p> </div>
+          </div>
+			
+        </div>
+      </section>
+      
+      <section id="section-4" class="content-section">
+         <h1 class="section-title">PRODUCTS</h1>
+        <div class="gallery-nav-dots" id="gallery-dots-products"></div> <!-- For Products gallery -->
+        <div class="image-gallery">
+			
+          <div class="gallery-item" data-gallery="nature">
+            <img src="images/fulls/3d5.jpg">
+            <div class="overlay"> <p> Photoshop + Unreal </p> </div>
+          </div>
+          
+          <div class="gallery-item" data-gallery="nature">
+            <img src="images/fulls/3d2.jpg">
+            <div class="overlay">  <p> Unreal + InDesign </p> </div>
+          </div>
+          
+          <div class="gallery-item" data-gallery="nature">
+            <img src="images/fulls/3d12.jpg">
+            <div class="overlay"> <p> Blender + Illustrator </p> </div>
+          </div>
+          
+          <div class="gallery-item" data-gallery="nature">
+            <img src="images/fulls/3d13.jpg">
+            <div class="overlay">  <p> Houdini + Photoshop </p> </div>
+          </div>
+          
+          <div class="gallery-item" data-gallery="nature">
+            <img src="images/fulls/3d4.1.jpg">
+            <div class="overlay">  <p> Illustrator + Unreal </p> </div>
+          </div>
+          
+          <div class="gallery-item" data-gallery="nature">
+            <img src="images/fulls/3d6.jpg">
+            <div class="overlay"> <p> Blender + InDesign </p> </div>
+          </div>
+          
+          <div class="gallery-item" data-gallery="nature">
+            <img src="images/fulls/3d7.jpg">
+            <div class="overlay">  <p> Unreal  </p> </div>
+          </div>
+          
+          <div class="gallery-item" data-gallery="nature">
+            <img src="images/fulls/3d8.jpg">
+            <div class="overlay">  <p> InDesign + Houdini </p> </div>
+          </div>
+			
+		   <div class="gallery-item" data-gallery="nature">
+            <img src="images/fulls/3d9.jpg">
+            <div class="overlay">  <p> Blender  </p> </div>
+          </div>
+			
+          <div class="gallery-item" data-gallery="nature">
+            <img src="images/fulls/3d1.jpg">
+            <div class="overlay">  <p> Unreal + Substance Designer </p> </div>
+          </div>
+					   
+           	
+		</div>
+      </section>
+      
+      <section id="section-5" class="content-section">
+      <h1 class="section-title">SERVICES</h1>
+	              <div class="ec">
+				  
+		<div class="glc">
+        <div class="extra-content ns1 drop-in">
+   		
+        </div>
+		</div>
+				  
+<div class="glc">
+	<div class="extra-content skills-section drop-in">
+  		<h3 class="hero-text txt1">SOFTWARE</h3>
+  	<div class="skills-icons">
+	  
+    <div class="icon-item ">
+      <img src="images/fulls/skills-blender.png" alt="Blender"><span>Blender</span>
+    </div>
+	  
+    <div class="icon-item ">
+      <img src="images/fulls/skills-ue.png" alt="Unreal"><span>Unreal</span>
+    </div>
+	  
+    <div class="icon-item ">
+      <img src="images/fulls/skills-c4d.png" alt="Cinema 4D"><span ">Cinema 4D</span>
+    </div>
+	  
+    <div class="icon-item ">
+      <img src="images/fulls/skills-td.png" alt="TouchDesigner"><span >TouchDesigner</span>
+    </div>
+	  
+    <div class="icon-item ">
+      <img src="images/fulls/skills-hd.png" alt="Houdini"><span>Houdini</span>
+    </div>
+	  
+    <div class="icon-item ">
+      <img src="images/fulls/skills-ps.png" alt="Adobe"><span>Photoshop</span>
+    </div>
+	  
+    <div class="icon-item ">
+      <img src="images/fulls/skills-ill.png" alt="Illustrator"><span>Illustrator</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-premiere.png" alt="Premiere"><span >Premiere</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-in.png" alt="InDesign"><span>InDesign</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-ae.png" alt="After Effects"><span>After Effects</span>
+    </div>
+	  
+  </div>
+
+ <h3 class="hero-text txt1">WEB SKILLS</h3>
+  <div class="skills-icons">
+	  
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-react.png" alt="React"><span>React JS</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-vue.png" alt="Vue"><span>Vue JS</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-git.png" alt="Git"><span>Git</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-canva.png" alt="Canva"><span>Canva</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-shop.webp" alt="Shopify"><span>Shopify</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-wordpress.png" alt="Wordpress"><span>Wordpress</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-webflow.png" alt="WebFlow"><span>Webflow</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-vs.png" alt="Visual Studio"><span>Visual Studio</span>
+    </div>
+
+    <div class="icon-item">
+      <img src="images/fulls/skills-framer.webp" alt="Python"><span>Framer</span>
+    </div>
+	  
+    <div class="icon-item">
+      <img src="images/fulls/skills-figma.png" alt="Figma"><span>Figma</span>
+    </div>
+	  
+  </div>
+	</div>	
+
+        </div>
+        </div>
+      </section>
+	  
+		 <section id="section-6" class="content-section">
+      <h1 class="section-title">CONTACT</h1>
+		  
+			<div class="glc">	  
+        <div class="extra-content pc ">
+          <div id="particle-image" data-params-src="https://raw.githubusercontent.com/paxtonfitzpatrick/particle-image/master/params.json"> </div>
+		  <h3 class="hero-text emtxt">Want to connect? Tell me about your project and your vision.<br> ⥥ </h3>
+	  
+		 </div>
+        
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div id="imageModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal">&times;</button>
+      <button class="modal-nav modal-prev" id="prevImage">&#8249;</button>
+      <img class="modal-image" id="modalImage" src="" alt="">
+      <button class="modal-nav modal-next" id="nextImage">&#8250;</button>
+      <div class="modal-info" id="modalInfo">
+        <span id="imageCounter">1 / 10</span>
+      </div>
+    </div>
+  </div>
+	
+	
+<script src="assets/js/jquery.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('imageModal');
+  const modalImage = document.getElementById('modalImage');
+  const modalInfo = document.getElementById('modalInfo');
+  const imageCounter = document.getElementById('imageCounter');
+  const closeModal = document.getElementById('closeModal');
+  const prevImage = document.getElementById('prevImage');
+  const nextImage = document.getElementById('nextImage');
+  
+  let currentGallery = [];
+  let currentImageIndex = 0;
+
+  function openModal(galleryType, imageIndex) {
+    const galleryImages = document.querySelectorAll(`[data-gallery="${galleryType}"] img`);
+    currentGallery = Array.from(galleryImages);
+    currentImageIndex = imageIndex;
+    
+    if (currentGallery.length > 0) {
+      updateModalImage();
+      modal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  
+  function closeModalFunction() {
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  
+  function updateModalImage() {
+    if (currentGallery[currentImageIndex]) {
+      const img = currentGallery[currentImageIndex];
+      modalImage.src = img.src;
+      modalImage.alt = img.alt;
+      imageCounter.textContent = `${currentImageIndex + 1} / ${currentGallery.length}`;
+    }
+  }
+  
+  function showNextImage() {
+    currentImageIndex = (currentImageIndex + 1) % currentGallery.length;
+    updateModalImage();
+  }
+  
+  function showPrevImage() {
+    currentImageIndex = (currentImageIndex - 1 + currentGallery.length) % currentGallery.length;
+    updateModalImage();
+  }
+  
+  document.querySelectorAll('.gallery-item').forEach((item, index) => {
+    item.addEventListener('click', function() {
+      const galleryType = this.getAttribute('data-gallery');
+      const galleryItems = document.querySelectorAll(`[data-gallery="${galleryType}"]`);
+      const itemIndex = Array.from(galleryItems).indexOf(this);
+      openModal(galleryType, itemIndex);
+    });
+  });
+  
+  closeModal.addEventListener('click', closeModalFunction);
+  nextImage.addEventListener('click', showNextImage);
+  prevImage.addEventListener('click', showPrevImage);
+  
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      closeModalFunction();
+    }
+  });
+  
+  document.addEventListener('keydown', function(e) {
+    if (modal.classList.contains('show')) {
+      switch(e.key) {
+        case 'Escape':
+          closeModalFunction();
+          break;
+        case 'ArrowRight':
+          showNextImage();
+          break;
+        case 'ArrowLeft':
+          showPrevImage();
+          break;
+      }
+    }
+  });
+});
+</script>
+
+<script>
+//PANEL HIGHLIGHT	
+document.addEventListener('DOMContentLoaded', function() {
+  const navLabels = document.querySelectorAll('.panel-label');
+  const sections = document.querySelectorAll('.content-section');
+  const contentArea = document.getElementById('content');
+
+  // Handle navigation clicks
+  navLabels.forEach(label => {
+    label.addEventListener('click', function() {
+      const targetId = this.getAttribute('data-target');
+      const targetSection = document.getElementById(targetId);
+      
+      if (targetSection) {
+        navLabels.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+        
+        targetSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // Update active navigation based on scroll position
+  function updateActiveNavigation() {
+    const scrollPosition = contentArea.scrollTop + 50;
+    
+    sections.forEach((section, index) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        navLabels.forEach(l => l.classList.remove('active'));
+        if (navLabels[index]) {
+          navLabels[index].classList.add('active');
+        }
+      }
+    });
+  }
+
+  let ticking = false;
+  function requestTick() {
+    if (!ticking) {
+      requestAnimationFrame(updateActiveNavigation);
+      ticking = true;
+      setTimeout(() => { ticking = false; }, 50);
+    }
+  }
+
+  contentArea.addEventListener('scroll', requestTick);
+  updateActiveNavigation();
+});
+</script>
+
+
+<script>
+
+const ParticleImageDisplayer = function(tag_id, canvas_el, params) {
+  "use strict";
+  this.pImageConfig = {
+    particles: {
+      array: [],
+      density: 200,
+      color: '#000',
+      size: {
+        value: 4,
+        random: false,
+      },
+      movement: {
+        speed: 1,
+        restless: {
+          enabled: false,
+          value: 10,
+          sync: false
+        }
+      },
+      interactivity: {
+        on_hover: {
+          enabled: true,
+          action: 'repulse'
+        },
+        on_click: {
+          enabled: true,
+          action: 'big_repulse'
+        },
+        on_touch: {
+          enabled: false,
+          action: 'repulse'
+        },
+        fn_array: []
+      }
+    },
+    image: {
+      src: {
+        path: "https://cdn.shopify.com/s/files/1/0661/2729/8726/files/portolioicon_ffad5eef-2745-4362-a8c0-f12b0823a1b3.png?v=1758774416",
+        is_external: true
+      },
+      size: {
+        canvas_pct: 100,
+        min_px: 200,
+        max_px: 800
+      }
+    },
+    interactions: {
+      repulse: {
+        distance: 100,
+        strength: 150
+      },
+      big_repulse: {
+        distance: 100,
+        strength: 100
+      },
+      grab: {
+        distance: 100,
+        line_width: 1,
+      }
+    },
+    canvas: {
+      el: canvas_el,
+      w: canvas_el.offsetWidth,
+      h: canvas_el.offsetHeight
+    },
+    functions: {
+      particles: {},
+      image: {},
+      canvas: {},
+      interactivity: {},
+      utils: {}
+    },
+    mouse: {
+      x: null,
+      y: null,
+      click_x: null,
+      click_y: null
+    },
+  };
+
+  const pImg = this.pImageConfig;
+  if (params) {
+    Object.deepExtend(pImg, params);
+  }
+
+  /*
+  ========================================
+  =           CANVAS FUNCTIONS           =
+  ========================================
+  */
+  pImg.functions.canvas.init = function() {
+    pImg.canvas.context = pImg.canvas.el.getContext('2d');
+    pImg.canvas.el.width = pImg.canvas.w;
+    pImg.canvas.el.height = pImg.canvas.h;
+    pImg.canvas.aspect_ratio = pImg.canvas.w / pImg.canvas.h;
+    window.addEventListener('resize', pImg.functions.utils.debounce(pImg.functions.canvas.onResize, 200));
+  };
+
+  pImg.functions.canvas.onResize = function() {
+    pImg.canvas.w = pImg.canvas.el.offsetWidth;
+    pImg.canvas.h = pImg.canvas.el.offsetHeight;
+    pImg.canvas.el.width = pImg.canvas.w;
+    pImg.canvas.el.height = pImg.canvas.h;
+    pImg.canvas.aspect_ratio = pImg.canvas.w / pImg.canvas.h;
+    pImg.particles.array = [];
+    pImg.functions.image.resize();
+    const image_pixels = pImg.functions.canvas.getImagePixels();
+    pImg.functions.particles.createImageParticles(image_pixels, true);
+  };
+
+  pImg.functions.canvas.clear = function() {
+    pImg.canvas.context.clearRect(0, 0, pImg.canvas.w, pImg.canvas.h);
+  };
+
+  pImg.functions.canvas.getImagePixels = function() {
+    pImg.functions.canvas.clear();
+    pImg.canvas.context.drawImage(pImg.image.obj, pImg.image.x, pImg.image.y, pImg.image.obj.width, pImg.image.obj.height);
+    const pixel_data = pImg.canvas.context.getImageData(pImg.image.x, pImg.image.y, pImg.image.obj.width, pImg.image.obj.height);
+    pImg.functions.canvas.clear();
+    return pixel_data;
+  };
+
+  /*
+  ========================================
+  =           IMAGE FUNCTIONS            =
+  ========================================
+  */
+  pImg.functions.image.resize = function() {
+    if (pImg.image.aspect_ratio < pImg.canvas.aspect_ratio) {
+      // canvas height constrains image size
+      pImg.image.obj.height = pImg.functions.utils.clamp(Math.round(pImg.canvas.h * pImg.image.size.canvas_pct / 100), pImg.image.size.min_px, pImg.image.size.max_px);
+      pImg.image.obj.width = Math.round(pImg.image.obj.height * pImg.image.aspect_ratio);
+    } else {
+      // canvas width constrains image size
+      pImg.image.obj.width = pImg.functions.utils.clamp(Math.round(pImg.canvas.w * pImg.image.size.canvas_pct / 100), pImg.image.size.min_px, pImg.image.size.max_px);
+      pImg.image.obj.height = Math.round(pImg.image.obj.width / pImg.image.aspect_ratio);
+    }
+    // set x,y coords to center image on canvas
+    pImg.image.x = pImg.canvas.w  / 2 - pImg.image.obj.width / 2;
+    pImg.image.y = pImg.canvas.h / 2 - pImg.image.obj.height / 2;
+  };
+
+  pImg.functions.image.init = function() {
+    pImg.image.obj = new Image();
+    pImg.image.obj.addEventListener('load', function() {
+      // get aspect ratio (only have to compute once on initial load)
+      pImg.image.aspect_ratio = pImg.image.obj.width / pImg.image.obj.height;
+      pImg.functions.image.resize();
+      const img_pixels = pImg.functions.canvas.getImagePixels();
+      pImg.functions.particles.createImageParticles(img_pixels);
+      pImg.functions.particles.animateParticles();
+    });
+    pImg.image.obj.src = pImg.image.src.path;
+    if (pImg.image.src.is_external) {
+      pImg.image.obj.crossOrigin = "anonymous";
+    }
+  };
+
+  /*
+  ========================================
+  =          PARTICLE FUNCTIONS          =
+  ========================================
+  */
+  pImg.functions.particles.SingleImageParticle = function(init_xy, dest_xy) {
+    this.x = init_xy.x;
+    this.y = init_xy.y;
+    this.dest_x = dest_xy.x;
+    this.dest_y = dest_xy.y;
+    this.vx = (Math.random() - 0.5) * pImg.particles.movement.speed;
+    this.vy = (Math.random() - 0.5) * pImg.particles.movement.speed;
+    this.acc_x = 0;
+    this.acc_y = 0;
+    this.friction = Math.random() * 0.01 + 0.92;
+    this.restlessness = {
+      max_displacement: Math.ceil(Math.random() * pImg.particles.movement.restless.value),
+      x_jitter: pImg.functions.utils.randIntInRange(-3, 3),
+      y_jitter: pImg.functions.utils.randIntInRange(-3, 3),
+      on_curr_frame: false
+    };
+    if (pImg.particles.color instanceof Array) {
+      this.color = pImg.particles.color[Math.floor(Math.random() * (pImg.particles.color.length + 1))];
+    } else {
+      this.color = pImg.particles.color;
+    }
+    this.radius = Math.round((pImg.particles.size.random ? Math.max(Math.random(), 0.5) : 1) * pImg.particles.size.value);
+  };
+
+  pImg.functions.particles.SingleImageParticle.prototype.draw = function() {
+    pImg.canvas.context.fillStyle = this.color;
+    pImg.canvas.context.beginPath();
+    pImg.canvas.context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+    pImg.canvas.context.fill();
+  };
+
+  pImg.functions.particles.createImageParticles = function(pixel_data, at_dest = false) {
+    const increment = Math.round(pixel_data.width / pImg.particles.density);
+    for (let i = 0; i < pixel_data.width; i += increment) {
+      for (let j = 0; j < pixel_data.height; j += increment) {
+        if (pixel_data.data[(i + j * pixel_data.width) * 4 + 3] > 128) {
+          const dest_xy = {x: pImg.image.x + i, y: pImg.image.y + j};
+          const init_xy = at_dest ? dest_xy : {x: Math.random() * pImg.canvas.w, y: Math.random() * pImg.canvas.h};
+          pImg.particles.array.push(new pImg.functions.particles.SingleImageParticle(init_xy, dest_xy));
+        }
+      }
+    }
+  };
+
+  pImg.functions.particles.updateParticles = function() {
+    for (let p of pImg.particles.array) {
+      if ((pImg.particles.movement.restless.enabled) && (p.restlessness.on_curr_frame)) {
+        // if restless activity is enabled & particle is in restless mode, animate some random movement
+        pImg.functions.particles.jitterParticle(p);
+      } else {
+        // otherwise, update position with approach to destination
+        p.acc_x = (p.dest_x - p.x) / 500;
+        p.acc_y = (p.dest_y - p.y) / 500;
+        p.vx = (p.vx + p.acc_x) * p.friction;
+        p.vy = (p.vy + p.acc_y) * p.friction;
+        p.x += p.vx;
+        p.y += p.vy;
+      }
+
+      pImg.functions.interactivity.interactWithClient(p);
+    }
+  };
+
+  pImg.functions.particles.jitterParticle = function(p) {
+    p.x += p.restlessness.x_jitter;
+    p.y += p.restlessness.y_jitter;
+    if (Math.sqrt((p.dest_x - p.x) ** 2 + (p.dest_y - p.y) ** 2) >= pImg.particles.movement.restless.value) {
+      p.restlessness.on_curr_frame = false;
+    }
+  };
+
+  pImg.functions.particles.animateParticles = function() {
+    pImg.functions.canvas.clear()
+    pImg.functions.particles.updateParticles();
+    for (let p of pImg.particles.array) {
+      p.draw();
+    }
+    requestAnimFrame(pImg.functions.particles.animateParticles);
+  };
+
+  /*
+  ========================================
+  =        INTERACTIVITY FUNCTIONS       =
+  ========================================
+  */
+  pImg.functions.interactivity.repulseParticle = function(p, args) {
+    // compute distance to mouse
+    const dx_mouse = p.x - pImg.mouse.x,
+          dy_mouse = p.y - pImg.mouse.y,
+          mouse_dist = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse),
+          inv_strength = pImg.functions.utils.clamp(300 - args.strength, 10, 300);
+    if (mouse_dist <= args.distance) {
+      p.acc_x = (p.x - pImg.mouse.x) / inv_strength;
+      p.acc_y = (p.y - pImg.mouse.y) / inv_strength;
+      p.vx += p.acc_x;
+      p.vy += p.acc_y;
+    }
+  };
+
+  pImg.functions.interactivity.grabParticle = function(p, args) {
+    const dx_mouse = p.x - pImg.mouse.x,
+          dy_mouse = p.y - pImg.mouse.y,
+          mouse_dist = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
+    if (mouse_dist <= args.distance) {
+      pImg.canvas.context.strokeStyle = p.color;
+      pImg.canvas.context.lineWidth = Math.min(args.line_width, p.radius * 2);
+      pImg.canvas.context.beginPath();
+      pImg.canvas.context.moveTo(p.x, p.y);
+      pImg.canvas.context.lineTo(pImg.mouse.x, pImg.mouse.y);
+      pImg.canvas.context.stroke();
+      pImg.canvas.context.closePath();
+    }
+  };
+
+  pImg.functions.interactivity.onMouseMove = function(func, args, p) {
+    if (pImg.mouse.x != null && pImg.mouse.y != null) {
+      func(p, args);
+    }
+  };
+
+  pImg.functions.interactivity.onMouseClick = function(func, args, p) {
+    if (pImg.mouse.click_x != null && pImg.mouse.click_y != null) {
+      func(p, args);
+    }
+  };
+
+  pImg.functions.interactivity.addEventListeners = function() {
+    if (pImg.particles.interactivity.on_hover.enabled || pImg.particles.interactivity.on_click.enabled) {
+      pImg.canvas.el.addEventListener('mousemove', function(e) {
+        let pos_x = e.offsetX || e.clientX,
+            pos_y = e.offsetY || e.clientY;
+        pImg.mouse.x = pos_x;
+        pImg.mouse.y = pos_y;
+      });
+      pImg.canvas.el.addEventListener('mouseleave', function(e) {
+        pImg.mouse.x = null;
+        pImg.mouse.y = null;
+      });
+      pImg.functions.utils.addEventActions('on_hover');
+    }
+    if (pImg.particles.interactivity.on_click.enabled) {
+      pImg.canvas.el.addEventListener('mousedown', function(e) {
+        pImg.mouse.click_x = pImg.mouse.x;
+        pImg.mouse.click_y = pImg.mouse.y;
+      });
+      pImg.canvas.el.addEventListener('mouseup', function(e) {
+        pImg.mouse.click_x = null;
+        pImg.mouse.click_y = null;
+      });
+      pImg.functions.utils.addEventActions('on_click');
+    }
+    if (pImg.particles.interactivity.on_touch.enabled) {
+      pImg.canvas.el.addEventListener('touchmove', function(e) {
+        let pos_x = e.touches[0].clientX,
+            pos_y = e.touches[0].clientY;
+        pImg.mouse.x = pos_x;
+        pImg.mouse.y = pos_y;
+      });
+      pImg.canvas.el.addEventListener('touchend', function(e) {
+        pImg.mouse.x = null;
+        pImg.mouse.y = null;
+      });
+      pImg.functions.utils.addEventActions('on_touch');
+    }
+  };
+
+  pImg.functions.interactivity.interactWithClient = function(p) {
+    for (let func of pImg.particles.interactivity.fn_array) {
+      func(p);
+    }
+  };
+
+  /*
+  ========================================
+  =           UTILS FUNCTIONS            =
+  ========================================
+  */
+  pImg.functions.utils.randIntInRange = function(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
+  pImg.functions.utils.clamp = function(n, min, max) {
+    return Math.min(Math.max(n, min), max);
+  };
+
+  pImg.functions.utils.debounce = function(func, min_interval) {
+    let timer;
+    return function(event) {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(func, min_interval, event);
+    };
+  };
+  
+  pImg.functions.utils.addEventActions = function(event) {
+    const action_funcs = {
+      repulse: pImg.functions.interactivity.repulseParticle,
+      big_repulse: pImg.functions.interactivity.repulseParticle,
+      grab: pImg.functions.interactivity.grabParticle
+    };
+    let event_wrapper = event === 'on_click' ? pImg.functions.interactivity.onMouseClick : pImg.functions.interactivity.onMouseMove;
+    if (pImg.particles.interactivity[event].enabled) {
+      const func = action_funcs[pImg.particles.interactivity[event].action],
+            args = pImg.interactions[pImg.particles.interactivity[event].action];
+      const partial_func = event_wrapper.bind(null, func, args);
+      pImg.particles.interactivity.fn_array.push(partial_func);
+    }
+  };
+
+  /*
+  ========================================
+  =           LAUNCH FUNCTIONS           =
+  ========================================
+  */
+  pImg.functions.launch = function() {
+    pImg.functions.interactivity.addEventListeners();
+    pImg.functions.canvas.init();
+    pImg.functions.image.init();
+  };
+
+  if (!pImg.disabled) {
+    pImg.functions.launch();
+  }
+};
+
+/*
+========================================
+=           GLOBAL FUNCTIONS           =
+========================================
+*/
+Object.deepExtend = function(destination, source) {
+  // credit: https://andrewdupont.net/2009/08/28/deep-extending-objects-in-javascript/
+  for (let property in source) {
+    if (source[property] && source[property].constructor &&
+     source[property].constructor === Object) {
+      destination[property] = destination[property] || {};
+      arguments.callee(destination[property], source[property]);
+    } else {
+      destination[property] = source[property];
+    }
+  }
+  return destination;
+};
+
+window.requestAnimFrame = (function() {
+  return  window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame    ||
+    window.oRequestAnimationFrame      ||
+    window.msRequestAnimationFrame     ||
+    function(callback) {
+      window.setTimeout(callback, 1000 / 60);
+    };
+})();
+
+window.cancelRequestAnimFrame = (function() {
+  return window.cancelAnimationFrame         ||
+    window.webkitCancelRequestAnimationFrame ||
+    window.mozCancelRequestAnimationFrame    ||
+    window.oCancelRequestAnimationFrame      ||
+    window.msCancelRequestAnimationFrame     ||
+    clearTimeout
+})();
+
+window.pImgDom = [];
+
+window.particleImageDisplay = function(tag_id) {
+  // get target element by ID, check for existing canvases
+  const pImage_el = document.getElementById(tag_id),
+      canvas_classname = 'particle-image-canvas-el',
+      existing_canvases = pImage_el.getElementsByClassName(canvas_classname);
+
+  // remove any existing canvases within div
+  if (existing_canvases.length) {
+    while(existing_canvases.length > 0){
+      pImage_el.removeChild(existing_canvases[0]);
+    }
+  }
+
+  // create canvas element, set size, append to target element
+  const canvas_el = document.createElement('canvas');
+  canvas_el.className = canvas_classname;
+  canvas_el.style.width = "100%";
+  canvas_el.style.height = "100%";
+  const canvas = document.getElementById(tag_id).appendChild(canvas_el);
+
+
+  if(canvas != null){
+    pImgDom.push(new ParticleImageDisplayer(tag_id, canvas, {}))
+    /*
+    NOTE: The this chunk normally deals with loading the params.json file. It's disabled for the CodePen demo so you can play with the parameters live by editing the pImageConfig object at the top.
+    
+    // get params.json filepath from load parameters from element's data-params-src property
+    const params_json = pImage_el.dataset.paramsSrc,
+      xhr = new XMLHttpRequest();
+    xhr.overrideMimeType("application/json")
+    xhr.open("GET", params_json, false);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        // parse parameters & launch display
+        const params = JSON.parse(xhr.responseText);
+        pImgDom.push(new ParticleImageDisplayer(tag_id, canvas, params));
+      } else {
+        console.log(`failed to load params.json. XMLHTTPRequest status: ${xhr.statusText}`);
+      }
+    };
+    xhr.send();
+    */
+  }
+};
+
+window.particleImageDisplay("particle-image");
+		
+</script>
+
+<script>
+// Target ALL elements with the hero-text class
+const elements = document.querySelectorAll('.hero-text');
+
+elements.forEach(element => {
+    // Split text into letters and preserve line breaks and spaces
+    const textNodes = Array.from(element.childNodes);
+    element.innerHTML = ''; // clear content
+    
+    textNodes.forEach(node => {
+        if (node.nodeName === 'BR') {
+            element.appendChild(document.createElement('br'));
+        } else {
+            node.textContent.split('').forEach(char => {
+                const span = document.createElement('span');
+                span.textContent = char;
+                
+                // Add a class to space characters for easier styling if needed
+                if (char === ' ') {
+                    span.classList.add('space');
+                    // Ensure spaces maintain their width
+                    span.style.display = 'inline-block';
+                    span.style.minWidth = '0.3em'; // Adjust space width as needed
+                }
+                
+                element.appendChild(span);
+            });
+        }
+    });
+});
+
+// Get all letters (including spaces) from all hero-text elements
+const allLetters = document.querySelectorAll('.hero-text span');
+
+// Mouse move effect
+function handleMouseMove(e) {
+    const { clientX, clientY } = e;
+    
+    allLetters.forEach(letter => {
+        const rect = letter.getBoundingClientRect();
+        const originX = rect.left + rect.width / 2;
+        const originY = rect.top + rect.height / 2;
+        const distance = Math.sqrt((originX - clientX) ** 2 + (originY - clientY) ** 2);
+        const ratio = 100; // You can adjust this value
+        const distancePercentage = Math.min(Math.max((ratio - distance) / ratio * 100, 0), 100);
+        const opacity = 1 - (distancePercentage / 100) * 0.5;
+        letter.style.opacity = opacity;
+        
+        if (distancePercentage > 0) {
+            const deltaX = originX - clientX;
+            const deltaY = originY - clientY;
+            const strength = (distancePercentage / 100) * 90;
+            const displaceX = (deltaX / distance) * strength;
+            const displaceY = (deltaY / distance) * strength;
+            letter.style.transform = `translate(${displaceX}px, ${displaceY}px)`;
+        } else {
+            letter.style.transform = 'translate(0px, 0px)';
+        }
+    });
+}
+
+window.addEventListener('mousemove', handleMouseMove);
+	
+</script>
+
+
+<script>
+//GALLERY DOTS	
+document.addEventListener('DOMContentLoaded', function() {
+  const sections = document.querySelectorAll('.content-section');
+  
+  // Gallery dots functionality
+  function initializeGalleryDots() {
+    const galleries = [
+      { dotsContainer: '#gallery-dots-3d', sectionIndex: 1 },
+      { dotsContainer: '#gallery-dots-graphics', sectionIndex: 2 },
+      { dotsContainer: '#gallery-dots-products', sectionIndex: 3 }
+    ];
+    
+    galleries.forEach((galleryConfig) => {
+      const galleryElement = sections[galleryConfig.sectionIndex].querySelector('.image-gallery');
+      const dotsContainer = document.querySelector(galleryConfig.dotsContainer);
+      const galleryItems = galleryElement.querySelectorAll('.gallery-item');
+      
+      if (!galleryElement || !dotsContainer) return;
+      
+      // Create dots for all images
+      const dotCount = galleryItems.length;
+      dotsContainer.innerHTML = '';
+      
+      for (let i = 0; i < dotCount; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'gallery-dot';
+        if (i === 0) dot.classList.add('active');
+        
+        dot.addEventListener('click', function() {
+          const itemWidth = galleryItems[0].offsetWidth + 2; // Include margin
+          const scrollPosition = i * itemWidth;
+          galleryElement.scrollTo({
+            left: scrollPosition,
+            behavior: 'smooth'
+          });
+        });
+        
+        dotsContainer.appendChild(dot);
+      }
+      
+      // Handle scroll events
+      galleryElement.addEventListener('scroll', function() {
+        updateGalleryDots(galleryElement, dotsContainer, galleryItems);
+      });
+      
+      updateGalleryDots(galleryElement, dotsContainer, galleryItems);
+    });
+  }
+  
+  function updateGalleryDots(galleryElement, dotsContainer, galleryItems) {
+    const scrollLeft = galleryElement.scrollLeft;
+    const itemWidth = galleryItems[0].offsetWidth + 2; // Include margin
+    const totalWidth = galleryElement.scrollWidth;
+    const containerWidth = galleryElement.clientWidth;
+    const maxScrollLeft = totalWidth - containerWidth;
+    
+    // Calculate current index based on scroll position
+    let currentIndex = Math.round(scrollLeft / itemWidth);
+    
+    // Only trigger the last dot if we're actually at the very end (within 5px)
+    if (scrollLeft >= maxScrollLeft - 2.5) {
+      currentIndex = galleryItems.length - 1;
+    }
+    
+    // Ensure we don't go below 0 or above max index
+    currentIndex = Math.max(0, Math.min(currentIndex, galleryItems.length - 1));
+    
+    const dots = dotsContainer.querySelectorAll('.gallery-dot');
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentIndex);
+    });
+  }
+  
+  // Initialize gallery dots
+  initializeGalleryDots();
+  
+  // Recalculate on window resize
+  window.addEventListener('resize', function() {
+    setTimeout(initializeGalleryDots, 100);
+  });
+});
+</script>
+
+<script>
+// Email text fade animation on scroll
+document.addEventListener('DOMContentLoaded', function() {
+  const emailText = document.querySelector('.emtxt');
+  const section5 = document.getElementById('section-5');
+  const contentArea = document.getElementById('content');
+  
+  if (!emailText || !section5 || !contentArea) return;
+  
+  function checkEmailAnimation() {
+    const sectionTop = section5.offsetTop;
+    const scrollPosition = contentArea.scrollTop;
+    const viewportHeight = contentArea.clientHeight;
+    
+    // Trigger animation when section is 60% visible
+    const triggerPoint = sectionTop - (viewportHeight * 0.6);
+    
+    if (scrollPosition >= triggerPoint && scrollPosition <= sectionTop + section5.offsetHeight) {
+      emailText.classList.add('fade-in');
+    } else {
+      emailText.classList.remove('fade-in');
+    }
+  }
+  
+  // Throttled scroll event
+  let ticking = false;
+  function requestTick() {
+    if (!ticking) {
+      requestAnimationFrame(checkEmailAnimation);
+      ticking = true;
+      setTimeout(() => { ticking = false; }, 16);
+    }
+  }
+  
+  contentArea.addEventListener('scroll', requestTick);
+  checkEmailAnimation();
+});
+	
+</script>
+
+   <script>
+        const textElement = document.getElementById('textToCopy');
+        const copyButton = document.getElementById('copyButton');
+
+        function copyToClipboard() {
+            // Get the email from data attribute, or extract it from the text
+            const textToCopy = textElement.getAttribute('data-copy') || 
+                              textElement.textContent.replace(/^EMAIL:\s*/i, '');
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                // Change button text and appearance
+                copyButton.textContent = 'Copied!';
+                copyButton.classList.add('copied');
+                
+                // Revert back to original after 1.5 seconds
+                setTimeout(() => {
+                    copyButton.textContent = 'Copy Me';
+                    copyButton.classList.remove('copied');
+                }, 1500);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                // Fallback method
+                const textArea = document.createElement('textarea');
+                textArea.value = textToCopy;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                // Change button text and appearance
+                copyButton.textContent = 'Copied!';
+                copyButton.classList.add('copied');
+                
+                // Revert back to original after 1.5 seconds
+                setTimeout(() => {
+                    copyButton.textContent = 'Copy Me';
+                    copyButton.classList.remove('copied');
+                }, 1500);
+            });
+        }
+
+        // Add click event to both the circle and the text
+        copyButton.addEventListener('click', copyToClipboard);
+        textElement.addEventListener('click', copyToClipboard);
+
+        // Prevent text selection on mobile
+        textElement.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+        });
+    </script>
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
