@@ -1440,9 +1440,9 @@ box-shadow 0.3s ease;
 .img-container {
   position: relative;
   width: 30vw;
-  height: 100%; /* Match parent height */
+  height: 100%;
   overflow: hidden;
-  pointer-events: auto;
+  pointer-events: none; /* Changed from auto */
   display: flex;
   justify-content: center;
 }
@@ -1453,11 +1453,12 @@ box-shadow 0.3s ease;
   height: 700vh;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centers headers horizontally */
+  align-items: center;
   will-change: transform;
   transform: translateY(0);
   backface-visibility: hidden;
   transform-style: preserve-3d;
+  pointer-events: auto; /* Add this - makes only scroller interactive */
 }
 
 img {
@@ -2313,6 +2314,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
