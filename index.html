@@ -1963,6 +1963,75 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+</script>
+
+<script>
+// Target ALL elements with the hero-text class
+const elements = document.querySelectorAll('.hero-text');
+
+elements.forEach(element => {
+    // Split text into letters and preserve line breaks and spaces
+    const textNodes = Array.from(element.childNodes);
+    element.innerHTML = ''; // clear content
+    
+    textNodes.forEach(node => {
+        if (node.nodeName === 'BR') {
+            element.appendChild(document.createElement('br'));
+        } else {
+            node.textContent.split('').forEach(char => {
+                const span = document.createElement('span');
+                span.textContent = char;
+                
+                // Add a class to space characters for easier styling if needed
+                if (char === ' ') {
+                    span.classList.add('space');
+                    // Ensure spaces maintain their width
+                    span.style.display = 'inline-block';
+                    span.style.minWidth = '0.3em'; // Adjust space width as needed
+                }
+                
+                element.appendChild(span);
+            });
+        }
+    });
+});
+
+// Get all letters (including spaces) from all hero-text elements
+const allLetters = document.querySelectorAll('.hero-text span');
+
+// Mouse move effect
+function handleMouseMove(e) {
+    const { clientX, clientY } = e;
+    
+    allLetters.forEach(letter => {
+        const rect = letter.getBoundingClientRect();
+        const originX = rect.left + rect.width / 2;
+        const originY = rect.top + rect.height / 2;
+        const distance = Math.sqrt((originX - clientX) ** 2 + (originY - clientY) ** 2);
+        const ratio = 100; // You can adjust this value
+        const distancePercentage = Math.min(Math.max((ratio - distance) / ratio * 100, 0), 100);
+        const opacity = 1 - (distancePercentage / 100) * 0.5;
+        letter.style.opacity = opacity;
+        
+        if (distancePercentage > 0) {
+            const deltaX = originX - clientX;
+            const deltaY = originY - clientY;
+            const strength = (distancePercentage / 100) * 90;
+            const displaceX = (deltaX / distance) * strength;
+            const displaceY = (deltaY / distance) * strength;
+            letter.style.transform = `translate(${displaceX}px, ${displaceY}px)`;
+        } else {
+            letter.style.transform = 'translate(0px, 0px)';
+        }
+    });
+}
+
+window.addEventListener('mousemove', handleMouseMove);
+	
+</script>
+
+
+	
 
 <script>
 // Email text fade animation on scroll
@@ -2256,6 +2325,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
