@@ -1259,53 +1259,6 @@ line-height: 1.6;
 /*  MOBILE END */
 	  
 
-:root {
-  --light: rgb(245, 242, 240);
-  --dark: rgb(70, 70, 70);
-  --animation-speed: 400ms;
-}
-
-.sliding-button {
-background-repeat: no-repeat;
-border-radius: 5px 5px 10px 10px;  
-}
-
-.sliding-button > p {
-  display: block;
-  margin: 0;
-  white-space: no-wrap;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-	  
-.bottom-to-top:hover {
-  background-position: bottom;
-}
-
-.bottom-to-top:hover > p {
-  background-position: bottom;
-}
-
-.bottom-to-top{
-   background-image: linear-gradient(270deg, var(--light) 50%, var(--dark) 50%);
-   background-image: -webkit-linear-gradient(270deg, 
-    var(--light) 50%,
-    var(--dark) 50%
-  );
-  background-size: 101% 201%;
-  background-position: top;
-}
-
-.bottom-to-top > p{
-  background-image: linear-gradient(270deg, var(--dark) 50%, var(--light) 50%);
-  background-image: -webkit-linear-gradient(270deg, 
-    var(--dark) 50%,
-    var(--light) 50%
-  );
-  background-size: 101% 201%;
-  background-position: top;
-}
 
 
 
@@ -1469,7 +1422,7 @@ img {
 }
 
 .header {
-  height: 42vh;
+  height: 45vh;
   flex-shrink: 0;
   color: black;
   display: inline-flex; /* Changed to inline-flex */
@@ -2314,6 +2267,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
