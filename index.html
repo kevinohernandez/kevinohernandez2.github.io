@@ -1457,7 +1457,7 @@ box-shadow 0.3s ease;
 
 .img-container {
   position: relative;
-  width: 22vw;
+  width: 25vw;
   height: 100vh;
   overflow: hidden;
   pointer-events: auto;
@@ -1480,15 +1480,15 @@ img {
 }
 
 .header {
-  height: 40vh;
-  background-color: white;
+  height: 70vh;
+  /background-color: white;
   color: black;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   border: 1px solid;
   width: 100%;
-  padding-bottom: 15px;
+  /padding-bottom: 15px;
   position: relative;
   /width: 100%;
   /justify-content: center;
@@ -2200,7 +2200,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 };
 
                 const checkBoundaryAndReset = (sequenceHeight) => {
-                    if (currentScrollY > sequenceHeight * (bufferSize + 0.8)) {
+                    if (currentScrollY > sequenceHeight * (bufferSize + 0.5)) {
                         targetScrollY -= sequenceHeight;
                         currentScrollY -= sequenceHeight;
                         scroller.style.transform = `translateY(-${currentScrollY}px)`;
@@ -2325,6 +2325,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
