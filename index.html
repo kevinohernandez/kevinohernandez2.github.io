@@ -2202,14 +2202,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 };
 
                 const checkBoundaryAndReset = (sequenceHeight) => {
-                    if (currentScrollY > sequenceHeight * (bufferSize + 0.5)) {
+                    if (currentScrollY > sequenceHeight * (bufferSize + 0.7)) {
                         targetScrollY -= sequenceHeight;
                         currentScrollY -= sequenceHeight;
                         scroller.style.transform = `translateY(-${currentScrollY}px)`;
                         return true;
                     }
 
-                    if (currentScrollY < sequenceHeight * (bufferSize - 0.5)) {
+                    if (currentScrollY < sequenceHeight * (bufferSize - 0.7)) {
                         targetScrollY += sequenceHeight;
                         currentScrollY += sequenceHeight;
                         scroller.style.transform = `translateY(-${currentScrollY}px)`;
@@ -2327,6 +2327,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
