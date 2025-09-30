@@ -1491,7 +1491,6 @@ img {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  border: 1px solid black;
   width: 100%; /* Changed from fit-content */
   position: relative;
   cursor: crosshair;
@@ -1508,11 +1507,13 @@ img {
   transform: translateY(100%);
   transition: transform 0.3s ease;
   text-align: right;
+opacity:0;	
   pointer-events: none; /* Prevents overlay from interfering */
 }
 
 .header:hover .overlay {
-  transform: translateY(0);
+transform: translateY(0);
+opacity:1;		
 }
 	  
 </style>
@@ -2327,6 +2328,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
