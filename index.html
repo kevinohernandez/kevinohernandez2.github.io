@@ -1415,6 +1415,98 @@ background 0.3s ease,
 color 0.3s ease, 
 box-shadow 0.3s ease;
 }
+
+
+.scroller-heading {
+  font-family: "Anton", sans-serif;
+  font-size: 3.25vw;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -2px;
+  position: absolute;
+  right: 5px;
+  bottom: 0;
+}
+
+.scroller-heading2 {
+  font-family: "Anton", sans-serif;
+  font-size: 3.25vw;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -2px;
+  position: absolute;
+}
+
+.main-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  gap: 0;
+  overflow: hidden;
+  justify-content: space-around;
+  pointer-events: none;
+}
+
+.img-container {
+  position: relative;
+  width: 22vw;
+  height: 100vh;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.scroller {
+  position: relative;
+  width: 100%;
+  height: 700vh;
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+  transform: translateY(0);
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.header {
+  height: 70vh;
+  background-color: white;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border: 1px solid;
+  width: 100%;
+  padding-bottom: 15px;
+  position: relative;
+  /width: 100%;
+  /justify-content: center;
+  /align-items: center;
+  cursor:crosshair
+}
+
+.header .overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.5));
+  color: white;
+  padding: 15px;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  text-align:right;
+}
+
+.header:hover .overlay {
+  transform: translateY(0);
+}
 	  
 </style>
 	
@@ -1469,14 +1561,15 @@ box-shadow 0.3s ease;
   <label class="panel-label  sil active" data-target="section-1">ABOUT</label>
       </li>
       <li>
-      <label class="panel-label sil" data-target="section-2">3D</label>
+      <label class="panel-label sil" data-target="section-2">WORK</label>
       </li>
-      <li>
+    <!--  <li> 
       <label class="panel-label  sil" data-target="section-3">GRAPHICS</label>
       </li>
       <li>
       <label class="panel-label sil" data-target="section-4">PRODUCTS</label>
       </li>
+	-->
       <li class="last">
       <label class="panel-label  sil" data-target="section-5">SERVICES</label>
       </li>		
@@ -1522,280 +1615,152 @@ box-shadow 0.3s ease;
 			</div>
         </div>
 		</div>
-	<!-- 			  
-<div class="glc">
-	<div class="extra-content skills-section drop-in">
-  		<h3 class="hero-text txt1">SOFTWARE</h3>
-  	<div class="skills-icons">
-	  
-    <div class="icon-item ">
-      <img src="images/fulls/skills-blender.png" alt="Blender"><span>Blender</span>
-    </div>
-	  
-    <div class="icon-item ">
-      <img src="images/fulls/skills-ue.png" alt="Unreal"><span>Unreal</span>
-    </div>
-	  
-    <div class="icon-item ">
-      <img src="images/fulls/skills-c4d.png" alt="Cinema 4D"><span ">Cinema 4D</span>
-    </div>
-	  
-    <div class="icon-item ">
-      <img src="images/fulls/skills-td.png" alt="TouchDesigner"><span >TouchDesigner</span>
-    </div>
-	  
-    <div class="icon-item ">
-      <img src="images/fulls/skills-hd.png" alt="Houdini"><span>Houdini</span>
-    </div>
-	  
-    <div class="icon-item ">
-      <img src="images/fulls/skills-ps.png" alt="Adobe"><span>Photoshop</span>
-    </div>
-	  
-    <div class="icon-item ">
-      <img src="images/fulls/skills-ill.png" alt="Illustrator"><span>Illustrator</span>
-    </div>
-	  
-    <div class="icon-item">
-      <img src="images/fulls/skills-premiere.png" alt="Premiere"><span >Premiere</span>
-    </div>
-	  
-    <div class="icon-item">
-      <img src="images/fulls/skills-in.png" alt="InDesign"><span>InDesign</span>
-    </div>
-	  
-    <div class="icon-item">
-      <img src="images/fulls/skills-ae.png" alt="After Effects"><span>After Effects</span>
-    </div>
-	  
-  </div>
 
- <h3 class="hero-text txt1">WEB SKILLS</h3>
-  <div class="skills-icons">
-	  
-	  
-    <div class="icon-item">
-      <img src="images/fulls/skills-react.png" alt="React"><span>React JS</span>
-    </div>
-	  
-    <div class="icon-item">
-      <img src="images/fulls/skills-vue.png" alt="Vue"><span>Vue JS</span>
-    </div>
-	  
-    <div class="icon-item">
-      <img src="images/fulls/skills-git.png" alt="Git"><span>Git</span>
-    </div>
-	  
-    <div class="icon-item">
-      <img src="images/fulls/skills-canva.png" alt="Canva"><span>Canva</span>
-    </div>
-	  
-    <div class="icon-item">
-      <img src="images/fulls/skills-shop.webp" alt="Shopify"><span>Shopify</span>
-    </div>
-	  
-    <div class="icon-item">
-      <img src="images/fulls/skills-wordpress.png" alt="Wordpress"><span>Wordpress</span>
-    </div>
-	  
-    <div class="icon-item">
-      <img src="images/fulls/skills-webflow.png" alt="WebFlow"><span>Webflow</span>
-    </div>
-	  
-    <div class="icon-item">
-      <img src="images/fulls/skills-vs.png" alt="Visual Studio"><span>Visual Studio</span>
-    </div>
-
-    <div class="icon-item">
-      <img src="images/fulls/skills-framer.webp" alt="Python"><span>Framer</span>
-    </div>
-	  
-    <div class="icon-item">
-      <img src="images/fulls/skills-figma.png" alt="Figma"><span>Figma</span>
-    </div>
-	  
-  </div>
-		</div>
-        </div>
--->
 
         </div>
       </section>
       
       <section id="section-2" class="content-section">
          <h1 class="section-title">3D</h1>
-        <div class="gallery-nav-dots" id="gallery-dots-3d"></div>   
-        <div class="image-gallery">
-
- 		 <div class="gallery-item" data-gallery="abstract">
-            <img src="images/fulls/pr1.jpg">
-            <div class="overlay">  <p> Clo3D + Unreal </p> </div>
-          </div>
-          
-          <div class="gallery-item" data-gallery="abstract">
-            <img src="images/fulls/pr2.jpg">
-            <div class="overlay">  <p> Marvelous Designer + Blender </p> </div>
-          </div>
-          
-          <div class="gallery-item" data-gallery="abstract">
-            <img src="images/fulls/pr13.jpg">
-            <div class="overlay">  <p>  Unreal + Substance Designer </p> </div>
-          </div>
-          
-          <div class="gallery-item" data-gallery="abstract">
-            <img src="images/fulls/pr16.jpg">
-            <div class="overlay">  <p> Blender </p> </div>
-          </div>
-          
-          <div class="gallery-item" data-gallery="abstract">
-            <img src="images/fulls/pr6.jpg">
-            <div class="overlay"> <p> Marvelous Designer </p> </div>
-          </div>
-          
-          <div class="gallery-item" data-gallery="abstract">
-            <img src="images/fulls/pr15.jpg">
-            <div class="overlay">  <p>  Rhino + Blender </p> </div>
-          </div>
-          
-          <div class="gallery-item" data-gallery="abstract">
-            <img src="images/fulls/pr14.jpg">
-            <div class="overlay"> <p> Houdini </p> </div>
-          </div>
-          
-          <div class="gallery-item" data-gallery="abstract">
-            <img src="images/fulls/pr4.jpg">
-            <div class="overlay">  <p> Houdini + Substance Designer </p> </div>
-          </div>
-			
-          <div class="gallery-item" data-gallery="abstract">
-            <img src="images/fulls/slab.jpg">
-            <div class="overlay"> <p> Unreal </p> </div>
-          </div>
-
-			
-          <div class="gallery-item" data-gallery="abstract">
-            <img src="images/fulls/pr17.jpg">
-            <div class="overlay">  <p> Blender </p> </div>
-          </div>      
-			
+<div class="main-wrapper">
+    <div class="img-container" data-scroller="1">
+        <div class="scroller">
+            <section class="header">
+                <img src="images/fulls/pr1.jpg">
+                <div class="overlay"><p>Clo3D + Unreal</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/pr2.jpg">
+                <div class="overlay"><p>Marvelous Designer + Blender</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/pr13.jpg">
+                <div class="overlay"><p>Unreal + Substance Designer</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/pr16.jpg">
+                <div class="overlay"><p>Blender</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/pr6.jpg">
+                <div class="overlay"><p>Marvelous Designer</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/pr15.jpg">
+                <div class="overlay"><p>Rhino + Blender</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/pr14.jpg">
+                <div class="overlay"><p>Houdini</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/pr4.jpg">
+                <div class="overlay"><p>Houdini + Substance Designer</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/slab.jpg">
+                <div class="overlay"><p>Unreal</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/pr17.jpg">
+                <div class="overlay"><p>Blender</p></div>
+            </section>
         </div>
-      </section>
-      
-      <section id="section-3" class="content-section">
-         <h1 class="section-title">GRAPHICS</h1>
-        <div class="gallery-nav-dots" id="gallery-dots-graphics"></div> <!-- For Graphics gallery -->  
-        <div class="image-gallery">
-			
-          <div class="gallery-item" data-gallery="urban">
-            <img src="images/fulls/gd1.jpg">
-            <div class="overlay"> <p> Photoshop + Unreal </p> </div>
-          </div>
-          
-          <div class="gallery-item" data-gallery="urban">
-            <img src="images/fulls/pr10.jpg">
-            <div class="overlay">  <p>  InDesign + Blender </p> </div>
-          </div>
-          
-          <div class="gallery-item" data-gallery="urban">
-            <img src="images/fulls/gd6.jpg">
-            <div class="overlay">  <p> Unreal + Substance Designer </p> </div>
-          </div>
-          
-          <div class="gallery-item" data-gallery="urban">
-            <img src="images/fulls/gd5.jpg">
-            <div class="overlay">  <p> Blender + Illustrator </p> </div>
-          </div>
-          
-          <div class="gallery-item" data-gallery="urban">
-			<img src="images/fulls/gd7.jpg">
-            <div class="overlay"> <p> Houdini + Photoshop </p> </div>
-          </div>
-          
-          <div class="gallery-item" data-gallery="urban">
-            <img src="images/fulls/gd10.jpg">
-            <div class="overlay">  <p> Illustrator + Unreal </p> </div>
-          </div>
-              
-          <div class="gallery-item" data-gallery="urban">
-            <img src="images/fulls/gd11.jpg">
-            <div class="overlay">  <p> Unreal  </p> </div>
-          </div>
-			
-          <div class="gallery-item" data-gallery="urban">
-            <img src="images/fulls/gd9.jpg">
-            <div class="overlay"> <p> Houdini + Substance Designer </p> </div>
-          </div>
-		
-          <div class="gallery-item" data-gallery="urban">
-            <img src="images/fulls/gd8.jpg">
-            <div class="overlay">  <p> Unreal  </p> </div>
-          </div>
-			
-          <div class="gallery-item" data-gallery="urban">
-			<img src="images/fulls/gd2.jpg">
-            <div class="overlay">  <p> Blender </p> </div>
-          </div>
-			
+    </div>
+
+    <div class="img-container" data-scroller="2" data-reverse="true">
+        <div class="scroller">
+            <section class="header">
+                <img src="images/fulls/gd1.jpg">
+                <div class="overlay"><p>Photoshop + Unreal</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/pr10.jpg">
+                <div class="overlay"><p>InDesign + Blender</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/gd6.jpg">
+                <div class="overlay"><p>Unreal + Substance Designer</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/gd5.jpg">
+                <div class="overlay"><p>Blender + Illustrator</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/gd7.jpg">
+                <div class="overlay"><p>Houdini + Photoshop</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/gd10.jpg">
+                <div class="overlay"><p>Illustrator + Unreal</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/gd11.jpg">
+                <div class="overlay"><p>Unreal</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/gd9.jpg">
+                <div class="overlay"><p>Houdini + Substance Designer</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/gd8.jpg">
+                <div class="overlay"><p>Unreal</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/gd2.jpg">
+                <div class="overlay"><p>Blender</p></div>
+            </section>
         </div>
-      </section>
-      
-      <section id="section-4" class="content-section">
-         <h1 class="section-title">PRODUCTS</h1>
-        <div class="gallery-nav-dots" id="gallery-dots-products"></div> <!-- For Products gallery -->
-        <div class="image-gallery">
-			
-          <div class="gallery-item" data-gallery="nature">
-            <img src="images/fulls/3d5.jpg">
-            <div class="overlay"> <p> Photoshop + Unreal </p> </div>
-          </div>
-          
-          <div class="gallery-item" data-gallery="nature">
-            <img src="images/fulls/3d2.jpg">
-            <div class="overlay">  <p> Unreal + InDesign </p> </div>
-          </div>
-          
-          <div class="gallery-item" data-gallery="nature">
-            <img src="images/fulls/3d12.jpg">
-            <div class="overlay"> <p> Blender + Illustrator </p> </div>
-          </div>
-          
-          <div class="gallery-item" data-gallery="nature">
-            <img src="images/fulls/3d13.jpg">
-            <div class="overlay">  <p> Houdini + Photoshop </p> </div>
-          </div>
-          
-          <div class="gallery-item" data-gallery="nature">
-            <img src="images/fulls/3d4.1.jpg">
-            <div class="overlay">  <p> Illustrator + Unreal </p> </div>
-          </div>
-          
-          <div class="gallery-item" data-gallery="nature">
-            <img src="images/fulls/3d6.jpg">
-            <div class="overlay"> <p> Blender + InDesign </p> </div>
-          </div>
-          
-          <div class="gallery-item" data-gallery="nature">
-            <img src="images/fulls/3d7.jpg">
-            <div class="overlay">  <p> Unreal  </p> </div>
-          </div>
-          
-          <div class="gallery-item" data-gallery="nature">
-            <img src="images/fulls/3d8.jpg">
-            <div class="overlay">  <p> InDesign + Houdini </p> </div>
-          </div>
-			
-		   <div class="gallery-item" data-gallery="nature">
-            <img src="images/fulls/3d9.jpg">
-            <div class="overlay">  <p> Blender  </p> </div>
-          </div>
-			
-          <div class="gallery-item" data-gallery="nature">
-            <img src="images/fulls/3d1.jpg">
-            <div class="overlay">  <p> Unreal + Substance Designer </p> </div>
-          </div>
-					   
-           	
-		</div>
+    </div>
+
+
+    <div class="img-container" data-scroller="3">
+        <div class="scroller">
+            <section class="header">
+                <img src="images/fulls/3d5.jpg">
+                <div class="overlay"><p>Photoshop + Unreal</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/3d2.jpg">
+                <div class="overlay"><p>Unreal + InDesign</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/3d12.jpg">
+                <div class="overlay"><p>Blender + Illustrator</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/3d13.jpg">
+                <div class="overlay"><p>Houdini + Photoshop</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/3d4.1.jpg">
+                <div class="overlay"><p>Illustrator + Unreal</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/3d6.jpg">
+                <div class="overlay"><p>Blender + InDesign</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/3d7.jpg">
+                <div class="overlay"><p>Unreal</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/3d8.jpg">
+                <div class="overlay"><p>InDesign + Houdini</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/3d9.jpg">
+                <div class="overlay"><p>Blender</p></div>
+            </section>
+            <section class="header">
+                <img src="images/fulls/3d1.jpg">
+                <div class="overlay"><p>Unreal + Substance Designer</p></div>
+            </section>
+        </div>
+    </div>
+  
+</div>
+
       </section>
       
       <section id="section-5" class="content-section">
@@ -2797,9 +2762,209 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
         });
     </script>
+
+					<script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const containers = document.querySelectorAll('.img-container');
+            
+            // Store scroller instances
+            const scrollers = [];
+
+            containers.forEach((container) => {
+                const scroller = container.querySelector(".scroller");
+                const sections = Array.from(scroller.querySelectorAll("section"));
+                const isReverse = container.getAttribute('data-reverse') === 'true';
+
+                const smoothFactor = 0.05;
+                const bufferSize = 2;
+
+                let targetScrollY = 0;
+                let currentScrollY = 0;
+                let isAnimating = false;
+
+                const lerp = (start, end, factor) => start + (end - start) * factor;
+
+                const setupScroll = () => {
+                    scroller
+                        .querySelectorAll(".clone-section")
+                        .forEach((clone) => clone.remove());
+
+                    const originalSections = Array.from(
+                        scroller.querySelectorAll("section:not(.clone-section)")
+                    );
+                    const templateSections =
+                        originalSections.length > 0 ? originalSections : sections;
+
+                    let sequenceHeight = 0;
+                    templateSections.forEach((section) => {
+                        sequenceHeight += parseFloat(window.getComputedStyle(section).height);
+                    });
+
+                    // Create clones before original sections
+                    for (let i = -bufferSize; i < 0; i++) {
+                        templateSections.forEach((section, index) => {
+                            const clone = section.cloneNode(true);
+                            clone.classList.add("clone-section");
+                            clone.setAttribute("data-clone-index", `${i}-${index}`);
+                            scroller.appendChild(clone);
+                        });
+                    }
+
+                    // Add original sections if none exist
+                    if (originalSections.length === 0) {
+                        templateSections.forEach((section, index) => {
+                            const clone = section.cloneNode(true);
+                            clone.setAttribute("data-clone-index", `0-${index}`);
+                            scroller.appendChild(clone);
+                        });
+                    }
+
+                    // Create clones after original sections
+                    for (let i = 1; i <= bufferSize; i++) {
+                        templateSections.forEach((section, index) => {
+                            const clone = section.cloneNode(true);
+                            clone.classList.add("clone-section");
+                            clone.setAttribute("data-clone-index", `${i}-${index}`);
+                            scroller.appendChild(clone);
+                        });
+                    }
+
+                    scroller.style.height = `${sequenceHeight * (1 + bufferSize * 2)}px`;
+                    targetScrollY = sequenceHeight * bufferSize;
+                    currentScrollY = targetScrollY;
+                    scroller.style.transform = `translateY(-${currentScrollY}px)`;
+
+                    return sequenceHeight;
+                };
+
+                const checkBoundaryAndReset = (sequenceHeight) => {
+                    if (currentScrollY > sequenceHeight * (bufferSize + 0.5)) {
+                        targetScrollY -= sequenceHeight;
+                        currentScrollY -= sequenceHeight;
+                        scroller.style.transform = `translateY(-${currentScrollY}px)`;
+                        return true;
+                    }
+
+                    if (currentScrollY < sequenceHeight * (bufferSize - 0.5)) {
+                        targetScrollY += sequenceHeight;
+                        currentScrollY += sequenceHeight;
+                        scroller.style.transform = `translateY(-${currentScrollY}px)`;
+                        return true;
+                    }
+
+                    return false;
+                };
+
+                const animate = (sequenceHeight) => {
+                    currentScrollY = lerp(currentScrollY, targetScrollY, smoothFactor);
+                    scroller.style.transform = `translateY(-${currentScrollY}px)`;
+
+                    if (Math.abs(targetScrollY - currentScrollY) > 0.01) {
+                        requestAnimationFrame(() => animate(sequenceHeight));
+                    } else {
+                        isAnimating = false;
+                    }
+                };
+
+                // Initialize
+                const sequenceHeight = setupScroll();
+
+                // Store the scroller instance
+                scrollers.push({
+                    targetScrollY,
+                    currentScrollY,
+                    isAnimating,
+                    sequenceHeight,
+                    isReverse,
+                    setTargetScroll: (delta) => {
+                        const direction = isReverse ? -1 : 1;
+                        targetScrollY += delta * direction;
+                        checkBoundaryAndReset(sequenceHeight);
+                        
+                        if (!isAnimating) {
+                            isAnimating = true;
+                            requestAnimationFrame(() => animate(sequenceHeight));
+                        }
+                    }
+                });
+            });
+
+            // Wheel event on each container to control all scrollers
+            containers.forEach((container, index) => {
+                container.addEventListener(
+                    "wheel",
+                    (e) => {
+                        e.preventDefault();
+                        // Scroll all galleries when hovering over any container
+                        scrollers.forEach(scrollerInstance => {
+                            scrollerInstance.setTargetScroll(e.deltaY);
+                        });
+                    },
+                    { passive: false }
+                );
+
+                // Touch events on each container
+                let isDown = false;
+                let lastTouchY = 0;
+                let touchVelocity = 0;
+                let lastTouchTime = 0;
+                const touchSensitivity = 2.5;
+
+                container.addEventListener("touchstart", (e) => {
+                    isDown = true;
+                    lastTouchY = e.touches[0].clientY;
+                    lastTouchTime = Date.now();
+                });
+
+                container.addEventListener("touchmove", (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+
+                    const currentTouchY = e.touches[0].clientY;
+                    const touchDelta = lastTouchY - currentTouchY;
+
+                    // Scroll all galleries when touching any container
+                    scrollers.forEach(scrollerInstance => {
+                        scrollerInstance.setTargetScroll(touchDelta * touchSensitivity);
+                    });
+
+                    const currentTime = Date.now();
+                    const timeDelta = currentTime - lastTouchTime;
+                    if (timeDelta > 0) {
+                        touchVelocity = (touchDelta / timeDelta) * 15;
+                    }
+                    lastTouchY = currentTouchY;
+                    lastTouchTime = currentTime;
+                });
+
+                container.addEventListener("touchend", () => {
+                    isDown = false;
+
+                    if (Math.abs(touchVelocity) > 0.1) {
+                        const decayVelocity = () => {
+                            touchVelocity *= 0.95;
+
+                            if (Math.abs(touchVelocity) > 0.1) {
+                                scrollers.forEach(scrollerInstance => {
+                                    scrollerInstance.setTargetScroll(touchVelocity);
+                                });
+                                requestAnimationFrame(decayVelocity);
+                            }
+                        };
+
+                        requestAnimationFrame(decayVelocity);
+                    }
+                });
+            });
+        });
+					</script>
+	
+
 	
 </body>
 </html>
+
 
 
 
