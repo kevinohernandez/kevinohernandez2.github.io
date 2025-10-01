@@ -1276,13 +1276,6 @@ pointer-events: none;
 align-self: anchor-center;
 }
 
-.img-container {
-position: relative;
-width: 22vw;
-height: 100vh;
-overflow: hidden;
-pointer-events: auto;
-}
 
 .scroller {
 position: relative;
@@ -1294,7 +1287,7 @@ will-change: transform;
 transform: translateY(0);
 }
 
-img {
+.scroller-img {
 width: 100%;
 height: 100%;
 object-fit: contain;
@@ -1303,25 +1296,26 @@ clip-path: polygon(2% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 65%, 2% 60%);
 	
 }
 
-img:nth-child(even){
+.scroller-img:nth-child(even){
 clip-path: polygon(98% 0, 0% 0, 0% 90%, 10% 100%, 100% 100%, 100% 65%, 98% 60%);	
 }		  
 
+.img-container {
+position: relative;
+width: 22vw;
+height: 100vh;
+overflow: hidden;
+pointer-events: auto;
+}
+	  
 .header {
-/height: 100%;
 height: auto;
 color: black;
 display: flex;
 justify-content: space-between;
 align-items: flex-start;
-/border: 1px solid;
 width: 100%;
-/padding-bottom: 15px;
 position: relative;
-/width: 100%;
-/background-color: white;	
-/justify-content: center;
-/align-items: center;
 cursor:crosshair;
 margin-bottom: 15px;
 
@@ -1338,7 +1332,8 @@ padding: 15px;
 transform: translateY(100%);
 transition: transform 0.3s ease, opacity 0.6s ease;
 text-align:right;
-opacity:0	
+opacity:0
+clip-path: polygon(2% 0, 100% 0, 100% 65%, 90% 100%, 0 100%, 0 65%, 2% 60%);	
 }
 
 .header:hover .overlay {
@@ -1469,148 +1464,148 @@ opacity:1
         </div>
       </section>
       
-      <section id="section-2" class="content-section">
-         <h1 class="section-title">3D</h1>
-<div class="main-wrapper">
-    <div class="img-container" data-scroller="1">
-        <div class="scroller">
-            <section class="header">
-                <img src="images/fulls/pr1.jpg">
-                <div class="overlay"><p>Clo3D + Unreal</p></div>
-            </section>
-            <section class="header">
-                <img src="images/fulls/pr2.jpg">
-                <div class="overlay"><p>Marvelous Designer + Blender</p></div>
-            </section>
-            <section class="header">
-                <img src="images/fulls/pr13.jpg">
-                <div class="overlay"><p>Unreal + Substance Designer</p></div>
-            </section>
-            <section class="header">
-                <img src="images/fulls/pr16.jpg">
-                <div class="overlay"><p>Blender</p></div>
-            </section>
-            <section class="header">
-                <img src="images/fulls/pr6.jpg">
-                <div class="overlay"><p>Marvelous Designer</p></div>
-            </section>
-            <section class="header">
-                <img src="images/fulls/pr15.jpg">
-                <div class="overlay"><p>Rhino + Blender</p></div>
-            </section>
-            <section class="header">
-                <img src="images/fulls/pr14.jpg">
-                <div class="overlay"><p>Houdini</p></div>
-            </section>
-            <section class="header">
-                <img src="images/fulls/pr4.jpg">
-                <div class="overlay"><p>Houdini + Substance Designer</p></div>
-            </section>
-            <section class="header">
-                <img src="images/fulls/slab.jpg">
-                <div class="overlay"><p>Unreal</p></div>
-            </section>
-            <section class="header">
-                <img src="images/fulls/pr17.jpg">
-                <div class="overlay"><p>Blender</p></div>
-            </section>
-        </div>
-    </div>
+<section id="section-2" class="content-section">
+   <h1 class="section-title">3D</h1>
+   <div class="main-wrapper">
 
-    <div class="img-container" data-scroller="2" data-reverse="true">
-        <div class="scroller">
+      <div class="img-container" data-scroller="1">
+         <div class="scroller">
             <section class="header">
-                <img src="images/fulls/gd1.jpg">
-                <div class="overlay"><p>Photoshop + Unreal</p></div>
+               <img class="scroller-img" src="images/fulls/pr1.jpg">
+               <div class="overlay"><p>Clo3D + Unreal</p></div>
             </section>
             <section class="header">
-                <img src="images/fulls/pr10.jpg">
-                <div class="overlay"><p>InDesign + Blender</p></div>
+               <img class="scroller-img" src="images/fulls/pr2.jpg">
+               <div class="overlay"><p>Marvelous Designer + Blender</p></div>
             </section>
             <section class="header">
-                <img src="images/fulls/gd6.jpg">
-                <div class="overlay"><p>Unreal + Substance Designer</p></div>
+               <img class="scroller-img" src="images/fulls/pr13.jpg">
+               <div class="overlay"><p>Unreal + Substance Designer</p></div>
             </section>
             <section class="header">
-                <img src="images/fulls/gd5.jpg">
-                <div class="overlay"><p>Blender + Illustrator</p></div>
+               <img class="scroller-img" src="images/fulls/pr16.jpg">
+               <div class="overlay"><p>Blender</p></div>
             </section>
             <section class="header">
-                <img src="images/fulls/gd7.jpg">
-                <div class="overlay"><p>Houdini + Photoshop</p></div>
+               <img class="scroller-img" src="images/fulls/pr6.jpg">
+               <div class="overlay"><p>Marvelous Designer</p></div>
             </section>
             <section class="header">
-                <img src="images/fulls/gd10.jpg">
-                <div class="overlay"><p>Illustrator + Unreal</p></div>
+               <img class="scroller-img" src="images/fulls/pr15.jpg">
+               <div class="overlay"><p>Rhino + Blender</p></div>
             </section>
             <section class="header">
-                <img src="images/fulls/gd11.jpg">
-                <div class="overlay"><p>Unreal</p></div>
+               <img class="scroller-img" src="images/fulls/pr14.jpg">
+               <div class="overlay"><p>Houdini</p></div>
             </section>
             <section class="header">
-                <img src="images/fulls/gd9.jpg">
-                <div class="overlay"><p>Houdini + Substance Designer</p></div>
+               <img class="scroller-img" src="images/fulls/pr4.jpg">
+               <div class="overlay"><p>Houdini + Substance Designer</p></div>
             </section>
             <section class="header">
-                <img src="images/fulls/gd8.jpg">
-                <div class="overlay"><p>Unreal</p></div>
+               <img class="scroller-img" src="images/fulls/slab.jpg">
+               <div class="overlay"><p>Unreal</p></div>
             </section>
             <section class="header">
-                <img src="images/fulls/gd2.jpg">
-                <div class="overlay"><p>Blender</p></div>
+               <img class="scroller-img" src="images/fulls/pr17.jpg">
+               <div class="overlay"><p>Blender</p></div>
             </section>
-        </div>
-    </div>
+         </div>
+      </div>
 
+      <div class="img-container" data-scroller="2" data-reverse="true">
+         <div class="scroller">
+            <section class="header">
+               <img class="scroller-img" src="images/fulls/gd1.jpg">
+               <div class="overlay"><p>Photoshop + Unreal</p></div>
+            </section>
+            <section class="header">
+               <img class="scroller-img" src="images/fulls/pr10.jpg">
+               <div class="overlay"><p>InDesign + Blender</p></div>
+            </section>
+            <section class="header">
+               <img class="scroller-img" src="images/fulls/gd6.jpg">
+               <div class="overlay"><p>Unreal + Substance Designer</p></div>
+            </section>
+            <section class="header">
+               <img class="scroller-img" src="images/fulls/gd5.jpg">
+               <div class="overlay"><p>Blender + Illustrator</p></div>
+            </section>
+            <section class="header">
+               <img class="scroller-img" src="images/fulls/gd7.jpg">
+               <div class="overlay"><p>Houdini + Photoshop</p></div>
+            </section>
+            <section class="header">
+               <img class="scroller-img" src="images/fulls/gd10.jpg">
+               <div class="overlay"><p>Illustrator + Unreal</p></div>
+            </section>
+            <section class="header">
+               <img class="scroller-img" src="images/fulls/gd11.jpg">
+               <div class="overlay"><p>Unreal</p></div>
+            </section>
+            <section class="header">
+               <img class="scroller-img" src="images/fulls/gd9.jpg">
+               <div class="overlay"><p>Houdini + Substance Designer</p></div>
+            </section>
+            <section class="header">
+               <img class="scroller-img" src="images/fulls/gd8.jpg">
+               <div class="overlay"><p>Unreal</p></div>
+            </section>
+            <section class="header">
+               <img class="scroller-img" src="images/fulls/gd2.jpg">
+               <div class="overlay"><p>Blender</p></div>
+            </section>
+         </div>
+      </div>
 
-    <div class="img-container" data-scroller="3">
-        <div class="scroller">
+      <div class="img-container" data-scroller="3">
+         <div class="scroller">
             <section class="header">
-                <img src="images/fulls/3d5.jpg">
-                <div class="overlay"><p>Photoshop + Unreal</p></div>
+               <img class="scroller-img" src="images/fulls/3d5.jpg">
+               <div class="overlay"><p>Photoshop + Unreal</p></div>
             </section>
             <section class="header">
-                <img src="images/fulls/3d2.jpg">
-                <div class="overlay"><p>Unreal + InDesign</p></div>
+               <img class="scroller-img" src="images/fulls/3d2.jpg">
+               <div class="overlay"><p>Unreal + InDesign</p></div>
             </section>
             <section class="header">
-                <img src="images/fulls/3d12.jpg">
-                <div class="overlay"><p>Blender + Illustrator</p></div>
+               <img class="scroller-img" src="images/fulls/3d12.jpg">
+               <div class="overlay"><p>Blender + Illustrator</p></div>
             </section>
             <section class="header">
-                <img src="images/fulls/3d13.jpg">
-                <div class="overlay"><p>Houdini + Photoshop</p></div>
+               <img class="scroller-img" src="images/fulls/3d13.jpg">
+               <div class="overlay"><p>Houdini + Photoshop</p></div>
             </section>
             <section class="header">
-                <img src="images/fulls/3d4.1.jpg">
-                <div class="overlay"><p>Illustrator + Unreal</p></div>
+               <img class="scroller-img" src="images/fulls/3d4.1.jpg">
+               <div class="overlay"><p>Illustrator + Unreal</p></div>
             </section>
             <section class="header">
-                <img src="images/fulls/3d6.jpg">
-                <div class="overlay"><p>Blender + InDesign</p></div>
+               <img class="scroller-img" src="images/fulls/3d6.jpg">
+               <div class="overlay"><p>Blender + InDesign</p></div>
             </section>
             <section class="header">
-                <img src="images/fulls/3d7.jpg">
-                <div class="overlay"><p>Unreal</p></div>
+               <img class="scroller-img" src="images/fulls/3d7.jpg">
+               <div class="overlay"><p>Unreal</p></div>
             </section>
             <section class="header">
-                <img src="images/fulls/3d8.jpg">
-                <div class="overlay"><p>InDesign + Houdini</p></div>
+               <img class="scroller-img" src="images/fulls/3d8.jpg">
+               <div class="overlay"><p>InDesign + Houdini</p></div>
             </section>
             <section class="header">
-                <img src="images/fulls/3d9.jpg">
-                <div class="overlay"><p>Blender</p></div>
+               <img class="scroller-img" src="images/fulls/3d9.jpg">
+               <div class="overlay"><p>Blender</p></div>
             </section>
             <section class="header">
-                <img src="images/fulls/3d1.jpg">
-                <div class="overlay"><p>Unreal + Substance Designer</p></div>
+               <img class="scroller-img" src="images/fulls/3d1.jpg">
+               <div class="overlay"><p>Unreal + Substance Designer</p></div>
             </section>
-        </div>
-    </div>
-  
-</div>
+         </div>
+      </div>
 
-      </section>
+   </div>
+</section>
+
       
 <section id="section-5" class="content-section">
   <h1 class="section-title">SERVICES</h1>
@@ -2251,6 +2246,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
