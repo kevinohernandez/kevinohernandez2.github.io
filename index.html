@@ -2041,7 +2041,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
+       document.addEventListener("DOMContentLoaded", () => {
             const containers = document.querySelectorAll('.img-container');
             const scrollers = [];
 
@@ -2065,9 +2065,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     const originalSections = Array.from(scroller.querySelectorAll("section:not(.clone-section)"));
                     const templateSections = originalSections.length > 0 ? originalSections : sections;
 
+                    // Calculate sequence height including margins
                     let sequenceHeight = 0;
+                    const sectionHeights = [];
                     templateSections.forEach((section) => {
-                        sequenceHeight += parseFloat(window.getComputedStyle(section).height);
+                        const rect = section.getBoundingClientRect();
+                        const style = window.getComputedStyle(section);
+                        const marginBottom = parseFloat(style.marginBottom);
+                        const height = rect.height + marginBottom;
+                        sectionHeights.push(height);
+                        sequenceHeight += height;
                     });
 
                     for (let i = -bufferSize; i < 0; i++) {
@@ -2097,7 +2104,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
 
                     scroller.style.height = `${sequenceHeight * (1 + bufferSize * 2)}px`;
-                    targetScrollY = sequenceHeight * bufferSize;
+                    
+                    // Start with first image centered - show half image above and below
+                    const containerHeight = container.offsetHeight;
+                    const firstSectionHeight = sectionHeights[0] || sequenceHeight / templateSections.length;
+                    const centerOffset = (containerHeight - firstSectionHeight) / 2;
+                    
+                    // Get the scroller number to add offset for different galleries
+                    const scrollerNum = parseInt(container.getAttribute('data-scroller'));
+                    const offsets = {
+                        1: 0.13,
+                        2: 0.13,
+                        3: 0.13
+                    };
+                    const additionalOffset = (offsets[scrollerNum] || 0) * firstSectionHeight;
+                    
+                    targetScrollY = sequenceHeight * bufferSize - centerOffset + additionalOffset;
                     currentScrollY = targetScrollY;
                     scroller.style.transform = `translateY(-${currentScrollY}px)`;
 
@@ -2106,6 +2128,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const checkBoundaryAndReset = (sequenceHeight) => {
                     // Check if targetScrollY (not currentScrollY) exceeds boundaries
+                    // Use tighter thresholds to reset earlier and avoid visible jumps
                     if (targetScrollY > sequenceHeight * (bufferSize + 0.85)) {
                         targetScrollY -= sequenceHeight;
                         currentScrollY -= sequenceHeight;
@@ -2157,41 +2180,53 @@ document.addEventListener('DOMContentLoaded', function() {
 
             containers.forEach((container, index) => {
                 container.addEventListener("wheel", (e) => {
-                    e.preventDefault();
-                    scrollers.forEach(scrollerInstance => {
-                        scrollerInstance.setTargetScroll(e.deltaY);
-                    });
+                    // Only capture horizontal scroll (shift+wheel or trackpad horizontal gesture)
+                    // Check if there's more horizontal movement than vertical
+                    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+                        e.preventDefault();
+                        // Use deltaX for horizontal scrolling
+                        scrollers.forEach(scrollerInstance => {
+                            scrollerInstance.setTargetScroll(e.deltaX);
+                        });
+                    }
                 }, { passive: false });
 
                 let isDown = false;
-                let lastTouchY = 0;
+                let startX = 0;
+                let lastTouchX = 0;
                 let touchVelocity = 0;
                 let lastTouchTime = 0;
                 const touchSensitivity = 2.5;
 
                 container.addEventListener("touchstart", (e) => {
                     isDown = true;
-                    lastTouchY = e.touches[0].clientY;
+                    startX = e.touches[0].clientX;
+                    lastTouchX = e.touches[0].clientX;
                     lastTouchTime = Date.now();
                 });
 
                 container.addEventListener("touchmove", (e) => {
                     if (!isDown) return;
-                    e.preventDefault();
+                    
+                    const currentTouchX = e.touches[0].clientX;
+                    const touchDeltaX = lastTouchX - currentTouchX;
+                    
+                    // Only prevent default and scroll if horizontal movement is dominant
+                    if (Math.abs(touchDeltaX) > 5) {
+                        e.preventDefault();
+                        
+                        scrollers.forEach(scrollerInstance => {
+                            scrollerInstance.setTargetScroll(touchDeltaX * touchSensitivity);
+                        });
 
-                    const currentTouchY = e.touches[0].clientY;
-                    const touchDelta = lastTouchY - currentTouchY;
-
-                    scrollers.forEach(scrollerInstance => {
-                        scrollerInstance.setTargetScroll(touchDelta * touchSensitivity);
-                    });
-
-                    const currentTime = Date.now();
-                    const timeDelta = currentTime - lastTouchTime;
-                    if (timeDelta > 0) {
-                        touchVelocity = (touchDelta / timeDelta) * 15;
+                        const currentTime = Date.now();
+                        const timeDelta = currentTime - lastTouchTime;
+                        if (timeDelta > 0) {
+                            touchVelocity = (touchDeltaX / timeDelta) * 15;
+                        }
                     }
-                    lastTouchY = currentTouchY;
+                    
+                    lastTouchX = currentTouchX;
                     lastTouchTime = currentTime;
                 });
 
@@ -2219,6 +2254,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
