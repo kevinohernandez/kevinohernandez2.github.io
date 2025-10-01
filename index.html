@@ -2077,11 +2077,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 	
-    <script>
+   <script>
         document.addEventListener("DOMContentLoaded", () => {
             const containers = document.querySelectorAll('.img-container');
-            
-            // Store scroller instances
             const scrollers = [];
 
             containers.forEach((container) => {
@@ -2111,7 +2109,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     let sequenceHeight = 0;
                     templateSections.forEach((section) => {
-                        sequenceHeight += parseFloat(window.getComputedStyle(section).height);
+                        const height = parseFloat(window.getComputedStyle(section).height);
+                        const marginBottom = parseFloat(window.getComputedStyle(section).marginBottom);
+                        sequenceHeight += height + marginBottom;
                     });
 
                     // Create clones before original sections
@@ -2204,7 +2204,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             // Wheel event on each container to control all scrollers
-            containers.forEach((container, index) => {
+            containers.forEach((container) => {
                 container.addEventListener(
                     "wheel",
                     (e) => {
@@ -2219,14 +2219,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Touch events on each container
                 let isDown = false;
-                let lastTouchY = 0;
+                let lastTouchX = 0;
                 let touchVelocity = 0;
                 let lastTouchTime = 0;
                 const touchSensitivity = 2.5;
 
                 container.addEventListener("touchstart", (e) => {
                     isDown = true;
-                    lastTouchY = e.touches[0].clientY;
+                    lastTouchX = e.touches[0].clientX;
                     lastTouchTime = Date.now();
                 });
 
@@ -2234,8 +2234,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (!isDown) return;
                     e.preventDefault();
 
-                    const currentTouchY = e.touches[0].clientY;
-                    const touchDelta = lastTouchY - currentTouchY;
+                    const currentTouchX = e.touches[0].clientX;
+                    const touchDelta = lastTouchX - currentTouchX;
 
                     // Scroll all galleries when touching any container
                     scrollers.forEach(scrollerInstance => {
@@ -2247,9 +2247,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (timeDelta > 0) {
                         touchVelocity = (touchDelta / timeDelta) * 15;
                     }
-                    lastTouchY = currentTouchY;
+                    lastTouchX = currentTouchX;
                     lastTouchTime = currentTime;
-                });
+                }, { passive: false });
 
                 container.addEventListener("touchend", () => {
                     isDown = false;
@@ -2275,6 +2275,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
