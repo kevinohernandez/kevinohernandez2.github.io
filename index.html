@@ -923,113 +923,6 @@ object-fit: cover;
 display: block;
 }
 
-.gallery-item .overlay {
-position: absolute;
-bottom: 0;
-left: 0;
-right: 0;
-background: linear-gradient(transparent, rgba(0,0,0,0.7));
-color: white;
-padding: 15px;
-transform: translateY(100%);
-transition: transform 0.3s ease;
-}
-
-.gallery-item:hover .overlay {
-transform: translateY(0);
-}
-
-
-/* Gallery Navigation Dots */
-.gallery-nav-dots {
-position: absolute;
-/right: 6.5px;
-right: 9px;	
-top: 48%;
-transform: translateY(-50%);
-display: flex;
-flex-direction: column;
-gap: 8px;
-z-index: 1;
-pointer-events: none;
-/background: grey;
-/padding: 15px 5px 15px 5px;
-/border-radius: 5px;
-/clip-path: polygon(100% 0, 40% 0, 0 5%, 0 95%, 40% 100%, 100% 100%);	
-}
-
-.gallery-dot {
-width: 5px;
-/height: 5px;
-/border-radius: 50%;
-/background: rgba(255, 255, 255, 0.4);
-background: rgba(50, 50, 50, 0.4);	
-/border: 2px solid rgba(255, 255, 255, 0.8);
-transition: all 0.3s ease;
-cursor: pointer;
-pointer-events: all;
-/clip-path: polygon(96% 19%, 75% 15%, 25% 35%, 25% 64%, 75% 85%, 96% 80%);
-/width: 15px;
-/height: 15px;
-height: 15px;	
-}
-
-/* Create crosshair/plus sign using pseudo-elements */
-.gallery-dot::before,
-.gallery-dot::after {
-content: '';
-position: absolute;
-/background: rgba(255, 255, 255, 0.8);
-background: rgba(50, 50, 50, 0.8);	
-transition: all 0.3s ease;
-}
-
-/* Vertical line */
-.gallery-dot::before {
-top: 0;
-left: 50%;
-width: 1px;
-height: 100%;
-transform: translateX(-50%);
-}
-
-/* Horizontal line */
-.gallery-dot::after {
-top: 50%;
-left: 0;
-width: 100%;
-height: 5px;
-transform: translateY(-50%);
-/opacity: 0;
-pointer-events: none;	
-}
-	  
-.gallery-dot:hover::before,
-.gallery-dot:hover::after {
-/background: rgba(255, 255, 255, 0.9);
-background: rgba(50, 50, 50, 0.9);
-	
-}
-	  
-.gallery-dot.active::before,
-.gallery-dot.active::after {
-/background: rgba(255, 255, 255, 0.95);
-background: rgba(50, 50, 50, 0.95);	
-box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-}
-	  
-.gallery-dot.active {
-/background: rgba(255, 255, 255, 0.9);
-background: rgba(50, 50, 50, 0.9);	
-transform: scale(1.2);
-box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
-}
-	  
-.gallery-dot:hover {
-/background: rgba(255, 255, 255, 0.7);
-background: rgba(50, 50, 50, 0.7);	
-transform: scale(1.1);
-}
 
 
 /* Modal Styles */
@@ -1430,7 +1323,9 @@ img {
   /width: 100%;
   /justify-content: center;
   /align-items: center;
-  cursor:crosshair
+  cursor:crosshair;
+  margin-bottom: 15px;
+	
 }
 
 .header .overlay {
@@ -2149,13 +2044,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 const checkBoundaryAndReset = (sequenceHeight) => {
                     // Check if targetScrollY (not currentScrollY) exceeds boundaries
                     // Use tighter thresholds to reset earlier and avoid visible jumps
-                    if (targetScrollY > sequenceHeight * (bufferSize + 0.87)) {
+                    if (targetScrollY > sequenceHeight * (bufferSize + 0.8)) {
                         targetScrollY -= sequenceHeight;
                         currentScrollY -= sequenceHeight;
                         return true;
                     }
 
-                    if (targetScrollY < sequenceHeight * (bufferSize - 0.87)) {
+                    if (targetScrollY < sequenceHeight * (bufferSize - 0.8)) {
                         targetScrollY += sequenceHeight;
                         currentScrollY += sequenceHeight;
                         return true;
@@ -2262,6 +2157,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
