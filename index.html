@@ -2088,9 +2088,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     const originalSections = Array.from(scroller.querySelectorAll("section:not(.clone-section)"));
                     const templateSections = originalSections.length > 0 ? originalSections : sections;
 
+                    // Calculate sequence height after images load
                     let sequenceHeight = 0;
+                    const sectionHeights = [];
                     templateSections.forEach((section) => {
-                        sequenceHeight += parseFloat(window.getComputedStyle(section).height);
+                        const height = section.offsetHeight || parseFloat(window.getComputedStyle(section).height);
+                        sectionHeights.push(height);
+                        sequenceHeight += height;
                     });
 
                     for (let i = -bufferSize; i < 0; i++) {
@@ -2123,17 +2127,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     // Start with first image centered - show half image above and below
                     const containerHeight = container.offsetHeight;
-                    const sectionHeight = parseFloat(window.getComputedStyle(templateSections[0]).height);
-                    const centerOffset = (containerHeight - sectionHeight) / 2;
+                    const firstSectionHeight = sectionHeights[0] || sequenceHeight / templateSections.length;
+                    const centerOffset = (containerHeight - firstSectionHeight) / 2;
                     
                     // Get the scroller number to add offset for different galleries
                     const scrollerNum = parseInt(container.getAttribute('data-scroller'));
                     const offsets = {
-                        1: 0.23,
-                        2: 0.23,
-                        3: 0.23
+                        1: 0.13,
+                        2: 0.13,
+                        3: 0.13
                     };
-                    const additionalOffset = (offsets[scrollerNum] || 0) * sectionHeight;
+                    const additionalOffset = (offsets[scrollerNum] || 0) * firstSectionHeight;
                     
                     targetScrollY = sequenceHeight * bufferSize - centerOffset + additionalOffset;
                     currentScrollY = targetScrollY;
@@ -2144,13 +2148,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const checkBoundaryAndReset = (sequenceHeight) => {
                     // Check if targetScrollY (not currentScrollY) exceeds boundaries
-                    if (targetScrollY > sequenceHeight * (bufferSize + 1)) {
+                    // Use tighter thresholds to reset earlier and avoid visible jumps
+                    if (targetScrollY > sequenceHeight * (bufferSize + 0.9)) {
                         targetScrollY -= sequenceHeight;
                         currentScrollY -= sequenceHeight;
                         return true;
                     }
 
-                    if (targetScrollY < sequenceHeight * (bufferSize - 1)) {
+                    if (targetScrollY < sequenceHeight * (bufferSize - 0.9)) {
                         targetScrollY += sequenceHeight;
                         currentScrollY += sequenceHeight;
                         return true;
@@ -2257,6 +2262,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
