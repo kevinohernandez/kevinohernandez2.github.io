@@ -2142,21 +2142,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     scroller.style.height = `${sequenceHeight * (1 + bufferSize * 2)}px`;
                     
-                    // Start with first image centered - show half image above and below
-                    const containerHeight = container.offsetHeight;
-                    const firstSectionHeight = sectionHeights[0] || sequenceHeight / templateSections.length;
-                    const centerOffset = (containerHeight - firstSectionHeight) / 2;
-                    
-                    // Get the scroller number to add offset for different galleries
-                    const scrollerNum = parseInt(container.getAttribute('data-scroller'));
-                    const offsets = {
-                        1: 0.13,
-                        2: 0.13,
-                        3: 0.13
-                    };
-                    const additionalOffset = (offsets[scrollerNum] || 0) * firstSectionHeight;
-                    
-                    targetScrollY = sequenceHeight * bufferSize - centerOffset + additionalOffset;
+                    targetScrollY = sequenceHeight * bufferSize;
                     currentScrollY = targetScrollY;
                     scroller.style.transform = `translateY(-${currentScrollY}px)`;
 
@@ -2291,6 +2277,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
