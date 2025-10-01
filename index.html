@@ -1283,12 +1283,25 @@ box-shadow 0.3s ease;
 
 
 
+.main-wrapper:before{
+content: "";
+display: block;
+position: absolute;
+top: 0px;
+left: 0px;
+width: 50%;
+height: 10px;
+background-color: white;
+clip-path: polygon(0px 4px, 15px 4px, 20px 0px, 80px 0px, 85px 4px, 100% 4px, 100% 5px, 90px 5px, 85px 10px, 40px 10px, 35px 5px, 0px 5px);
+transform: scale(-1);	
+}	  
+	  
 
 .main-wrapper {
 position: relative;
 top: 0;
 left: 0;
-width: 98vw;
+width: 100vw;
 height: 80vh;
 display: flex;
 gap: 0;
@@ -2256,6 +2269,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
