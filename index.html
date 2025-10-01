@@ -2076,18 +2076,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	
     <script>
-       document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", () => {
             const containers = document.querySelectorAll('.img-container');
-            
-            // Wait for all images to load before initializing
-            const images = document.querySelectorAll('.header img');
-            let loadedCount = 0;
-            const totalImages = images.length;
-            
-            const initializeGalleries = () => {
-                const scrollers = [];
+            const scrollers = [];
 
-                containers.forEach((container) => {
+            containers.forEach((container) => {
                 const scroller = container.querySelector(".scroller");
                 const sections = Array.from(scroller.querySelectorAll("section"));
                 const isReverse = container.getAttribute('data-reverse') === 'true';
@@ -2149,7 +2142,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     const firstSectionHeight = sectionHeights[0] || sequenceHeight / templateSections.length;
                     const centerOffset = (containerHeight - firstSectionHeight) / 2;
                     
-                    targetScrollY = sequenceHeight * bufferSize - centerOffset;
+                    // Get the scroller number to add offset for different galleries
+                    const scrollerNum = parseInt(container.getAttribute('data-scroller'));
+                    const offsets = {
+                        1: 0.13,
+                        2: 0.13,
+                        3: 0.13
+                    };
+                    const additionalOffset = (offsets[scrollerNum] || 0) * firstSectionHeight;
+                    
+                    targetScrollY = sequenceHeight * bufferSize - centerOffset + additionalOffset;
                     currentScrollY = targetScrollY;
                     scroller.style.transform = `translateY(-${currentScrollY}px)`;
 
@@ -2267,38 +2269,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
             });
-            
-            // Initialize after all images load
-            if (totalImages === 0) {
-                initializeGalleries();
-            } else {
-                images.forEach(img => {
-                    if (img.complete) {
-                        loadedCount++;
-                        if (loadedCount === totalImages) {
-                            initializeGalleries();
-                        }
-                    } else {
-                        img.addEventListener('load', () => {
-                            loadedCount++;
-                            if (loadedCount === totalImages) {
-                                initializeGalleries();
-                            }
-                        });
-                        img.addEventListener('error', () => {
-                            loadedCount++;
-                            if (loadedCount === totalImages) {
-                                initializeGalleries();
-                            }
-                        });
-                    }
-                });
-            }
         });
     </script>
 	
 </body>
 </html>
+
 
 
 
