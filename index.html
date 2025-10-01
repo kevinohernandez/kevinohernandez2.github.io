@@ -2272,11 +2272,39 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
             });
+            
+            // Initialize after all images load
+            if (totalImages === 0) {
+                initializeGalleries();
+            } else {
+                images.forEach(img => {
+                    if (img.complete) {
+                        loadedCount++;
+                        if (loadedCount === totalImages) {
+                            initializeGalleries();
+                        }
+                    } else {
+                        img.addEventListener('load', () => {
+                            loadedCount++;
+                            if (loadedCount === totalImages) {
+                                initializeGalleries();
+                            }
+                        });
+                        img.addEventListener('error', () => {
+                            loadedCount++;
+                            if (loadedCount === totalImages) {
+                                initializeGalleries();
+                            }
+                        });
+                    }
+                });
+            }
         });
     </script>
 	
 </body>
 </html>
+
 
 
 
