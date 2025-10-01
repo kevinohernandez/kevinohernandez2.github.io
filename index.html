@@ -1335,13 +1335,7 @@ border-radius: 10px;
 	
 }
 
-.img-container[data-scroller="1"] .scroller-img {
-clip-path: polygon(2% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 65%, 2% 60%);	
-}	
-	  
-/.scroller-img:nth-child(even){
-clip-path: polygon(98% 0, 0% 0, 0% 90%, 10% 100%, 100% 100%, 100% 65%, 98% 60%);	
-}		  
+		  
 
 .img-container {
 position: relative;
@@ -1385,6 +1379,22 @@ opacity:1
 
 }	  
 
+
+.img-container[data-scroller="1"] .scroller-img {
+clip-path: polygon(2% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 65%, 2% 60%);	
+}
+
+.img-container[data-scroller="3"] .scroller-img {
+clip-path: polygon(98% 0, 0% 0, 0% 90%, 10% 100%, 100% 100%, 100% 65%, 98% 60%);	
+}	
+.img-container[data-scroller="3"] .header .overlay{
+clip-path: polygon(98% 0, 0% 0, 0% 90%, 10% 100%, 100% 100%, 100% 58%, 98% 60%)!important;	
+	
+}	  
+/.scroller-img:nth-child(even){
+clip-path: polygon(98% 0, 0% 0, 0% 90%, 10% 100%, 100% 100%, 100% 65%, 98% 60%);	
+}
+	  
   
 
 </style>
@@ -2275,6 +2285,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
