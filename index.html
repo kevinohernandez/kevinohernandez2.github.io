@@ -2077,7 +2077,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 	
-   <script>
+    <script>
         document.addEventListener("DOMContentLoaded", () => {
             const containers = document.querySelectorAll('.img-container');
             const scrollers = [];
@@ -2097,24 +2097,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 const lerp = (start, end, factor) => start + (end - start) * factor;
 
                 const setupScroll = () => {
-                    scroller
-                        .querySelectorAll(".clone-section")
-                        .forEach((clone) => clone.remove());
+                    scroller.querySelectorAll(".clone-section").forEach((clone) => clone.remove());
 
-                    const originalSections = Array.from(
-                        scroller.querySelectorAll("section:not(.clone-section)")
-                    );
-                    const templateSections =
-                        originalSections.length > 0 ? originalSections : sections;
+                    const originalSections = Array.from(scroller.querySelectorAll("section:not(.clone-section)"));
+                    const templateSections = originalSections.length > 0 ? originalSections : sections;
 
+                    // Calculate sequence height including margins
                     let sequenceHeight = 0;
+                    const sectionHeights = [];
                     templateSections.forEach((section) => {
-                        const height = parseFloat(window.getComputedStyle(section).height);
-                        const marginBottom = parseFloat(window.getComputedStyle(section).marginBottom);
-                        sequenceHeight += height + marginBottom;
+                        const rect = section.getBoundingClientRect();
+                        const style = window.getComputedStyle(section);
+                        const marginBottom = parseFloat(style.marginBottom);
+                        const height = rect.height + marginBottom;
+                        sectionHeights.push(height);
+                        sequenceHeight += height;
                     });
 
-                    // Create clones before original sections
                     for (let i = -bufferSize; i < 0; i++) {
                         templateSections.forEach((section, index) => {
                             const clone = section.cloneNode(true);
@@ -2124,7 +2123,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         });
                     }
 
-                    // Add original sections if none exist
                     if (originalSections.length === 0) {
                         templateSections.forEach((section, index) => {
                             const clone = section.cloneNode(true);
@@ -2133,7 +2131,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         });
                     }
 
-                    // Create clones after original sections
                     for (let i = 1; i <= bufferSize; i++) {
                         templateSections.forEach((section, index) => {
                             const clone = section.cloneNode(true);
@@ -2144,7 +2141,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
 
                     scroller.style.height = `${sequenceHeight * (1 + bufferSize * 2)}px`;
-                    targetScrollY = sequenceHeight * bufferSize;
+                    
+                    // Start with first image centered - show half image above and below
+                    const containerHeight = container.offsetHeight;
+                    const firstSectionHeight = sectionHeights[0] || sequenceHeight / templateSections.length;
+                    const centerOffset = (containerHeight - firstSectionHeight) / 2;
+                    
+                    // Get the scroller number to add offset for different galleries
+                    const scrollerNum = parseInt(container.getAttribute('data-scroller'));
+                    const offsets = {
+                        1: 0.23,
+                        2: 0.23,
+                        3: 0.23
+                    };
+                    const additionalOffset = (offsets[scrollerNum] || 0) * firstSectionHeight;
+                    
+                    targetScrollY = sequenceHeight * bufferSize - centerOffset + additionalOffset;
                     currentScrollY = targetScrollY;
                     scroller.style.transform = `translateY(-${currentScrollY}px)`;
 
@@ -2152,17 +2164,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 };
 
                 const checkBoundaryAndReset = (sequenceHeight) => {
-                    if (currentScrollY > sequenceHeight * (bufferSize + 0.5)) {
+                    // Check if targetScrollY (not currentScrollY) exceeds boundaries
+                    // Use tighter thresholds to reset earlier and avoid visible jumps
+                    if (targetScrollY > sequenceHeight * (bufferSize + 0.85)) {
                         targetScrollY -= sequenceHeight;
                         currentScrollY -= sequenceHeight;
-                        scroller.style.transform = `translateY(-${currentScrollY}px)`;
                         return true;
                     }
 
-                    if (currentScrollY < sequenceHeight * (bufferSize - 0.5)) {
+                    if (targetScrollY < sequenceHeight * (bufferSize - 0.85)) {
                         targetScrollY += sequenceHeight;
                         currentScrollY += sequenceHeight;
-                        scroller.style.transform = `translateY(-${currentScrollY}px)`;
                         return true;
                     }
 
@@ -2170,6 +2182,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 };
 
                 const animate = (sequenceHeight) => {
+                    // Check boundaries BEFORE lerping
+                    checkBoundaryAndReset(sequenceHeight);
+                    
                     currentScrollY = lerp(currentScrollY, targetScrollY, smoothFactor);
                     scroller.style.transform = `translateY(-${currentScrollY}px)`;
 
@@ -2180,10 +2195,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 };
 
-                // Initialize
                 const sequenceHeight = setupScroll();
 
-                // Store the scroller instance
                 scrollers.push({
                     targetScrollY,
                     currentScrollY,
@@ -2193,7 +2206,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     setTargetScroll: (delta) => {
                         const direction = isReverse ? -1 : 1;
                         targetScrollY += delta * direction;
-                        checkBoundaryAndReset(sequenceHeight);
                         
                         if (!isAnimating) {
                             isAnimating = true;
@@ -2203,22 +2215,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
 
-            // Wheel event on each container to control all scrollers
-            containers.forEach((container) => {
-                container.addEventListener(
-                    "wheel",
-                    (e) => {
+            containers.forEach((container, index) => {
+                container.addEventListener("wheel", (e) => {
+                    // Only capture horizontal scroll (shift+wheel or trackpad horizontal gesture)
+                    // Check if there's more horizontal movement than vertical
+                    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
                         e.preventDefault();
-                        // Scroll all galleries when hovering over any container
+                        // Use deltaX for horizontal scrolling
                         scrollers.forEach(scrollerInstance => {
-                            scrollerInstance.setTargetScroll(e.deltaY);
+                            scrollerInstance.setTargetScroll(e.deltaX);
                         });
-                    },
-                    { passive: false }
-                );
+                    }
+                }, { passive: false });
 
-                // Touch events on each container
                 let isDown = false;
+                let startX = 0;
                 let lastTouchX = 0;
                 let touchVelocity = 0;
                 let lastTouchTime = 0;
@@ -2226,30 +2237,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 container.addEventListener("touchstart", (e) => {
                     isDown = true;
+                    startX = e.touches[0].clientX;
                     lastTouchX = e.touches[0].clientX;
                     lastTouchTime = Date.now();
                 });
 
                 container.addEventListener("touchmove", (e) => {
                     if (!isDown) return;
-                    e.preventDefault();
-
+                    
                     const currentTouchX = e.touches[0].clientX;
-                    const touchDelta = lastTouchX - currentTouchX;
+                    const touchDeltaX = lastTouchX - currentTouchX;
+                    
+                    // Only prevent default and scroll if horizontal movement is dominant
+                    if (Math.abs(touchDeltaX) > 5) {
+                        e.preventDefault();
+                        
+                        scrollers.forEach(scrollerInstance => {
+                            scrollerInstance.setTargetScroll(touchDeltaX * touchSensitivity);
+                        });
 
-                    // Scroll all galleries when touching any container
-                    scrollers.forEach(scrollerInstance => {
-                        scrollerInstance.setTargetScroll(touchDelta * touchSensitivity);
-                    });
-
-                    const currentTime = Date.now();
-                    const timeDelta = currentTime - lastTouchTime;
-                    if (timeDelta > 0) {
-                        touchVelocity = (touchDelta / timeDelta) * 15;
+                        const currentTime = Date.now();
+                        const timeDelta = currentTime - lastTouchTime;
+                        if (timeDelta > 0) {
+                            touchVelocity = (touchDeltaX / timeDelta) * 15;
+                        }
                     }
+                    
                     lastTouchX = currentTouchX;
                     lastTouchTime = currentTime;
-                }, { passive: false });
+                });
 
                 container.addEventListener("touchend", () => {
                     isDown = false;
@@ -2275,6 +2291,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
