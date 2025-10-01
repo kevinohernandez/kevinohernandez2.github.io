@@ -2078,16 +2078,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	
     <script>
-       document.addEventListener("DOMContentLoaded", () => {
-            const mainWrapper = document.querySelector('.main-wrapper');
-            const containers = document.querySelectorAll('.img-container');
+        document.addEventListener("DOMContentLoaded", () => {
+            const containers = document.querySelectorAll('.container');
             
             // Store scroller instances
             const scrollers = [];
 
             containers.forEach((container) => {
                 const scroller = container.querySelector(".scroller");
-                const progressBar = container.querySelector(".progress-bar");
                 const sections = Array.from(scroller.querySelectorAll("section"));
                 const isReverse = container.getAttribute('data-reverse') === 'true';
 
@@ -2097,9 +2095,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 let targetScrollY = 0;
                 let currentScrollY = 0;
                 let isAnimating = false;
-                let currentProgressScale = 0;
-                let targetProgressScale = 0;
-                let lastPercentage = 0;
 
                 const lerp = (start, end, factor) => start + (end - start) * factor;
 
@@ -2174,53 +2169,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     return false;
                 };
 
-                const updateProgress = (sequenceHeight, forceReset = false) => {
-                    const basePosition = sequenceHeight * bufferSize;
-                    let currentPosition = (currentScrollY - basePosition) % sequenceHeight;
-                    
-                    // If reverse, invert the position calculation
-                    if (isReverse) {
-                        currentPosition = sequenceHeight - currentPosition;
-                    }
-                    
-                    let percentage = (currentPosition / sequenceHeight) * 100;
-
-                    if (percentage < 0) {
-                        percentage = 100 + percentage;
-                    }
-                    if (percentage > 100) {
-                        percentage = percentage - 100;
-                    }
-
-                    const isWrapping =
-                        (lastPercentage > 80 && percentage < 20) ||
-                        (lastPercentage < 20 && percentage > 80) ||
-                        forceReset;
-
-                    targetProgressScale = percentage / 100;
-
-                    if (isWrapping) {
-                        currentProgressScale = targetProgressScale;
-                        progressBar.style.transform = `scaleX(${currentProgressScale})`;
-                    }
-
-                    lastPercentage = percentage;
-                };
-
-                const animate = (sequenceHeight, forceProgressReset = false) => {
+                const animate = (sequenceHeight) => {
                     currentScrollY = lerp(currentScrollY, targetScrollY, smoothFactor);
                     scroller.style.transform = `translateY(-${currentScrollY}px)`;
-
-                    updateProgress(sequenceHeight, forceProgressReset);
-
-                    if (!forceProgressReset) {
-                        currentProgressScale = lerp(
-                            currentProgressScale,
-                            targetProgressScale,
-                            smoothFactor
-                        );
-                    }
-                    progressBar.style.transform = `scaleX(${currentProgressScale})`;
 
                     if (Math.abs(targetScrollY - currentScrollY) > 0.01) {
                         requestAnimationFrame(() => animate(sequenceHeight));
@@ -2231,8 +2182,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Initialize
                 const sequenceHeight = setupScroll();
-                updateProgress(sequenceHeight, true);
-                progressBar.style.transform = `scaleX(${currentProgressScale})`;
 
                 // Store the scroller instance
                 scrollers.push({
@@ -2244,17 +2193,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     setTargetScroll: (delta) => {
                         const direction = isReverse ? -1 : 1;
                         targetScrollY += delta * direction;
-                        const needsReset = checkBoundaryAndReset(sequenceHeight);
+                        checkBoundaryAndReset(sequenceHeight);
                         
                         if (!isAnimating) {
                             isAnimating = true;
-                            requestAnimationFrame(() => animate(sequenceHeight, needsReset));
-                        }
-                    },
-                    animate: () => {
-                        if (!isAnimating) {
-                            isAnimating = true;
-                            requestAnimationFrame(() => animate(sequenceHeight, false));
+                            requestAnimationFrame(() => animate(sequenceHeight));
                         }
                     }
                 });
@@ -2332,6 +2275,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
