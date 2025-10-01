@@ -1384,13 +1384,17 @@ opacity:1
 clip-path: polygon(2% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 65%, 2% 60%);	
 }
 
+.img-container[data-scroller="2"] .header .overlay{
+clip-path: none !important;	
+}	 
+	  
 .img-container[data-scroller="3"] .scroller-img {
 clip-path: polygon(98% 0, 0% 0, 0% 90%, 10% 100%, 100% 100%, 100% 65%, 98% 60%);	
 }	
 .img-container[data-scroller="3"] .header .overlay{
-clip-path: polygon(98% 0, 0% 0, 0% 90%, 10% 100%, 100% 100%, 100% 58%, 98% 60%)!important;	
-	
-}	  
+clip-path: polygon(98% 0, 0% 0, 0% 60%, 10% 100%, 100% 100%, 100% 65%, 98% 60%)!important;	
+}	 
+	  
 /.scroller-img:nth-child(even){
 clip-path: polygon(98% 0, 0% 0, 0% 90%, 10% 100%, 100% 100%, 100% 65%, 98% 60%);	
 }
@@ -2285,6 +2289,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
