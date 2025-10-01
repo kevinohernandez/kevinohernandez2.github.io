@@ -2106,13 +2106,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const checkBoundaryAndReset = (sequenceHeight) => {
                     // Check if targetScrollY (not currentScrollY) exceeds boundaries
-                    if (targetScrollY > sequenceHeight * (bufferSize + 1)) {
+                    if (targetScrollY > sequenceHeight * (bufferSize + 0.85)) {
                         targetScrollY -= sequenceHeight;
                         currentScrollY -= sequenceHeight;
                         return true;
                     }
 
-                    if (targetScrollY < sequenceHeight * (bufferSize - 1)) {
+                    if (targetScrollY < sequenceHeight * (bufferSize - 0.85)) {
                         targetScrollY += sequenceHeight;
                         currentScrollY += sequenceHeight;
                         return true;
@@ -2219,6 +2219,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 </body>
 </html>
+
 
 
 
